@@ -1,4 +1,8 @@
+invoke==2.2.0
+kagglehub==0.3.6
+loguru==0.7.3
+pandas==2.2.3
+scikit_learn==1.6.1
 torch==2.5.1
+transformers==4.47.1
 typer==0.15.1
-fastapi==0.115.6
-uvicorn==0.34.0
