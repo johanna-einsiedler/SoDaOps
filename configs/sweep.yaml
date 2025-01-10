@@ -1,0 +1,19 @@
+program: src/tweet_sentiment_analysis/train.py  # The script to run
+project: sentiment-analysis  # change this
+entity: advanced-deep-learning-course  # change this
+method: random  # Random search for hyperparameters
+metric:
+  name: eval/loss  # The validation loss to minimize
+  goal: minimize
+
+parameters:
+  lr:
+    distribution: uniform
+    min: 1e-6
+    max: 1e-4
+  weight_decay:
+    distribution: uniform
+    min: 0.01
+    max: 0.1
+
+run_cap: 2
