@@ -1,0 +1,501 @@
+tweet_id,user_handle,timestamp,tweet_text,candidate,party,retweets,likes,sentiment
+1,@user123,2024-11-03 08:45:00,"Excited to see Kamala Harris leading the Democratic charge!",Kamala Harris,Democratic Party,120,450,positive
+2,@politicsFan,2024-11-03 09:15:23,"Donald Trump's policies are the best for our economy.",Donald Trump,Republican Party,85,300,positive
+3,@greenAdvocate,2024-11-03 10:05:45,"Jill Stein's environmental plans are exactly what we need.",Jill Stein,Green Party,60,200,positive
+4,@indieVoice,2024-11-03 11:20:10,"Robert Kennedy offers a fresh perspective outside the two-party system.",Robert Kennedy,Independent,40,150,neutral
+5,@libertyLover,2024-11-03 12:35:55,"Chase Oliver's libertarian stance promotes true freedom.",Chase Oliver,Libertarian Party,30,120,positive
+6,@user456,2024-11-04 08:50:30,"Kamala Harris has been a strong advocate for healthcare reform.",Kamala Harris,Democratic Party,95,380,positive
+7,@econGuru,2024-11-04 09:25:10,"Trump's tax policies will benefit small businesses.",Donald Trump,Republican Party,110,500,positive
+8,@ecoWarrior,2024-11-04 10:15:20,"Jill Stein's green initiatives could save our planet.",Jill Stein,Green Party,70,250,positive
+9,@neutralNow,2024-11-04 11:45:00,"Robert Kennedy is running as an independent; interesting choice.",Robert Kennedy,Independent,25,100,neutral
+10,@freedomFirst,2024-11-04 12:55:35,"Chase Oliver promotes minimal government intervention. Love it!",Chase Oliver,Libertarian Party,50,180,positive
+11,@user789,2024-11-05 08:30:15,"Kamala Harris is tackling education issues head-on.",Kamala Harris,Democratic Party,80,320,positive
+12,@taxTalk,2024-11-05 09:10:50,"Trump's latest policy could lower taxes for the middle class.",Donald Trump,Republican Party,95,400,positive
+13,@sustainability,2024-11-05 10:25:40,"Jill Stein's renewable energy plans are ambitious.",Jill Stein,Green Party,65,220,positive
+14,@indepThought,2024-11-05 11:35:25,"Robert Kennedy might disrupt the traditional party dynamics.",Robert Kennedy,Independent,35,130,neutral
+15,@libertySeek,2024-11-05 12:45:50,"Chase Oliver's views on personal freedom are refreshing.",Chase Oliver,Libertarian Party,45,160,positive
+16,@user321,2024-11-06 08:55:05,"Kamala Harris is making strides in criminal justice reform.",Kamala Harris,Democratic Party,90,350,positive
+17,@businessInsider,2024-11-06 09:20:30,"Trump's deregulation efforts are boosting the stock market.",Donald Trump,Republican Party,100,450,positive
+18,@greenFuture,2024-11-06 10:40:10,"Jill Stein advocates for sustainable agriculture.",Jill Stein,Green Party,55,190,positive
+19,@watchingNow,2024-11-06 11:50:45,"Robert Kennedy's independent run adds more choices for voters.",Robert Kennedy,Independent,30,110,neutral
+20,@freeMarket,2024-11-06 12:30:20,"Chase Oliver supports free-market solutions for healthcare.",Chase Oliver,Libertarian Party,40,140,positive
+21,@user654,2024-11-07 08:40:00,"Kamala Harris is a strong leader for progressive change.",Kamala Harris,Democratic Party,85,330,positive
+22,@policyMaker,2024-11-07 09:30:25,"Trump's stance on immigration is reshaping national policy.",Donald Trump,Republican Party,105,470,negative
+23,@ecoSupport,2024-11-07 10:10:35,"Jill Stein's proposals for green jobs are commendable.",Jill Stein,Green Party,60,210,positive
+24,@neutralThoughts,2024-11-07 11:25:15,"Robert Kennedy's platform as an independent is unclear.",Robert Kennedy,Independent,20,90,neutral
+25,@freedomVoice,2024-11-07 12:15:40,"Chase Oliver emphasizes individual liberties in his campaign.",Chase Oliver,Libertarian Party,35,130,positive
+26,@user987,2024-11-08 08:35:20,"Kamala Harris continues to push for affordable housing.",Kamala Harris,Democratic Party,75,290,positive
+27,@marketWatch,2024-11-08 09:05:55,"Trump's economic policies are controversial but effective.",Donald Trump,Republican Party,115,480,neutral
+28,@greenInitiative,2024-11-08 10:20:50,"Jill Stein is focusing on climate change legislation.",Jill Stein,Green Party,70,230,positive
+29,@indieSupport,2024-11-08 11:40:30,"Robert Kennedy offers an alternative to traditional parties.",Robert Kennedy,Independent,28,105,neutral
+30,@libertyRights,2024-11-08 12:50:10,"Chase Oliver advocates for gun rights and personal freedom.",Chase Oliver,Libertarian Party,50,170,positive
+31,@user159,2024-11-09 08:25:45,"Kamala Harris is addressing income inequality in her speeches.",Kamala Harris,Democratic Party,80,310,positive
+32,@taxPolicy,2024-11-09 09:40:20,"Trump's tax cuts are benefiting the wealthy disproportionately.",Donald Trump,Republican Party,90,420,negative
+33,@sustainableLiving,2024-11-09 10:30:35,"Jill Stein promotes electric vehicles to reduce emissions.",Jill Stein,Green Party,65,205,positive
+34,@independantView,2024-11-09 11:55:00,"Robert Kennedy's policies are a mix of left and right ideologies.",Robert Kennedy,Independent,22,95,neutral
+35,@freedomAdvocate,2024-11-09 12:40:25,"Chase Oliver's economic plans prioritize individual choice.",Chase Oliver,Libertarian Party,45,150,positive
+36,@user753,2024-11-10 08:50:10,"Kamala Harris is a beacon of hope for many voters.",Kamala Harris,Democratic Party,95,360,positive
+37,@econDebate,2024-11-10 09:15:40,"Trump's approach to trade is leading to new international agreements.",Donald Trump,Republican Party,100,440,neutral
+38,@greenEnergy,2024-11-10 10:05:25,"Jill Stein's solar energy plans could revolutionize power grids.",Jill Stein,Green Party,75,240,positive
+39,@neutralOpinion,2024-11-10 11:35:50,"Robert Kennedy remains neutral on some key issues, causing uncertainty.",Robert Kennedy,Independent,18,85,neutral
+40,@libertyMovement,2024-11-10 12:20:15,"Chase Oliver is building a strong base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+41,@user852,2024-11-11 08:45:30,"Kamala Harris's foreign policy plans are ambitious and detailed.",Kamala Harris,Democratic Party,85,325,positive
+42,@policyWatch,2024-11-11 09:30:05,"Trump's healthcare policies are sparking nationwide debates.",Donald Trump,Republican Party,110,460,negative
+43,@ecoFriendly,2024-11-11 10:15:40,"Jill Stein is advocating for zero-waste cities.",Jill Stein,Green Party,60,215,positive
+44,@indepThoughts,2024-11-11 11:25:30,"Robert Kennedy is focusing on bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+45,@freedomFighter,2024-11-11 12:35:55,"Chase Oliver supports abolishing the IRS for more freedom.",Chase Oliver,Libertarian Party,35,140,positive
+46,@user963,2024-11-12 08:20:50,"Kamala Harris's initiatives on climate change are groundbreaking.",Kamala Harris,Democratic Party,90,340,positive
+47,@taxReform,2024-11-12 09:10:25,"Trump's latest tax reform favors large corporations.",Donald Trump,Republican Party,95,410,negative
+48,@sustainableFuture,2024-11-12 10:45:10,"Jill Stein's policies aim to make cities more sustainable.",Jill Stein,Green Party,70,225,positive
+49,@indieChoice,2024-11-12 11:50:35,"Robert Kennedy's independent stance attracts diverse voters.",Robert Kennedy,Independent,30,115,neutral
+50,@libertyValues,2024-11-12 12:30:20,"Chase Oliver's commitment to liberty resonates with many.",Chase Oliver,Libertarian Party,50,175,positive
+51,@ecoChampion,2024-11-13 08:30:00,"Jill Stein's new recycling program is a game-changer!",Jill Stein,Green Party,65,220,positive
+52,@policyPro,2024-11-13 09:15:40,"Kamala Harris is implementing effective education policies.",Kamala Harris,Democratic Party,80,310,positive
+53,@marketMover,2024-11-13 10:05:25,"Trump's trade deals are benefiting American industries.",Donald Trump,Republican Party,90,400,positive
+54,@indieInsight,2024-11-13 11:45:10,"Robert Kennedy is bridging gaps between different voter groups.",Robert Kennedy,Independent,28,105,neutral
+55,@libertyVoice,2024-11-13 12:50:35,"Chase Oliver's stance on free speech is admirable.",Chase Oliver,Libertarian Party,50,170,positive
+56,@user111,2024-11-14 08:25:15,"Kamala Harris's healthcare initiatives are saving lives.",Kamala Harris,Democratic Party,85,330,positive
+57,@taxWise,2024-11-14 09:40:50,"Trump's tax reforms are attracting business investments.",Donald Trump,Republican Party,95,420,positive
+58,@greenVision,2024-11-14 10:30:20,"Jill Stein envisions a greener future with sustainable practices.",Jill Stein,Green Party,70,230,positive
+59,@neutralPulse,2024-11-14 11:55:00,"Robert Kennedy maintains a balanced approach to policies.",Robert Kennedy,Independent,22,95,neutral
+60,@freedomAdvocacy,2024-11-14 12:40:25,"Chase Oliver champions individual rights and freedoms.",Chase Oliver,Libertarian Party,45,150,positive
+61,@user222,2024-11-15 08:50:10,"Kamala Harris is a beacon of hope for many voters.",Kamala Harris,Democratic Party,95,360,positive
+62,@econTalk,2024-11-15 09:15:40,"Trump's economic strategies are leading to growth.",Donald Trump,Republican Party,100,440,positive
+63,@greenFutureNow,2024-11-15 10:05:25,"Jill Stein's solar projects are reducing carbon footprints.",Jill Stein,Green Party,75,240,positive
+64,@indiePerspective,2024-11-15 11:35:50,"Robert Kennedy offers practical solutions outside party lines.",Robert Kennedy,Independent,18,85,neutral
+65,@libertyMovement,2024-11-15 12:20:15,"Chase Oliver is building a strong base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+66,@user333,2024-11-16 08:45:30,"Kamala Harris's foreign policy plans are ambitious and detailed.",Kamala Harris,Democratic Party,85,325,positive
+67,@policyDebate,2024-11-16 09:30:05,"Trump's healthcare policies are sparking nationwide debates.",Donald Trump,Republican Party,110,460,negative
+68,@ecoFriendlyLiving,2024-11-16 10:15:40,"Jill Stein is advocating for zero-waste cities.",Jill Stein,Green Party,60,215,positive
+69,@indepThoughts,2024-11-16 11:25:30,"Robert Kennedy is focusing on bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+70,@freedomFighter,2024-11-16 12:35:55,"Chase Oliver supports abolishing the IRS for more freedom.",Chase Oliver,Libertarian Party,35,140,positive
+71,@user444,2024-11-17 08:20:50,"Kamala Harris's initiatives on climate change are groundbreaking.",Kamala Harris,Democratic Party,90,340,positive
+72,@taxReformNow,2024-11-17 09:10:25,"Trump's latest tax reform favors large corporations.",Donald Trump,Republican Party,95,410,negative
+73,@sustainableCity,2024-11-17 10:45:10,"Jill Stein's policies aim to make cities more sustainable.",Jill Stein,Green Party,70,225,positive
+74,@indieChoice,2024-11-17 11:50:35,"Robert Kennedy's independent stance attracts diverse voters.",Robert Kennedy,Independent,30,115,neutral
+75,@libertyValues,2024-11-17 12:30:20,"Chase Oliver's commitment to liberty resonates with many.",Chase Oliver,Libertarian Party,50,175,positive
+76,@ecoSupporter,2024-11-18 08:35:20,"Jill Stein's latest environmental initiative is inspiring!",Jill Stein,Green Party,65,220,positive
+77,@policyWatcher,2024-11-18 09:05:55,"Kamala Harris is leading effective reforms in education.",Kamala Harris,Democratic Party,80,310,positive
+78,@marketLeader,2024-11-18 10:20:50,"Trump's trade policies are boosting American exports.",Donald Trump,Republican Party,90,400,positive
+79,@indieVision,2024-11-18 11:40:30,"Robert Kennedy brings new ideas to the political landscape.",Robert Kennedy,Independent,28,105,neutral
+80,@libertyAdvocate,2024-11-18 12:50:10,"Chase Oliver's policies on free markets are commendable.",Chase Oliver,Libertarian Party,50,170,positive
+81,@user555,2024-11-19 08:25:45,"Kamala Harris is addressing income inequality in her speeches.",Kamala Harris,Democratic Party,80,310,positive
+82,@taxPolicyUpdate,2024-11-19 09:40:20,"Trump's tax cuts are benefiting the wealthy disproportionately.",Donald Trump,Republican Party,90,420,negative
+83,@sustainableLivingNow,2024-11-19 10:30:35,"Jill Stein promotes electric vehicles to reduce emissions.",Jill Stein,Green Party,65,205,positive
+84,@independantView,2024-11-19 11:55:00,"Robert Kennedy's policies are a mix of left and right ideologies.",Robert Kennedy,Independent,22,95,neutral
+85,@freedomAdvocate,2024-11-19 12:40:25,"Chase Oliver's economic plans prioritize individual choice.",Chase Oliver,Libertarian Party,45,150,positive
+86,@user666,2024-11-20 08:50:10,"Kamala Harris is a beacon of hope for many voters.",Kamala Harris,Democratic Party,95,360,positive
+87,@econDebate,2024-11-20 09:15:40,"Trump's approach to trade is leading to new international agreements.",Donald Trump,Republican Party,100,440,neutral
+88,@greenEnergy,2024-11-20 10:05:25,"Jill Stein's solar energy plans could revolutionize power grids.",Jill Stein,Green Party,75,240,positive
+89,@neutralOpinion,2024-11-20 11:35:50,"Robert Kennedy remains neutral on some key issues, causing uncertainty.",Robert Kennedy,Independent,18,85,neutral
+90,@libertyMovement,2024-11-20 12:20:15,"Chase Oliver is building a strong base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+91,@user777,2024-11-21 08:45:30,"Kamala Harris's foreign policy plans are ambitious and detailed.",Kamala Harris,Democratic Party,85,325,positive
+92,@policyWatch,2024-11-21 09:30:05,"Trump's healthcare policies are sparking nationwide debates.",Donald Trump,Republican Party,110,460,negative
+93,@ecoFriendly,2024-11-21 10:15:40,"Jill Stein is advocating for zero-waste cities.",Jill Stein,Green Party,60,215,positive
+94,@indepThoughts,2024-11-21 11:25:30,"Robert Kennedy is focusing on bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+95,@freedomFighter,2024-11-21 12:35:55,"Chase Oliver supports abolishing the IRS for more freedom.",Chase Oliver,Libertarian Party,35,140,positive
+96,@user888,2024-11-22 08:20:50,"Kamala Harris's initiatives on climate change are groundbreaking.",Kamala Harris,Democratic Party,90,340,positive
+97,@taxReform,2024-11-22 09:10:25,"Trump's latest tax reform favors large corporations.",Donald Trump,Republican Party,95,410,negative
+98,@sustainableFuture,2024-11-22 10:45:10,"Jill Stein's policies aim to make cities more sustainable.",Jill Stein,Green Party,70,225,positive
+99,@indieChoice,2024-11-22 11:50:35,"Robert Kennedy's independent stance attracts diverse voters.",Robert Kennedy,Independent,30,115,neutral
+100,@libertyValues,2024-11-22 12:30:20,"Chase Oliver's commitment to liberty resonates with many.",Chase Oliver,Libertarian Party,50,175,positive  
+101,@user999,2024-11-23 08:30:10,"Kamala Harris is championing affordable education for all.",Kamala Harris,Democratic Party,85,350,positive
+102,@policyGuru,2024-11-23 09:15:45,"Trump's immigration policies are sparking national conversations.",Donald Trump,Republican Party,95,420,neutral
+103,@greenAdvocate2,2024-11-23 10:05:30,"Jill Stein's commitment to renewable energy is inspiring.",Jill Stein,Green Party,70,230,positive
+104,@indieVoice2,2024-11-23 11:25:20,"Robert Kennedy is bringing fresh ideas to the independent race.",Robert Kennedy,Independent,30,110,neutral
+105,@libertyFan,2024-11-23 12:40:55,"Chase Oliver's policies on tax reduction are gaining traction.",Chase Oliver,Libertarian Party,50,180,positive
+106,@user1000,2024-11-24 08:45:00,"Kamala Harris is working tirelessly on climate legislation.",Kamala Harris,Democratic Party,90,360,positive
+107,@econExpert,2024-11-24 09:20:35,"Trump's economic strategies are a double-edged sword.",Donald Trump,Republican Party,100,440,neutral
+108,@ecoWarrior2,2024-11-24 10:15:25,"Jill Stein's plan for sustainable cities is ahead of its time.",Jill Stein,Green Party,75,240,positive
+109,@neutralMind,2024-11-24 11:50:10,"Robert Kennedy remains a wildcard in this election.",Robert Kennedy,Independent,25,100,neutral
+110,@freedomFirst2,2024-11-24 12:55:35,"Chase Oliver advocates for complete government deregulation.",Chase Oliver,Libertarian Party,45,160,positive
+111,@user1001,2024-11-25 08:30:20,"Kamala Harris is bridging gaps in healthcare access.",Kamala Harris,Democratic Party,80,310,positive
+112,@taxTalk2,2024-11-25 09:10:55,"Trump's latest tax plan favors the upper class.",Donald Trump,Republican Party,90,420,negative
+113,@sustainability2,2024-11-25 10:25:15,"Jill Stein is pushing for electric public transportation.",Jill Stein,Green Party,65,205,positive
+114,@indepThought3,2024-11-25 11:35:00,"Robert Kennedy's independent run is shaking things up.",Robert Kennedy,Independent,22,95,neutral
+115,@libertySeek2,2024-11-25 12:45:30,"Chase Oliver's focus on personal freedom is resonating with voters.",Chase Oliver,Libertarian Party,40,150,positive
+116,@user1002,2024-11-26 08:55:10,"Kamala Harris is making significant progress in infrastructure development.",Kamala Harris,Democratic Party,85,325,positive
+117,@businessInsider2,2024-11-26 09:20:45,"Trump's deregulation policies are controversial among experts.",Donald Trump,Republican Party,100,450,neutral
+118,@greenFuture2,2024-11-26 10:40:30,"Jill Stein's focus on green technology is commendable.",Jill Stein,Green Party,60,210,positive
+119,@watchingNow2,2024-11-26 11:50:20,"Robert Kennedy's policies appeal to a broad spectrum of voters.",Robert Kennedy,Independent,28,105,neutral
+120,@freeMarket2,2024-11-26 12:30:50,"Chase Oliver supports free-market solutions for education reform.",Chase Oliver,Libertarian Party,50,170,positive
+121,@user1003,2024-11-27 08:40:15,"Kamala Harris is dedicated to reducing student loan debt.",Kamala Harris,Democratic Party,85,330,positive
+122,@policyMaker2,2024-11-27 09:30:50,"Trump's stance on trade tariffs is affecting international relations.",Donald Trump,Republican Party,105,470,negative
+123,@ecoSupport2,2024-11-27 10:10:40,"Jill Stein's initiatives for green jobs are creating opportunities.",Jill Stein,Green Party,60,210,positive
+124,@neutralThoughts2,2024-11-27 11:25:50,"Robert Kennedy's platform lacks clarity on key issues.",Robert Kennedy,Independent,20,90,neutral
+125,@freedomVoice2,2024-11-27 12:15:25,"Chase Oliver emphasizes the importance of individual liberties.",Chase Oliver,Libertarian Party,35,130,positive
+126,@user1004,2024-11-28 08:35:30,"Kamala Harris continues to advocate for affordable housing solutions.",Kamala Harris,Democratic Party,75,290,positive
+127,@marketWatch2,2024-11-28 09:05:55,"Trump's economic policies are under scrutiny from various sectors.",Donald Trump,Republican Party,115,480,neutral
+128,@greenInitiative2,2024-11-28 10:20:45,"Jill Stein is leading the charge on climate change legislation.",Jill Stein,Green Party,70,230,positive
+129,@indieSupport2,2024-11-28 11:40:35,"Robert Kennedy offers a unique perspective outside the mainstream parties.",Robert Kennedy,Independent,28,105,neutral
+130,@libertyRights2,2024-11-28 12:50:20,"Chase Oliver advocates for the protection of gun rights.",Chase Oliver,Libertarian Party,50,170,positive
+131,@user1005,2024-11-29 08:25:55,"Kamala Harris is addressing wage gaps in her latest policy proposal.",Kamala Harris,Democratic Party,80,310,positive
+132,@taxPolicy2,2024-11-29 09:40:30,"Trump's tax cuts are criticized for benefiting the wealthy.",Donald Trump,Republican Party,90,420,negative
+133,@sustainableLiving2,2024-11-29 10:30:50,"Jill Stein promotes the adoption of electric vehicles to combat pollution.",Jill Stein,Green Party,65,205,positive
+134,@independantView2,2024-11-29 11:55:15,"Robert Kennedy's policies blend elements from both major parties.",Robert Kennedy,Independent,22,95,neutral
+135,@freedomAdvocate2,2024-11-29 12:40:35,"Chase Oliver's economic plans focus on reducing government intervention.",Chase Oliver,Libertarian Party,45,150,positive
+136,@user1006,2024-11-30 08:50:25,"Kamala Harris is a beacon of hope for progressive voters.",Kamala Harris,Democratic Party,95,360,positive
+137,@econDebate2,2024-11-30 09:15:50,"Trump's trade policies are reshaping global markets.",Donald Trump,Republican Party,100,440,neutral
+138,@greenEnergy2,2024-11-30 10:05:40,"Jill Stein's solar energy initiatives could transform the power industry.",Jill Stein,Green Party,75,240,positive
+139,@neutralOpinion2,2024-11-30 11:35:25,"Robert Kennedy remains non-committal on several key issues.",Robert Kennedy,Independent,18,85,neutral
+140,@libertyMovement2,2024-11-30 12:20:35,"Chase Oliver is gaining support among young libertarians.",Chase Oliver,Libertarian Party,40,160,positive
+141,@user1007,2024-12-01 08:45:40,"Kamala Harris's foreign policy is gaining international attention.",Kamala Harris,Democratic Party,85,325,positive
+142,@policyWatch2,2024-12-01 09:30:15,"Trump's healthcare policies are facing backlash from multiple fronts.",Donald Trump,Republican Party,110,460,negative
+143,@ecoFriendly2,2024-12-01 10:15:55,"Jill Stein is pushing for zero-waste initiatives in urban areas.",Jill Stein,Green Party,60,215,positive
+144,@indepThoughts2,2024-12-01 11:25:45,"Robert Kennedy is emphasizing bipartisan cooperation in his campaign.",Robert Kennedy,Independent,25,100,neutral
+145,@freedomFighter2,2024-12-01 12:35:25,"Chase Oliver supports eliminating the IRS to increase personal freedoms.",Chase Oliver,Libertarian Party,35,140,positive
+146,@user1008,2024-12-02 08:20:55,"Kamala Harris's climate initiatives are setting new standards.",Kamala Harris,Democratic Party,90,340,positive
+147,@taxReform2,2024-12-02 09:10:50,"Trump's latest tax reforms are criticized for favoring large businesses.",Donald Trump,Republican Party,95,410,negative
+148,@sustainableFuture2,2024-12-02 10:45:25,"Jill Stein aims to make cities more eco-friendly with her new policies.",Jill Stein,Green Party,70,225,positive
+149,@indieChoice2,2024-12-02 11:50:40,"Robert Kennedy's independent run is attracting a diverse voter base.",Robert Kennedy,Independent,30,115,neutral
+150,@libertyValues2,2024-12-02 12:30:35,"Chase Oliver's dedication to liberty is winning him loyal supporters.",Chase Oliver,Libertarian Party,50,175,positive
+151,@ecoChampion2,2024-12-03 08:30:10,"Jill Stein's new recycling initiative is receiving widespread praise.",Jill Stein,Green Party,65,220,positive
+152,@policyPro2,2024-12-03 09:15:50,"Kamala Harris is rolling out new education reforms aimed at inclusivity.",Kamala Harris,Democratic Party,80,310,positive
+153,@marketMover2,2024-12-03 10:05:35,"Trump's trade agreements are boosting certain American industries.",Donald Trump,Republican Party,90,400,positive
+154,@indieInsight2,2024-12-03 11:45:25,"Robert Kennedy is working to unite various voter factions.",Robert Kennedy,Independent,28,105,neutral
+155,@libertyVoice2,2024-12-03 12:50:50,"Chase Oliver's advocacy for free speech is gaining momentum.",Chase Oliver,Libertarian Party,50,170,positive
+156,@user1009,2024-12-04 08:25:20,"Kamala Harris's healthcare policies are making significant impacts.",Kamala Harris,Democratic Party,85,330,positive
+157,@taxWise2,2024-12-04 09:40:55,"Trump's tax reforms are encouraging business investments.",Donald Trump,Republican Party,95,420,positive
+158,@greenVision2,2024-12-04 10:30:40,"Jill Stein envisions a sustainable future with green technologies.",Jill Stein,Green Party,70,230,positive
+159,@neutralPulse2,2024-12-04 11:55:15,"Robert Kennedy maintains a balanced stance on controversial issues.",Robert Kennedy,Independent,22,95,neutral
+160,@freedomAdvocacy2,2024-12-04 12:40:45,"Chase Oliver is a strong advocate for individual rights and freedoms.",Chase Oliver,Libertarian Party,45,150,positive
+161,@user1010,2024-12-05 08:50:30,"Kamala Harris is a symbol of progressive leadership.",Kamala Harris,Democratic Party,95,360,positive
+162,@econTalk2,2024-12-05 09:15:55,"Trump's economic strategies are showing mixed results.",Donald Trump,Republican Party,100,440,neutral
+163,@greenFutureNow2,2024-12-05 10:05:30,"Jill Stein's solar projects are leading the way in renewable energy.",Jill Stein,Green Party,75,240,positive
+164,@indiePerspective2,2024-12-05 11:35:25,"Robert Kennedy offers pragmatic solutions outside the party lines.",Robert Kennedy,Independent,18,85,neutral
+165,@libertyMovement3,2024-12-05 12:20:45,"Chase Oliver is expanding his base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+166,@user1011,2024-12-06 08:45:35,"Kamala Harris's foreign policy is earning international acclaim.",Kamala Harris,Democratic Party,85,325,positive
+167,@policyDebate2,2024-12-06 09:30:20,"Trump's healthcare policies continue to divide public opinion.",Donald Trump,Republican Party,110,460,negative
+168,@ecoFriendlyLiving2,2024-12-06 10:15:50,"Jill Stein is pushing for zero-waste initiatives in all major cities.",Jill Stein,Green Party,60,215,positive
+169,@indepThoughts3,2024-12-06 11:25:40,"Robert Kennedy is committed to bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+170,@freedomFighter3,2024-12-06 12:35:30,"Chase Oliver advocates for eliminating unnecessary government agencies.",Chase Oliver,Libertarian Party,35,140,positive
+171,@user1012,2024-12-07 08:20:55,"Kamala Harris's climate initiatives are setting new benchmarks.",Kamala Harris,Democratic Party,90,340,positive
+172,@taxReform3,2024-12-07 09:10:40,"Trump's latest tax reforms are under heavy criticism.",Donald Trump,Republican Party,95,410,negative
+173,@sustainableFuture3,2024-12-07 10:45:35,"Jill Stein's policies aim to create sustainable urban environments.",Jill Stein,Green Party,70,225,positive
+174,@indieChoice3,2024-12-07 11:50:50,"Robert Kennedy's independent stance is attracting a wide range of voters.",Robert Kennedy,Independent,30,115,neutral
+175,@libertyValues3,2024-12-07 12:30:40,"Chase Oliver's dedication to liberty is winning hearts.",Chase Oliver,Libertarian Party,50,175,positive
+176,@ecoSupporter2,2024-12-08 08:35:25,"Jill Stein's latest environmental initiative is making waves.",Jill Stein,Green Party,65,220,positive
+177,@policyWatcher2,2024-12-08 09:05:40,"Kamala Harris is leading comprehensive education reforms.",Kamala Harris,Democratic Party,80,310,positive
+178,@marketLeader2,2024-12-08 10:20:35,"Trump's trade policies are boosting American manufacturing.",Donald Trump,Republican Party,90,400,positive
+179,@indieVision2,2024-12-08 11:40:45,"Robert Kennedy brings innovative ideas to the forefront.",Robert Kennedy,Independent,28,105,neutral
+180,@libertyAdvocate2,2024-12-08 12:50:25,"Chase Oliver's free market policies are gaining support.",Chase Oliver,Libertarian Party,50,170,positive
+181,@user1013,2024-12-09 08:25:50,"Kamala Harris is addressing systemic inequality in her new policies.",Kamala Harris,Democratic Party,80,310,positive
+182,@taxPolicyUpdate2,2024-12-09 09:40:35,"Trump's tax cuts are seen as favoring the wealthy.",Donald Trump,Republican Party,90,420,negative
+183,@sustainableLiving3,2024-12-09 10:30:50,"Jill Stein promotes the use of electric vehicles to lower emissions.",Jill Stein,Green Party,65,205,positive
+184,@independantView3,2024-12-09 11:55:20,"Robert Kennedy's policies blend diverse ideological perspectives.",Robert Kennedy,Independent,22,95,neutral
+185,@freedomAdvocate3,2024-12-09 12:40:50,"Chase Oliver's economic plans focus on maximizing individual choice.",Chase Oliver,Libertarian Party,45,150,positive
+186,@user1014,2024-12-10 08:50:40,"Kamala Harris continues to inspire with her leadership.",Kamala Harris,Democratic Party,95,360,positive
+187,@econDebate3,2024-12-10 09:15:30,"Trump's trade approach is creating new international dynamics.",Donald Trump,Republican Party,100,440,neutral
+188,@greenEnergy3,2024-12-10 10:05:50,"Jill Stein's solar energy plans are set to revolutionize the sector.",Jill Stein,Green Party,75,240,positive
+189,@neutralOpinion3,2024-12-10 11:35:35,"Robert Kennedy remains neutral on several contentious issues.",Robert Kennedy,Independent,18,85,neutral
+190,@libertyMovement4,2024-12-10 12:20:45,"Chase Oliver is strengthening his support among libertarians.",Chase Oliver,Libertarian Party,40,160,positive
+191,@user1015,2024-12-11 08:45:55,"Kamala Harris's foreign policy initiatives are gaining global recognition.",Kamala Harris,Democratic Party,85,325,positive
+192,@policyWatch3,2024-12-11 09:30:25,"Trump's healthcare policies continue to divide the nation.",Donald Trump,Republican Party,110,460,negative
+193,@ecoFriendly3,2024-12-11 10:15:35,"Jill Stein is advocating for zero-waste cities nationwide.",Jill Stein,Green Party,60,215,positive
+194,@indepThoughts4,2024-12-11 11:25:50,"Robert Kennedy is emphasizing the need for bipartisan cooperation.",Robert Kennedy,Independent,25,100,neutral
+195,@freedomFighter4,2024-12-11 12:35:40,"Chase Oliver supports eliminating the IRS to enhance personal freedoms.",Chase Oliver,Libertarian Party,35,140,positive
+196,@user1016,2024-12-12 08:20:35,"Kamala Harris's climate change initiatives are setting new goals.",Kamala Harris,Democratic Party,90,340,positive
+197,@taxReform4,2024-12-12 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+198,@sustainableFuture4,2024-12-12 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+199,@indieChoice4,2024-12-12 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+200,@libertyValues4,2024-12-12 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+201,@user1017,2024-12-13 08:30:10,"Kamala Harris is pushing for comprehensive healthcare reforms.",Kamala Harris,Democratic Party,85,325,positive
+202,@policyGuru2,2024-12-13 09:15:45,"Trump's immigration stance is causing widespread debates.",Donald Trump,Republican Party,95,420,neutral
+203,@greenAdvocate3,2024-12-13 10:05:30,"Jill Stein's renewable energy initiatives are gaining traction.",Jill Stein,Green Party,70,230,positive
+204,@indieVoice3,2024-12-13 11:25:20,"Robert Kennedy is introducing innovative policies as an independent.",Robert Kennedy,Independent,30,110,neutral
+205,@libertyFan2,2024-12-13 12:40:55,"Chase Oliver's tax reduction policies are attracting support.",Chase Oliver,Libertarian Party,50,180,positive
+206,@user1018,2024-12-14 08:45:00,"Kamala Harris advocates for mental health awareness.",Kamala Harris,Democratic Party,90,360,positive
+207,@econExpert2,2024-12-14 09:20:35,"Trump's economic strategies are a topic of heated discussions.",Donald Trump,Republican Party,100,440,neutral
+208,@ecoWarrior3,2024-12-14 10:15:25,"Jill Stein's sustainable city plans are setting new standards.",Jill Stein,Green Party,75,240,positive
+209,@neutralMind2,2024-12-14 11:50:10,"Robert Kennedy remains a pivotal figure in the independent race.",Robert Kennedy,Independent,25,100,neutral
+210,@freedomFirst3,2024-12-14 12:55:35,"Chase Oliver promotes deregulation for economic growth.",Chase Oliver,Libertarian Party,45,160,positive
+211,@user1019,2024-12-15 08:30:20,"Kamala Harris is leading efforts to improve public transportation.",Kamala Harris,Democratic Party,85,330,positive
+212,@taxTalk3,2024-12-15 09:10:55,"Trump's tax plan is under scrutiny for its long-term effects.",Donald Trump,Republican Party,90,420,negative
+213,@sustainability3,2024-12-15 10:25:15,"Jill Stein pushes for electric public transportation to reduce emissions.",Jill Stein,Green Party,65,205,positive
+214,@indepThought4,2024-12-15 11:35:00,"Robert Kennedy's independent campaign is gaining momentum.",Robert Kennedy,Independent,22,95,neutral
+215,@libertySeek3,2024-12-15 12:45:30,"Chase Oliver emphasizes the importance of personal freedoms in his policies.",Chase Oliver,Libertarian Party,40,150,positive
+216,@user1020,2024-12-16 08:55:10,"Kamala Harris is making strides in infrastructure development.",Kamala Harris,Democratic Party,85,325,positive
+217,@businessInsider3,2024-12-16 09:20:45,"Trump's deregulation efforts are sparking debates among experts.",Donald Trump,Republican Party,100,450,neutral
+218,@greenFuture3,2024-12-16 10:40:30,"Jill Stein's focus on green technology is commendable.",Jill Stein,Green Party,60,210,positive
+219,@watchingNow3,2024-12-16 11:50:20,"Robert Kennedy appeals to a broad range of voters with his policies.",Robert Kennedy,Independent,28,105,neutral
+220,@freeMarket3,2024-12-16 12:30:50,"Chase Oliver supports free-market solutions for education reform.",Chase Oliver,Libertarian Party,50,170,positive
+221,@user1021,2024-12-17 08:40:15,"Kamala Harris is dedicated to reducing student loan debt.",Kamala Harris,Democratic Party,85,330,positive
+222,@policyMaker3,2024-12-17 09:30:50,"Trump's stance on trade tariffs is affecting international relations.",Donald Trump,Republican Party,105,470,negative
+223,@ecoSupport3,2024-12-17 10:10:40,"Jill Stein's initiatives for green jobs are creating new opportunities.",Jill Stein,Green Party,60,210,positive
+224,@neutralThoughts3,2024-12-17 11:25:50,"Robert Kennedy's platform lacks clarity on several key issues.",Robert Kennedy,Independent,20,90,neutral
+225,@freedomVoice3,2024-12-17 12:15:25,"Chase Oliver emphasizes the importance of individual liberties in his campaign.",Chase Oliver,Libertarian Party,35,130,positive
+226,@user1022,2024-12-18 08:35:30,"Kamala Harris continues to advocate for affordable housing solutions.",Kamala Harris,Democratic Party,75,290,positive
+227,@marketWatch3,2024-12-18 09:05:55,"Trump's economic policies are under scrutiny from various sectors.",Donald Trump,Republican Party,115,480,neutral
+228,@greenInitiative3,2024-12-18 10:20:45,"Jill Stein is leading the charge on climate change legislation.",Jill Stein,Green Party,70,230,positive
+229,@indieSupport3,2024-12-18 11:40:35,"Robert Kennedy offers a unique perspective outside the mainstream parties.",Robert Kennedy,Independent,28,105,neutral
+230,@libertyRights3,2024-12-18 12:50:20,"Chase Oliver advocates for the protection of gun rights.",Chase Oliver,Libertarian Party,50,170,positive
+231,@user1023,2024-12-19 08:25:55,"Kamala Harris is addressing wage gaps in her latest policy proposal.",Kamala Harris,Democratic Party,80,310,positive
+232,@taxPolicy3,2024-12-19 09:40:30,"Trump's tax cuts are criticized for benefiting the wealthy.",Donald Trump,Republican Party,90,420,negative
+233,@sustainableLiving4,2024-12-19 10:30:50,"Jill Stein promotes the adoption of electric vehicles to combat pollution.",Jill Stein,Green Party,65,205,positive
+234,@independantView4,2024-12-19 11:55:15,"Robert Kennedy's policies blend elements from both major parties.",Robert Kennedy,Independent,22,95,neutral
+235,@freedomAdvocate4,2024-12-19 12:40:35,"Chase Oliver's economic plans focus on reducing government intervention.",Chase Oliver,Libertarian Party,45,150,positive
+236,@user1024,2024-12-20 08:50:25,"Kamala Harris is a beacon of hope for progressive voters.",Kamala Harris,Democratic Party,95,360,positive
+237,@econDebate4,2024-12-20 09:15:50,"Trump's trade policies are reshaping global markets.",Donald Trump,Republican Party,100,440,neutral
+238,@greenEnergy4,2024-12-20 10:05:40,"Jill Stein's solar energy initiatives could transform the power industry.",Jill Stein,Green Party,75,240,positive
+239,@neutralOpinion4,2024-12-20 11:35:25,"Robert Kennedy remains non-committal on several key issues.",Robert Kennedy,Independent,18,85,neutral
+240,@libertyMovement5,2024-12-20 12:20:35,"Chase Oliver is gaining support among young libertarians.",Chase Oliver,Libertarian Party,40,160,positive
+241,@user1025,2024-12-21 08:45:40,"Kamala Harris's foreign policy is gaining international attention.",Kamala Harris,Democratic Party,85,325,positive
+242,@policyWatch4,2024-12-21 09:30:15,"Trump's healthcare policies are facing backlash from multiple fronts.",Donald Trump,Republican Party,110,460,negative
+243,@ecoFriendly3,2024-12-21 10:15:55,"Jill Stein is pushing for zero-waste initiatives in urban areas.",Jill Stein,Green Party,60,215,positive
+244,@indepThoughts5,2024-12-21 11:25:45,"Robert Kennedy is emphasizing bipartisan cooperation in his campaign.",Robert Kennedy,Independent,25,100,neutral
+245,@freedomFighter5,2024-12-21 12:35:25,"Chase Oliver supports eliminating the IRS to enhance personal freedoms.",Chase Oliver,Libertarian Party,35,140,positive
+246,@user1026,2024-12-22 08:20:55,"Kamala Harris's climate initiatives are setting new benchmarks.",Kamala Harris,Democratic Party,90,340,positive
+247,@taxReform5,2024-12-22 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+248,@sustainableFuture5,2024-12-22 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+249,@indieChoice5,2024-12-22 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+250,@libertyValues5,2024-12-22 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+251,@ecoChampion3,2024-12-23 08:30:10,"Jill Stein's new recycling initiative is receiving widespread praise.",Jill Stein,Green Party,65,220,positive
+252,@policyPro3,2024-12-23 09:15:50,"Kamala Harris is rolling out new education reforms aimed at inclusivity.",Kamala Harris,Democratic Party,80,310,positive
+253,@marketMover3,2024-12-23 10:05:35,"Trump's trade agreements are boosting certain American industries.",Donald Trump,Republican Party,90,400,positive
+254,@indieInsight3,2024-12-23 11:45:25,"Robert Kennedy is working to unite various voter factions.",Robert Kennedy,Independent,28,105,neutral
+255,@libertyVoice4,2024-12-23 12:50:50,"Chase Oliver's advocacy for free speech is gaining momentum.",Chase Oliver,Libertarian Party,50,170,positive
+256,@user1027,2024-12-24 08:25:20,"Kamala Harris's healthcare policies are making significant impacts.",Kamala Harris,Democratic Party,85,330,positive
+257,@taxWise3,2024-12-24 09:40:55,"Trump's tax reforms are encouraging business investments.",Donald Trump,Republican Party,95,420,positive
+258,@greenVision3,2024-12-24 10:30:40,"Jill Stein envisions a sustainable future with green technologies.",Jill Stein,Green Party,70,230,positive
+259,@neutralPulse3,2024-12-24 11:55:15,"Robert Kennedy maintains a balanced stance on controversial issues.",Robert Kennedy,Independent,22,95,neutral
+260,@freedomAdvocacy3,2024-12-24 12:40:45,"Chase Oliver is a strong advocate for individual rights and freedoms.",Chase Oliver,Libertarian Party,45,150,positive
+261,@user1028,2024-12-25 08:50:30,"Kamala Harris is a symbol of progressive leadership.",Kamala Harris,Democratic Party,95,360,positive
+262,@econTalk3,2024-12-25 09:15:55,"Trump's economic strategies are showing mixed results.",Donald Trump,Republican Party,100,440,neutral
+263,@greenFutureNow3,2024-12-25 10:05:30,"Jill Stein's solar projects are leading the way in renewable energy.",Jill Stein,Green Party,75,240,positive
+264,@indiePerspective3,2024-12-25 11:35:25,"Robert Kennedy offers pragmatic solutions outside the party lines.",Robert Kennedy,Independent,18,85,neutral
+265,@libertyMovement6,2024-12-25 12:20:45,"Chase Oliver is expanding his base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+266,@user1029,2024-12-26 08:45:35,"Kamala Harris's foreign policy is earning international acclaim.",Kamala Harris,Democratic Party,85,325,positive
+267,@policyDebate5,2024-12-26 09:30:20,"Trump's healthcare policies continue to divide public opinion.",Donald Trump,Republican Party,110,460,negative
+268,@ecoFriendlyLiving3,2024-12-26 10:15:50,"Jill Stein is pushing for zero-waste initiatives in all major cities.",Jill Stein,Green Party,60,215,positive
+269,@indepThoughts6,2024-12-26 11:25:40,"Robert Kennedy is committed to bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+270,@freedomFighter6,2024-12-26 12:35:30,"Chase Oliver advocates for eliminating unnecessary government agencies.",Chase Oliver,Libertarian Party,35,140,positive
+271,@user1030,2024-12-27 08:20:55,"Kamala Harris's climate initiatives are setting new goals.",Kamala Harris,Democratic Party,90,340,positive
+272,@taxReform6,2024-12-27 09:10:40,"Trump's latest tax reforms are under heavy criticism.",Donald Trump,Republican Party,95,410,negative
+273,@sustainableFuture6,2024-12-27 10:45:35,"Jill Stein's policies aim to create sustainable urban environments.",Jill Stein,Green Party,70,225,positive
+274,@indieChoice6,2024-12-27 11:50:50,"Robert Kennedy's independent stance is attracting a wide range of voters.",Robert Kennedy,Independent,30,115,neutral
+275,@libertyValues6,2024-12-27 12:30:40,"Chase Oliver's dedication to liberty is winning hearts.",Chase Oliver,Libertarian Party,50,175,positive
+276,@ecoSupporter3,2024-12-28 08:35:25,"Jill Stein's latest environmental initiative is making waves.",Jill Stein,Green Party,65,220,positive
+277,@policyWatcher3,2024-12-28 09:05:40,"Kamala Harris is leading comprehensive education reforms.",Kamala Harris,Democratic Party,80,310,positive
+278,@marketLeader3,2024-12-28 10:20:35,"Trump's trade policies are boosting American manufacturing.",Donald Trump,Republican Party,90,400,positive
+279,@indieVision3,2024-12-28 11:40:45,"Robert Kennedy brings innovative ideas to the forefront.",Robert Kennedy,Independent,28,105,neutral
+280,@libertyAdvocate3,2024-12-28 12:50:25,"Chase Oliver's free market policies are gaining support.",Chase Oliver,Libertarian Party,50,170,positive
+281,@user1031,2024-12-29 08:25:50,"Kamala Harris is addressing systemic inequality in her new policies.",Kamala Harris,Democratic Party,80,310,positive
+282,@taxPolicyUpdate3,2024-12-29 09:40:35,"Trump's tax cuts are seen as favoring the wealthy.",Donald Trump,Republican Party,90,420,negative
+283,@sustainableLiving5,2024-12-29 10:30:50,"Jill Stein promotes the use of electric vehicles to lower emissions.",Jill Stein,Green Party,65,205,positive
+284,@independantView5,2024-12-29 11:55:20,"Robert Kennedy's policies blend diverse ideological perspectives.",Robert Kennedy,Independent,22,95,neutral
+285,@freedomAdvocate5,2024-12-29 12:40:50,"Chase Oliver's economic plans focus on maximizing individual choice.",Chase Oliver,Libertarian Party,45,150,positive
+286,@user1032,2024-12-30 08:50:40,"Kamala Harris continues to inspire with her leadership.",Kamala Harris,Democratic Party,95,360,positive
+287,@econDebate5,2024-12-30 09:15:30,"Trump's trade approach is creating new international dynamics.",Donald Trump,Republican Party,100,440,neutral
+288,@greenEnergy5,2024-12-30 10:05:50,"Jill Stein's solar energy plans are set to revolutionize the sector.",Jill Stein,Green Party,75,240,positive
+289,@neutralOpinion5,2024-12-30 11:35:35,"Robert Kennedy remains neutral on several contentious issues.",Robert Kennedy,Independent,18,85,neutral
+290,@libertyMovement7,2024-12-30 12:20:45,"Chase Oliver is strengthening his support among libertarians.",Chase Oliver,Libertarian Party,40,160,positive
+291,@user1033,2024-12-31 08:45:55,"Kamala Harris's foreign policy initiatives are gaining global recognition.",Kamala Harris,Democratic Party,85,325,positive
+292,@policyWatch5,2024-12-31 09:30:25,"Trump's healthcare policies continue to divide the nation.",Donald Trump,Republican Party,110,460,negative
+293,@ecoFriendly4,2024-12-31 10:15:35,"Jill Stein is advocating for zero-waste cities nationwide.",Jill Stein,Green Party,60,215,positive
+294,@indepThoughts7,2024-12-31 11:25:50,"Robert Kennedy is emphasizing the need for bipartisan cooperation.",Robert Kennedy,Independent,25,100,neutral
+295,@freedomFighter7,2024-12-31 12:35:40,"Chase Oliver supports eliminating the IRS to enhance personal freedoms.",Chase Oliver,Libertarian Party,35,140,positive
+296,@user1034,2024-01-01 08:20:35,"Kamala Harris's climate change initiatives are setting new goals.",Kamala Harris,Democratic Party,90,340,positive
+297,@taxReform7,2024-01-01 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+298,@sustainableFuture7,2024-01-01 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+299,@indieChoice7,2024-01-01 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+300,@libertyValues7,2024-01-01 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+301,@user1035,2024-01-02 08:25:50,"Kamala Harris is addressing systemic inequality in her new policies.",Kamala Harris,Democratic Party,80,310,positive
+302,@taxPolicyUpdate4,2024-01-02 09:40:35,"Trump's tax cuts are seen as favoring the wealthy.",Donald Trump,Republican Party,90,420,negative
+303,@sustainableLiving6,2024-01-02 10:30:50,"Jill Stein promotes the use of electric vehicles to lower emissions.",Jill Stein,Green Party,65,205,positive
+304,@independantView6,2024-01-02 11:55:20,"Robert Kennedy's policies blend diverse ideological perspectives.",Robert Kennedy,Independent,22,95,neutral
+305,@freedomAdvocate6,2024-01-02 12:40:50,"Chase Oliver's economic plans focus on maximizing individual choice.",Chase Oliver,Libertarian Party,45,150,positive
+306,@user1036,2024-01-03 08:50:40,"Kamala Harris continues to inspire with her leadership.",Kamala Harris,Democratic Party,95,360,positive
+307,@econDebate6,2024-01-03 09:15:30,"Trump's trade approach is creating new international dynamics.",Donald Trump,Republican Party,100,440,neutral
+308,@greenEnergy6,2024-01-03 10:05:50,"Jill Stein's solar energy plans are set to revolutionize the sector.",Jill Stein,Green Party,75,240,positive
+309,@neutralOpinion6,2024-01-03 11:35:35,"Robert Kennedy remains neutral on several contentious issues.",Robert Kennedy,Independent,18,85,neutral
+310,@libertyMovement8,2024-01-03 12:20:45,"Chase Oliver is strengthening his support among libertarians.",Chase Oliver,Libertarian Party,40,160,positive
+311,@user1037,2024-01-04 08:45:55,"Kamala Harris's foreign policy initiatives are gaining global recognition.",Kamala Harris,Democratic Party,85,325,positive
+312,@policyWatch6,2024-01-04 09:30:25,"Trump's healthcare policies continue to divide the nation.",Donald Trump,Republican Party,110,460,negative
+313,@ecoFriendly5,2024-01-04 10:15:35,"Jill Stein is advocating for zero-waste cities nationwide.",Jill Stein,Green Party,60,215,positive
+314,@indepThoughts8,2024-01-04 11:25:50,"Robert Kennedy is emphasizing the need for bipartisan cooperation.",Robert Kennedy,Independent,25,100,neutral
+315,@freedomFighter8,2024-01-04 12:35:40,"Chase Oliver supports eliminating the IRS to enhance personal freedoms.",Chase Oliver,Libertarian Party,35,140,positive
+316,@user1038,2024-01-05 08:20:35,"Kamala Harris's climate change initiatives are setting new goals.",Kamala Harris,Democratic Party,90,340,positive
+317,@taxReform8,2024-01-05 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+318,@sustainableFuture8,2024-01-05 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+319,@indieChoice8,2024-01-05 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+320,@libertyValues8,2024-01-05 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+321,@ecoChampion4,2024-01-06 08:30:10,"Jill Stein's new recycling initiative is receiving widespread praise.",Jill Stein,Green Party,65,220,positive
+322,@policyPro4,2024-01-06 09:15:50,"Kamala Harris is rolling out new education reforms aimed at inclusivity.",Kamala Harris,Democratic Party,80,310,positive
+323,@marketMover4,2024-01-06 10:05:35,"Trump's trade agreements are boosting certain American industries.",Donald Trump,Republican Party,90,400,positive
+324,@indieInsight4,2024-01-06 11:45:25,"Robert Kennedy is working to unite various voter factions.",Robert Kennedy,Independent,28,105,neutral
+325,@libertyVoice5,2024-01-06 12:50:50,"Chase Oliver's advocacy for free speech is gaining momentum.",Chase Oliver,Libertarian Party,50,170,positive
+326,@user1039,2024-01-07 08:25:20,"Kamala Harris's healthcare policies are making significant impacts.",Kamala Harris,Democratic Party,85,330,positive
+327,@taxWise4,2024-01-07 09:40:55,"Trump's tax reforms are encouraging business investments.",Donald Trump,Republican Party,95,420,positive
+328,@greenVision4,2024-01-07 10:30:40,"Jill Stein envisions a sustainable future with green technologies.",Jill Stein,Green Party,70,230,positive
+329,@neutralPulse4,2024-01-07 11:55:15,"Robert Kennedy maintains a balanced stance on controversial issues.",Robert Kennedy,Independent,22,95,neutral
+330,@freedomAdvocacy4,2024-01-07 12:40:45,"Chase Oliver is a strong advocate for individual rights and freedoms.",Chase Oliver,Libertarian Party,45,150,positive
+331,@user1040,2024-01-08 08:50:30,"Kamala Harris is a symbol of progressive leadership.",Kamala Harris,Democratic Party,95,360,positive
+332,@econTalk4,2024-01-08 09:15:55,"Trump's economic strategies are showing mixed results.",Donald Trump,Republican Party,100,440,neutral
+333,@greenFutureNow4,2024-01-08 10:05:30,"Jill Stein's solar projects are leading the way in renewable energy.",Jill Stein,Green Party,75,240,positive
+334,@indiePerspective4,2024-01-08 11:35:25,"Robert Kennedy offers pragmatic solutions outside the party lines.",Robert Kennedy,Independent,18,85,neutral
+335,@libertyMovement9,2024-01-08 12:20:45,"Chase Oliver is expanding his base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+336,@user1041,2024-01-09 08:45:35,"Kamala Harris's foreign policy is earning international acclaim.",Kamala Harris,Democratic Party,85,325,positive
+337,@policyDebate7,2024-01-09 09:30:20,"Trump's healthcare policies continue to divide public opinion.",Donald Trump,Republican Party,110,460,negative
+338,@ecoFriendlyLiving4,2024-01-09 10:15:50,"Jill Stein is pushing for zero-waste initiatives in all major cities.",Jill Stein,Green Party,60,215,positive
+339,@indepThoughts9,2024-01-09 11:25:40,"Robert Kennedy is committed to bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+340,@freedomFighter9,2024-01-09 12:35:30,"Chase Oliver advocates for eliminating unnecessary government agencies.",Chase Oliver,Libertarian Party,35,140,positive
+341,@user1042,2024-01-10 08:20:55,"Kamala Harris's climate initiatives are setting new benchmarks.",Kamala Harris,Democratic Party,90,340,positive
+342,@taxReform9,2024-01-10 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+343,@sustainableFuture9,2024-01-10 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+344,@indieChoice9,2024-01-10 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+345,@libertyValues9,2024-01-10 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+346,@ecoChampion5,2024-01-11 08:30:10,"Jill Stein's new recycling initiative is receiving widespread praise.",Jill Stein,Green Party,65,220,positive
+347,@policyPro5,2024-01-11 09:15:50,"Kamala Harris is rolling out new education reforms aimed at inclusivity.",Kamala Harris,Democratic Party,80,310,positive
+348,@marketMover5,2024-01-11 10:05:35,"Trump's trade agreements are boosting certain American industries.",Donald Trump,Republican Party,90,400,positive
+349,@indieInsight5,2024-01-11 11:45:25,"Robert Kennedy is working to unite various voter factions.",Robert Kennedy,Independent,28,105,neutral
+350,@libertyVoice6,2024-01-11 12:50:50,"Chase Oliver's advocacy for free speech is gaining momentum.",Chase Oliver,Libertarian Party,50,170,positive
+351,@user1043,2024-01-12 08:25:20,"Kamala Harris's healthcare policies are making significant impacts.",Kamala Harris,Democratic Party,85,330,positive
+352,@taxWise5,2024-01-12 09:40:55,"Trump's tax reforms are encouraging business investments.",Donald Trump,Republican Party,95,420,positive
+353,@greenVision5,2024-01-12 10:30:40,"Jill Stein envisions a sustainable future with green technologies.",Jill Stein,Green Party,70,230,positive
+354,@neutralPulse5,2024-01-12 11:55:15,"Robert Kennedy maintains a balanced stance on controversial issues.",Robert Kennedy,Independent,22,95,neutral
+355,@freedomAdvocacy5,2024-01-12 12:40:45,"Chase Oliver is a strong advocate for individual rights and freedoms.",Chase Oliver,Libertarian Party,45,150,positive
+356,@user1044,2024-01-13 08:50:30,"Kamala Harris is a symbol of progressive leadership.",Kamala Harris,Democratic Party,95,360,positive
+357,@econTalk5,2024-01-13 09:15:55,"Trump's economic strategies are showing mixed results.",Donald Trump,Republican Party,100,440,neutral
+358,@greenFutureNow5,2024-01-13 10:05:30,"Jill Stein's solar projects are leading the way in renewable energy.",Jill Stein,Green Party,75,240,positive
+359,@indiePerspective5,2024-01-13 11:35:25,"Robert Kennedy offers pragmatic solutions outside the party lines.",Robert Kennedy,Independent,18,85,neutral
+360,@libertyMovement10,2024-01-13 12:20:45,"Chase Oliver is expanding his base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+361,@user1045,2024-01-14 08:45:35,"Kamala Harris's foreign policy is earning international acclaim.",Kamala Harris,Democratic Party,85,325,positive
+362,@policyDebate8,2024-01-14 09:30:20,"Trump's healthcare policies continue to divide public opinion.",Donald Trump,Republican Party,110,460,negative
+363,@ecoFriendlyLiving5,2024-01-14 10:15:50,"Jill Stein is pushing for zero-waste initiatives in all major cities.",Jill Stein,Green Party,60,215,positive
+364,@indepThoughts10,2024-01-14 11:25:40,"Robert Kennedy is committed to bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+365,@freedomFighter10,2024-01-14 12:35:30,"Chase Oliver advocates for eliminating unnecessary government agencies.",Chase Oliver,Libertarian Party,35,140,positive
+366,@user1046,2024-01-15 08:20:55,"Kamala Harris's climate initiatives are setting new benchmarks.",Kamala Harris,Democratic Party,90,340,positive
+367,@taxReform10,2024-01-15 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+368,@sustainableFuture10,2024-01-15 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+369,@indieChoice10,2024-01-15 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+370,@libertyValues10,2024-01-15 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+371,@ecoChampion6,2024-01-16 08:30:10,"Jill Stein's new recycling initiative is receiving widespread praise.",Jill Stein,Green Party,65,220,positive
+372,@policyPro6,2024-01-16 09:15:50,"Kamala Harris is rolling out new education reforms aimed at inclusivity.",Kamala Harris,Democratic Party,80,310,positive
+373,@marketMover6,2024-01-16 10:05:35,"Trump's trade agreements are boosting certain American industries.",Donald Trump,Republican Party,90,400,positive
+374,@indieInsight6,2024-01-16 11:45:25,"Robert Kennedy is working to unite various voter factions.",Robert Kennedy,Independent,28,105,neutral
+375,@libertyVoice7,2024-01-16 12:50:50,"Chase Oliver's advocacy for free speech is gaining momentum.",Chase Oliver,Libertarian Party,50,170,positive
+376,@user1047,2024-01-17 08:25:20,"Kamala Harris's healthcare policies are making significant impacts.",Kamala Harris,Democratic Party,85,330,positive
+377,@taxWise6,2024-01-17 09:40:55,"Trump's tax reforms are encouraging business investments.",Donald Trump,Republican Party,95,420,positive
+378,@greenVision6,2024-01-17 10:30:40,"Jill Stein envisions a sustainable future with green technologies.",Jill Stein,Green Party,70,230,positive
+379,@neutralPulse6,2024-01-17 11:55:15,"Robert Kennedy maintains a balanced stance on controversial issues.",Robert Kennedy,Independent,22,95,neutral
+380,@freedomAdvocacy6,2024-01-17 12:40:45,"Chase Oliver is a strong advocate for individual rights and freedoms.",Chase Oliver,Libertarian Party,45,150,positive
+381,@user1048,2024-01-18 08:50:30,"Kamala Harris is a symbol of progressive leadership.",Kamala Harris,Democratic Party,95,360,positive
+382,@econTalk6,2024-01-18 09:15:55,"Trump's economic strategies are showing mixed results.",Donald Trump,Republican Party,100,440,neutral
+383,@greenFutureNow6,2024-01-18 10:05:30,"Jill Stein's solar projects are leading the way in renewable energy.",Jill Stein,Green Party,75,240,positive
+384,@indiePerspective6,2024-01-18 11:35:25,"Robert Kennedy offers pragmatic solutions outside the party lines.",Robert Kennedy,Independent,18,85,neutral
+385,@libertyMovement11,2024-01-18 12:20:45,"Chase Oliver is expanding his base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+386,@user1049,2024-01-19 08:45:35,"Kamala Harris's foreign policy is earning international acclaim.",Kamala Harris,Democratic Party,85,325,positive
+387,@policyDebate9,2024-01-19 09:30:20,"Trump's healthcare policies continue to divide public opinion.",Donald Trump,Republican Party,110,460,negative
+388,@ecoFriendlyLiving6,2024-01-19 10:15:50,"Jill Stein is pushing for zero-waste initiatives in all major cities.",Jill Stein,Green Party,60,215,positive
+389,@indepThoughts11,2024-01-19 11:25:40,"Robert Kennedy is committed to bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+390,@freedomFighter11,2024-01-19 12:35:30,"Chase Oliver advocates for eliminating unnecessary government agencies.",Chase Oliver,Libertarian Party,35,140,positive
+391,@user1050,2024-01-20 08:20:55,"Kamala Harris's climate initiatives are setting new benchmarks.",Kamala Harris,Democratic Party,90,340,positive
+392,@taxReform11,2024-01-20 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+393,@sustainableFuture11,2024-01-20 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+394,@indieChoice11,2024-01-20 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+395,@libertyValues11,2024-01-20 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+396,@ecoChampion7,2024-01-21 08:30:10,"Jill Stein's new recycling initiative is receiving widespread praise.",Jill Stein,Green Party,65,220,positive
+397,@policyPro7,2024-01-21 09:15:50,"Kamala Harris is rolling out new education reforms aimed at inclusivity.",Kamala Harris,Democratic Party,80,310,positive
+398,@marketMover7,2024-01-21 10:05:35,"Trump's trade agreements are boosting certain American industries.",Donald Trump,Republican Party,90,400,positive
+399,@indieInsight7,2024-01-21 11:45:25,"Robert Kennedy is working to unite various voter factions.",Robert Kennedy,Independent,28,105,neutral
+400,@libertyVoice8,2024-01-21 12:50:50,"Chase Oliver's advocacy for free speech is gaining momentum.",Chase Oliver,Libertarian Party,50,170,positive
+401,@user1051,2024-01-22 08:30:10,"Kamala Harris's new policy on education reform is impressive.",Kamala Harris,Democratic Party,85,320,positive
+402,@politicsNew,2024-01-22 09:15:20,"Donald Trump's latest speech on the economy was well-received.",Donald Trump,Republican Party,100,450,positive
+403,@greenVisionary,2024-01-22 10:05:35,"Jill Stein's environmental policies are a step in the right direction.",Jill Stein,Green Party,60,200,positive
+404,@indieWatcher,2024-01-22 11:25:40,"Robert Kennedy's independent run brings fresh perspectives to the race.",Robert Kennedy,Independent,30,120,neutral
+405,@libertyFan3,2024-01-22 12:40:50,"Chase Oliver's stance on gun rights is unwavering.",Chase Oliver,Libertarian Party,50,160,positive
+406,@user1052,2024-01-23 08:20:15,"Kamala Harris is making strides in healthcare accessibility.",Kamala Harris,Democratic Party,90,340,positive
+407,@taxTalk4,2024-01-23 09:40:30,"Trump's tax cuts are benefiting small businesses.",Donald Trump,Republican Party,95,420,positive
+408,@sustainability3,2024-01-23 10:30:50,"Jill Stein promotes the adoption of electric vehicles to combat pollution.",Jill Stein,Green Party,65,205,positive
+409,@independantView6,2024-01-23 11:55:20,"Robert Kennedy's policies blend diverse ideological perspectives.",Robert Kennedy,Independent,22,95,neutral
+410,@freedomAdvocate6,2024-01-23 12:40:50,"Chase Oliver's economic plans focus on maximizing individual choice.",Chase Oliver,Libertarian Party,45,150,positive
+411,@user1053,2024-01-24 08:35:25,"Kamala Harris continues to advocate for affordable housing solutions.",Kamala Harris,Democratic Party,75,290,positive
+412,@marketWatch3,2024-01-24 09:05:55,"Trump's economic policies are under scrutiny from various sectors.",Donald Trump,Republican Party,115,480,neutral
+413,@greenInitiative3,2024-01-24 10:20:45,"Jill Stein is leading the charge on climate change legislation.",Jill Stein,Green Party,70,230,positive
+414,@indieSupport3,2024-01-24 11:40:35,"Robert Kennedy offers a unique perspective outside the mainstream parties.",Robert Kennedy,Independent,28,105,neutral
+415,@libertyRights3,2024-01-24 12:50:20,"Chase Oliver advocates for the protection of gun rights.",Chase Oliver,Libertarian Party,50,170,positive
+416,@user1054,2024-01-25 08:25:55,"Kamala Harris is addressing wage gaps in her latest policy proposal.",Kamala Harris,Democratic Party,80,310,positive
+417,@taxPolicy3,2024-01-25 09:40:35,"Trump's tax cuts are seen as favoring the wealthy.",Donald Trump,Republican Party,90,420,negative
+418,@sustainableLiving5,2024-01-25 10:30:50,"Jill Stein promotes the use of electric vehicles to lower emissions.",Jill Stein,Green Party,65,205,positive
+419,@independantView5,2024-01-25 11:55:20,"Robert Kennedy's policies blend diverse ideological perspectives.",Robert Kennedy,Independent,22,95,neutral
+420,@freedomAdvocate5,2024-01-25 12:40:50,"Chase Oliver's economic plans focus on maximizing individual choice.",Chase Oliver,Libertarian Party,45,150,positive
+421,@user1055,2024-01-26 08:50:40,"Kamala Harris continues to inspire with her leadership.",Kamala Harris,Democratic Party,95,360,positive
+422,@econDebate6,2024-01-26 09:15:30,"Trump's trade approach is creating new international dynamics.",Donald Trump,Republican Party,100,440,neutral
+423,@greenEnergy6,2024-01-26 10:05:50,"Jill Stein's solar energy plans are set to revolutionize the sector.",Jill Stein,Green Party,75,240,positive
+424,@neutralOpinion6,2024-01-26 11:35:35,"Robert Kennedy remains neutral on several contentious issues.",Robert Kennedy,Independent,18,85,neutral
+425,@libertyMovement8,2024-01-26 12:20:45,"Chase Oliver is strengthening his support among libertarians.",Chase Oliver,Libertarian Party,40,160,positive
+426,@user1056,2024-01-27 08:45:55,"Kamala Harris's foreign policy initiatives are gaining global recognition.",Kamala Harris,Democratic Party,85,325,positive
+427,@policyWatch6,2024-01-27 09:30:25,"Trump's healthcare policies continue to divide the nation.",Donald Trump,Republican Party,110,460,negative
+428,@ecoFriendly5,2024-01-27 10:15:35,"Jill Stein is advocating for zero-waste cities nationwide.",Jill Stein,Green Party,60,215,positive
+429,@indepThoughts8,2024-01-27 11:25:50,"Robert Kennedy is emphasizing the need for bipartisan cooperation.",Robert Kennedy,Independent,25,100,neutral
+430,@freedomFighter8,2024-01-27 12:35:40,"Chase Oliver supports eliminating the IRS to enhance personal freedoms.",Chase Oliver,Libertarian Party,35,140,positive
+431,@user1057,2024-01-28 08:20:35,"Kamala Harris's climate change initiatives are setting new goals.",Kamala Harris,Democratic Party,90,340,positive
+432,@taxReform11,2024-01-28 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+433,@sustainableFuture11,2024-01-28 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+434,@indieChoice11,2024-01-28 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+435,@libertyValues11,2024-01-28 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+436,@ecoChampion7,2024-01-29 08:30:10,"Jill Stein's new recycling initiative is receiving widespread praise.",Jill Stein,Green Party,65,220,positive
+437,@policyPro7,2024-01-29 09:15:50,"Kamala Harris is rolling out new education reforms aimed at inclusivity.",Kamala Harris,Democratic Party,80,310,positive
+438,@marketMover7,2024-01-29 10:05:35,"Trump's trade agreements are boosting certain American industries.",Donald Trump,Republican Party,90,400,positive
+439,@indieInsight7,2024-01-29 11:45:25,"Robert Kennedy is working to unite various voter factions.",Robert Kennedy,Independent,28,105,neutral
+440,@libertyVoice8,2024-01-29 12:50:50,"Chase Oliver's advocacy for free speech is gaining momentum.",Chase Oliver,Libertarian Party,50,170,positive
+441,@user1058,2024-01-30 08:25:20,"Kamala Harris's healthcare policies are making significant impacts.",Kamala Harris,Democratic Party,85,330,positive
+442,@taxWise6,2024-01-30 09:40:55,"Trump's tax reforms are encouraging business investments.",Donald Trump,Republican Party,95,420,positive
+443,@greenVision6,2024-01-30 10:30:40,"Jill Stein envisions a sustainable future with green technologies.",Jill Stein,Green Party,70,230,positive
+444,@neutralPulse6,2024-01-30 11:55:15,"Robert Kennedy maintains a balanced stance on controversial issues.",Robert Kennedy,Independent,22,95,neutral
+445,@freedomAdvocacy6,2024-01-30 12:40:45,"Chase Oliver is a strong advocate for individual rights and freedoms.",Chase Oliver,Libertarian Party,45,150,positive
+446,@user1059,2024-01-31 08:50:30,"Kamala Harris is a symbol of progressive leadership.",Kamala Harris,Democratic Party,95,360,positive
+447,@econTalk5,2024-01-31 09:15:55,"Trump's economic strategies are showing mixed results.",Donald Trump,Republican Party,100,440,neutral
+448,@greenFutureNow5,2024-01-31 10:05:30,"Jill Stein's solar projects are leading the way in renewable energy.",Jill Stein,Green Party,75,240,positive
+449,@indiePerspective5,2024-01-31 11:35:25,"Robert Kennedy offers pragmatic solutions outside the party lines.",Robert Kennedy,Independent,18,85,neutral
+450,@libertyMovement11,2024-01-31 12:20:45,"Chase Oliver is expanding his base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+451,@user1060,2024-02-01 08:45:35,"Kamala Harris's foreign policy is earning international acclaim.",Kamala Harris,Democratic Party,85,325,positive
+452,@policyDebate9,2024-02-01 09:30:20,"Trump's healthcare policies continue to divide public opinion.",Donald Trump,Republican Party,110,460,negative
+453,@ecoFriendlyLiving6,2024-02-01 10:15:50,"Jill Stein is pushing for zero-waste initiatives in all major cities.",Jill Stein,Green Party,60,215,positive
+454,@indepThoughts11,2024-02-01 11:25:40,"Robert Kennedy is committed to bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+455,@freedomFighter11,2024-02-01 12:35:30,"Chase Oliver advocates for eliminating unnecessary government agencies.",Chase Oliver,Libertarian Party,35,140,positive
+456,@user1061,2024-02-02 08:20:55,"Kamala Harris's climate initiatives are setting new benchmarks.",Kamala Harris,Democratic Party,90,340,positive
+457,@taxReform12,2024-02-02 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+458,@sustainableFuture12,2024-02-02 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+459,@indieChoice12,2024-02-02 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+460,@libertyValues12,2024-02-02 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+461,@ecoChampion8,2024-02-03 08:30:10,"Jill Stein's new recycling initiative is receiving widespread praise.",Jill Stein,Green Party,65,220,positive
+462,@policyPro8,2024-02-03 09:15:50,"Kamala Harris is rolling out new education reforms aimed at inclusivity.",Kamala Harris,Democratic Party,80,310,positive
+463,@marketMover8,2024-02-03 10:05:35,"Trump's trade agreements are boosting certain American industries.",Donald Trump,Republican Party,90,400,positive
+464,@indieInsight8,2024-02-03 11:45:25,"Robert Kennedy is working to unite various voter factions.",Robert Kennedy,Independent,28,105,neutral
+465,@libertyVoice9,2024-02-03 12:50:50,"Chase Oliver's advocacy for free speech is gaining momentum.",Chase Oliver,Libertarian Party,50,170,positive
+466,@user1062,2024-02-04 08:25:20,"Kamala Harris's healthcare policies are making significant impacts.",Kamala Harris,Democratic Party,85,330,positive
+467,@taxWise7,2024-02-04 09:40:55,"Trump's tax reforms are encouraging business investments.",Donald Trump,Republican Party,95,420,positive
+468,@greenVision7,2024-02-04 10:30:40,"Jill Stein envisions a sustainable future with green technologies.",Jill Stein,Green Party,70,230,positive
+469,@neutralPulse7,2024-02-04 11:55:15,"Robert Kennedy maintains a balanced stance on controversial issues.",Robert Kennedy,Independent,22,95,neutral
+470,@freedomAdvocacy7,2024-02-04 12:40:45,"Chase Oliver is a strong advocate for individual rights and freedoms.",Chase Oliver,Libertarian Party,45,150,positive
+471,@user1063,2024-02-05 08:50:30,"Kamala Harris is a symbol of progressive leadership.",Kamala Harris,Democratic Party,95,360,positive
+472,@econTalk6,2024-02-05 09:15:55,"Trump's economic strategies are showing mixed results.",Donald Trump,Republican Party,100,440,neutral
+473,@greenFutureNow6,2024-02-05 10:05:30,"Jill Stein's solar projects are leading the way in renewable energy.",Jill Stein,Green Party,75,240,positive
+474,@indiePerspective6,2024-02-05 11:35:25,"Robert Kennedy offers pragmatic solutions outside the party lines.",Robert Kennedy,Independent,18,85,neutral
+475,@libertyMovement12,2024-02-05 12:20:45,"Chase Oliver is expanding his base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
+476,@user1064,2024-02-06 08:45:35,"Kamala Harris's foreign policy is earning international acclaim.",Kamala Harris,Democratic Party,85,325,positive
+477,@policyDebate11,2024-02-06 09:30:20,"Trump's healthcare policies continue to divide public opinion.",Donald Trump,Republican Party,110,460,negative
+478,@ecoFriendlyLiving7,2024-02-06 10:15:50,"Jill Stein is pushing for zero-waste initiatives in all major cities.",Jill Stein,Green Party,60,215,positive
+479,@indepThoughts12,2024-02-06 11:25:40,"Robert Kennedy is committed to bipartisan solutions.",Robert Kennedy,Independent,25,100,neutral
+480,@freedomFighter12,2024-02-06 12:35:30,"Chase Oliver advocates for eliminating unnecessary government agencies.",Chase Oliver,Libertarian Party,35,140,positive
+481,@user1065,2024-02-07 08:20:55,"Kamala Harris's climate initiatives are setting new benchmarks.",Kamala Harris,Democratic Party,90,340,positive
+482,@taxReform13,2024-02-07 09:10:50,"Trump's latest tax reforms are criticized for corporate favoritism.",Donald Trump,Republican Party,95,410,negative
+483,@sustainableFuture13,2024-02-07 10:45:40,"Jill Stein's policies aim to make urban areas more sustainable.",Jill Stein,Green Party,70,225,positive
+484,@indieChoice13,2024-02-07 11:50:55,"Robert Kennedy's independent stance is attracting a diverse electorate.",Robert Kennedy,Independent,30,115,neutral
+485,@libertyValues13,2024-02-07 12:30:45,"Chase Oliver's commitment to liberty is resonating with many voters.",Chase Oliver,Libertarian Party,50,175,positive
+486,@ecoChampion9,2024-02-08 08:30:10,"Jill Stein's new recycling initiative is receiving widespread praise.",Jill Stein,Green Party,65,220,positive
+487,@policyPro9,2024-02-08 09:15:50,"Kamala Harris is rolling out new education reforms aimed at inclusivity.",Kamala Harris,Democratic Party,80,310,positive
+488,@marketMover9,2024-02-08 10:05:35,"Trump's trade agreements are boosting certain American industries.",Donald Trump,Republican Party,90,400,positive
+489,@indieInsight9,2024-02-08 11:45:25,"Robert Kennedy is working to unite various voter factions.",Robert Kennedy,Independent,28,105,neutral
+490,@libertyVoice10,2024-02-08 12:50:50,"Chase Oliver's advocacy for free speech is gaining momentum.",Chase Oliver,Libertarian Party,50,170,positive
+491,@user1066,2024-02-09 08:25:20,"Kamala Harris's healthcare policies are making significant impacts.",Kamala Harris,Democratic Party,85,330,positive
+492,@taxWise8,2024-02-09 09:40:55,"Trump's tax reforms are encouraging business investments.",Donald Trump,Republican Party,95,420,positive
+493,@greenVision8,2024-02-09 10:30:40,"Jill Stein envisions a sustainable future with green technologies.",Jill Stein,Green Party,70,230,positive
+494,@neutralPulse8,2024-02-09 11:55:15,"Robert Kennedy maintains a balanced stance on controversial issues.",Robert Kennedy,Independent,22,95,neutral
+495,@freedomAdvocacy8,2024-02-09 12:40:45,"Chase Oliver is a strong advocate for individual rights and freedoms.",Chase Oliver,Libertarian Party,45,150,positive
+496,@user1067,2024-02-10 08:50:30,"Kamala Harris is a symbol of progressive leadership.",Kamala Harris,Democratic Party,95,360,positive
+497,@econTalk7,2024-02-10 09:15:55,"Trump's economic strategies are showing mixed results.",Donald Trump,Republican Party,100,440,neutral
+498,@greenFutureNow7,2024-02-10 10:05:30,"Jill Stein's solar projects are leading the way in renewable energy.",Jill Stein,Green Party,75,240,positive
+499,@indiePerspective7,2024-02-10 11:35:25,"Robert Kennedy offers pragmatic solutions outside the party lines.",Robert Kennedy,Independent,18,85,neutral
+500,@libertyMovement13,2024-02-10 12:20:45,"Chase Oliver is expanding his base among libertarian voters.",Chase Oliver,Libertarian Party,40,160,positive
