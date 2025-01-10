@@ -1,4 +1,4 @@
-# tweet_sentiment_anlaysis
+# tweet_sentiment_analysis
 
 This is the course project for the 2025 MLOps course at DTU of Marten, Magnus and Johanna.
 
