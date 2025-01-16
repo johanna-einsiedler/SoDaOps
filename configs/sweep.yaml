@@ -1,9 +1,9 @@
-program: src/tweet_sentiment_analysis/train.py  # The script to run
-project: sentiment-analysis  # change this
-entity: advanced-deep-learning-course  # change this
-method: random  # Random search for hyperparameters
+program: src/tweet_sentiment_analysis/train.py
+project: ${WANDB_PROJECT}
+entity: ${WANDB_ENTITY}
+method: random
 metric:
-  name: eval/loss  # The validation loss to minimize
+  name: eval/loss
   goal: minimize
 
 parameters:

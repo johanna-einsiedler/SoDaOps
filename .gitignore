@@ -3,3 +3,7 @@ src/tweet_sentiment_anlaysis.egg-info/*
 artifacts/*
 logs/*
 wandb/*
+notes.md
+.env
+models/*
+configs/vertex_config.yaml
