@@ -6,7 +6,6 @@ from data import preprocess
 from model import SentimentModel
 import sys
 from sklearn.metrics import classification_report, confusion_matrix, roc_curve, auc
-from sklearn.preprocessing import label_binarize
 import typer
 from pathlib import Path
 
@@ -25,7 +24,7 @@ def visualize() -> None:
         preprocess()
     
     train = pd.read_csv("data/processed/train.csv")
-    test = pd.read_csv("data/processed/test.csv")
+    #test = pd.read_csv("data/processed/test.csv")
     val = pd.read_csv("data/processed/val.csv")
     pipe= SentimentModel()
 
@@ -43,7 +42,7 @@ def visualize() -> None:
             text = str(text)
             result = pipe.predict(text[:512])[0]  # Truncate to 512 tokens
             return result['label'], result['score']
-        except Exception as e:
+        except Exception:
             return 'ERROR', 0
 
     # Apply sentiment analysis to training set
@@ -76,11 +75,11 @@ def visualize() -> None:
     plt.title('Confusion Matrix for Validation Set')
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
-    plt.savefig(f"reports/figures/confusion_matrix")
+    plt.savefig("reports/figures/confusion_matrix")
 
     # Binarize the output for ROC curve (One-vs-Rest)
-    y_val_binarized = label_binarize(val['sentiment'], classes=['NEGATIVE', 'NEUTRAL', 'POSITIVE'])
-    n_classes = y_val_binarized.shape[1]
+    #y_val_binarized = label_binarize(val['sentiment'], classes=['NEGATIVE', 'NEUTRAL', 'POSITIVE'])
+    #n_classes = y_val_binarized.shape[1]
 
     # Generate probabilities for each class
     # Note: The pipeline provides only the top prediction, so for multi-class ROC, a different approach or model might be needed.
@@ -102,7 +101,7 @@ def visualize() -> None:
     plt.ylabel('True Positive Rate')
     plt.title('Receiver Operating Characteristic (ROC)')
     plt.legend(loc='lower right')
-    plt.savefig(f"reports/figures/roc_curve")
+    plt.savefig("reports/figures/roc_curve")
 
     # # Plot confidence distribution by sentiment
     plt.figure(figsize=(10,6))
@@ -110,7 +109,7 @@ def visualize() -> None:
     plt.title('Confidence Scores by Predicted Sentiment')
     plt.xlabel('Predicted Sentiment')
     plt.ylabel('Confidence Score')
-    plt.savefig(f"reports/figures/confidence_distribution")
+    plt.savefig("reports/figures/confidence_distribution")
 
     # Average confidence score by party and sentiment
     plt.figure(figsize=(14,8))
@@ -120,7 +119,7 @@ def visualize() -> None:
     plt.ylabel('Average Confidence Score')
     plt.xticks(rotation=45)
     plt.legend(title='Predicted Sentiment')
-    plt.savefig(f"reports/figures/confidence_by_party_and_sentiment")
+    plt.savefig("reports/figures/confidence_by_party_and_sentiment")
 
 
 if __name__ == "__main__":

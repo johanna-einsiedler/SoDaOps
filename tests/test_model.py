@@ -1,12 +1,7 @@
 import pytest
-from transformers import pipeline
-from loguru import logger
 from unittest.mock import patch, MagicMock
 from tweet_sentiment_analysis.model import SentimentModel
 
-import pytest
-from unittest.mock import patch, MagicMock
-from tweet_sentiment_analysis.model import SentimentModel
 
 @patch("tweet_sentiment_analysis.model.pipeline")  # Correct the path to the `pipeline` function
 def test_model_initialization(mock_pipeline):
