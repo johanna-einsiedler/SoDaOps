@@ -3,3 +3,4 @@ src/tweet_sentiment_anlaysis.egg-info/*
 artifacts/*
 logs/*
 wandb/*
+requirements.txt
