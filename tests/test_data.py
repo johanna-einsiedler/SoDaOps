@@ -2,6 +2,7 @@ from torch.utils.data import Dataset
 from datasets import load_dataset
 from tweet_sentiment_analysis.data import *
 import os
+import pytest
 from tests import _PATH_DATA
 
 data_dir = _PATH_DATA + '/processed'
