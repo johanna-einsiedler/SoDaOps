@@ -4,3 +4,6 @@ artifacts/*
 logs/*
 wandb/*
 /data
+requirements.txt
+.DS_Store
+
