@@ -1,18 +1,16 @@
-# from sklearn.model_selection import train_test_split
-import re
-import shutil
-import sys
-from pathlib import Path
-
-import pandas as pd
-import typer
 from kagglehub import dataset_download
+from pathlib import Path
+import shutil
+import pandas as pd
+import sys
 from loguru import logger
 from sklearn.preprocessing import LabelEncoder
+#from sklearn.model_selection import train_test_split
+import re
+import typer
 
 logger.remove()
 logger.add(sys.stdout, level="DEBUG")
-
 
 def download():
     # Define the target directory for the raw data
@@ -48,13 +46,12 @@ def preprocess():
         download()
 
     train = pd.read_csv("data/raw/train.csv")
-    train = train.head(50)
     test = pd.read_csv("data/raw/test.csv")
     val = pd.read_csv("data/raw/val.csv")
     # recombination, resplitting commented out as to keep original splits.
-    # data = pd.concat([train.reset_index(), test.reset_index(), val.reset_index()], ignore_index=True)
-    # train, test = train_test_split(data, test_size=0.3, random_state=111)
-    # train, val = train_test_split(data, test_size=0.2, random_state=111)
+    #data = pd.concat([train.reset_index(), test.reset_index(), val.reset_index()], ignore_index=True)
+    #train, test = train_test_split(data, test_size=0.3, random_state=111)
+    #train, val = train_test_split(data, test_size=0.2, random_state=111)
 
     # List of datasets
     datasets = [train, test, val]
