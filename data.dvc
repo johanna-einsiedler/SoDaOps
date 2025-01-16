@@ -1,0 +1,60 @@
+outs:
+- hash: md5
+  path: data
+  files:
+  - relpath: processed/.gitkeep
+    md5: d41d8cd98f00b204e9800998ecf8427e
+    size: 0
+    cloud:
+      remote_storage:
+        etag: 08aa8adaee85fa8a031001
+        version_id: '1737023787795754'
+  - relpath: processed/test.csv
+    md5: f90ebfa7988731485316433b288a5e57
+    size: 11063
+    cloud:
+      remote_storage:
+        etag: 08d1a2dbee85fa8a031001
+        version_id: '1737023787815249'
+  - relpath: processed/train.csv
+    md5: dea4b814204cd3e7ae55ee139ce6ca9a
+    size: 109468
+    cloud:
+      remote_storage:
+        etag: 08d7f5e0ee85fa8a031001
+        version_id: '1737023787907799'
+  - relpath: processed/val.csv
+    md5: b661943bd5f5f3772eb3ef78f530bbb1
+    size: 11067
+    cloud:
+      remote_storage:
+        etag: 08d5a7dbee85fa8a031001
+        version_id: '1737023787815893'
+  - relpath: raw/.gitkeep
+    md5: d41d8cd98f00b204e9800998ecf8427e
+    size: 0
+    cloud:
+      remote_storage:
+        etag: 08e291d6ee85fa8a031001
+        version_id: '1737023787731170'
+  - relpath: raw/test.csv
+    md5: cd5cfac41b7a70cf97eb08008afa3cd0
+    size: 7613
+    cloud:
+      remote_storage:
+        etag: 08d38bc7ee85fa8a031001
+        version_id: '1737023787484627'
+  - relpath: raw/train.csv
+    md5: 9b352a1f7f54215c6d0d276e4055a37a
+    size: 74524
+    cloud:
+      remote_storage:
+        etag: 088fbce0ee85fa8a031001
+        version_id: '1737023787900431'
+  - relpath: raw/val.csv
+    md5: 3ef0215844e62cf7a5ed168b81b9bdb4
+    size: 7617
+    cloud:
+      remote_storage:
+        etag: 08cfd3dbee85fa8a031001
+        version_id: '1737023787821519'
