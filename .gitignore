@@ -3,4 +3,9 @@ src/tweet_sentiment_anlaysis.egg-info/*
 artifacts/*
 logs/*
 wandb/*
+<<<<<<< HEAD
 /data
+=======
+requirements.txt
+>>>>>>> johanna
+.DS_Store
