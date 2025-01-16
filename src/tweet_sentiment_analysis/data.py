@@ -14,7 +14,7 @@ logger.remove()
 logger.add(sys.stdout, level="DEBUG")
 
 
-def download():
+def download(raw_data_path: Path = Path("data/raw/")):
     # Define the target directory for the raw data
     raw_data_path = Path("data/raw/")
     # Download the dataset
@@ -38,6 +38,7 @@ def clean_text(text):
 def preprocess():
     logger.info("Preprocessing data")
     raw_data_path = Path("data/raw/")
+    processed_data_path = Path("data/processed/")
     train_path = raw_data_path / "train.csv"
     test_path = raw_data_path / "test.csv"
     val_path = raw_data_path / "val.csv"
@@ -45,16 +46,12 @@ def preprocess():
     # Check if files exist; if not, download them
     if not train_path.exists() or not test_path.exists() or not val_path.exists():
         logger.info("Files not found. Downloading dataset.")
-        download()
+        download(raw_data_path)
 
     train = pd.read_csv("data/raw/train.csv")
     train = train.head(50)
     test = pd.read_csv("data/raw/test.csv")
     val = pd.read_csv("data/raw/val.csv")
-    # recombination, resplitting commented out as to keep original splits.
-    # data = pd.concat([train.reset_index(), test.reset_index(), val.reset_index()], ignore_index=True)
-    # train, test = train_test_split(data, test_size=0.3, random_state=111)
-    # train, val = train_test_split(data, test_size=0.2, random_state=111)
 
     # List of datasets
     datasets = [train, test, val]
@@ -75,9 +72,9 @@ def preprocess():
     logger.debug(f"Train-size: {train.shape}")
     logger.debug(f"Validation-size: {val.shape}")
     logger.debug(f"Test-size: {test.shape}")
-    train.to_csv("data/processed/train.csv")
-    val.to_csv("data/processed/val.csv")
-    test.to_csv("data/processed/test.csv")
+    train.to_csv(processed_data_path / "train.csv")
+    val.to_csv(processed_data_path / "val.csv")
+    test.to_csv(processed_data_path / "test.csv")
 
 
 if __name__ == "__main__":
