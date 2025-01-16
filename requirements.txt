@@ -101,7 +101,7 @@ Pygments==2.14.0
 pyrsistent==0.19.3
 python-dateutil==2.9.0.post0
 python-json-logger==2.0.7
-pytest=8.3.4
+pytest==8.3.4
 pytz==2024.2
 PyYAML==6.0
 pyzmq==25.0.0
