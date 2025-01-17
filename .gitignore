@@ -6,4 +6,11 @@ wandb/*
 /data
 requirements.txt
 .DS_Store
+<<<<<<< HEAD
 
+=======
+notes.md
+.env
+models/*
+configs/vertex_config.yaml
+>>>>>>> main

@@ -20,7 +20,7 @@ def evaluate() -> None:
         preprocess()
     
     train = pd.read_csv("data/processed/train.csv")
-    test = pd.read_csv("data/processed/test.csv")
+    #test = pd.read_csv("data/processed/test.csv")
     val = pd.read_csv("data/processed/val.csv")
     pipe= SentimentModel()
 
@@ -37,7 +37,7 @@ def evaluate() -> None:
             text = str(text)
             result = pipe.predict(text[:512])[0]  # Truncate to 512 tokens
             return result['label'], result['score']
-        except Exception as e:
+        except Exception:
             return 'ERROR', 0
 
     val['predicted_sentiment'] = val['tweet_text'].apply(lambda x: analyze_sentiment(x)[0])

@@ -3,6 +3,7 @@ import shutil
 import sys
 
 from datasets import load_dataset
+from dotenv import load_dotenv  # For loading .env variables
 from loguru import logger
 from transformers import (
     AutoModelForSequenceClassification,
@@ -38,8 +39,21 @@ def clear_output_dir(output_dir: str):
 
 
 def finetune():
+    # Load environment variables from .env
+    load_dotenv()
+    wandb_project = os.getenv("WANDB_PROJECT")
+    wandb_entity = os.getenv("WANDB_ENTITY")
+    wandb_api_key = os.getenv("WANDB_API_KEY")
+
+    # Ensure required W&B variables are available
+    if not all([wandb_project, wandb_entity, wandb_api_key]):
+        raise EnvironmentError("Missing W&B configuration in the environment!")
+
+    # Login to W&B using the API key
+    wandb.login(key=wandb_api_key)
+
     # Initialize wandb
-    wandb.init()
+    wandb.init(project=wandb_project, entity=wandb_entity)
     run = wandb.run
     config = wandb.config
     lr = config.lr

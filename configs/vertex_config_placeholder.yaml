@@ -1,0 +1,15 @@
+# Fill out and rename to vertex_config.yaml. CONTAINS SECRETS!!!
+# TODO: Setup with GCP secrets instead
+workerPoolSpecs:
+    machineSpec:
+        machineType: n1-highmem-2
+    replicaCount: 1
+    containerSpec:
+        imageUri: europe-west1-docker.pkg.dev/<GCP PROJECT>/<GCP DOCKER REGISTRY>/<DOCKER IMAGE>
+        env:
+        - name: WANDB_API_KEY
+          value: <WANDB API KEY>
+        - name: WANDB_PROJECT
+          value: <WANDB PROJECT NAME>
+        - name: WANDB_ENTITY
+          value: <WANDB ENTITY NAME>
