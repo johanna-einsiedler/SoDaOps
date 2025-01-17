@@ -15,12 +15,12 @@ logger.add(sys.stdout, level="DEBUG")
 
 
 def download():
+    # Note this is not used as we download via gcp
     # Define the target directory for the raw data
     raw_data_path = Path("data/raw/")
     # Download the dataset
     path = dataset_download("emirhanai/2024-u-s-election-sentiment-on-x", force_download=True)
     path = Path(path)
-    print(path)
     for file in path.iterdir():
         if file.is_file():
             shutil.move(str(file), raw_data_path / file.name)
@@ -79,6 +79,21 @@ def preprocess():
     val.to_csv("data/processed/val.csv")
     test.to_csv("data/processed/test.csv")
 
+def load_data():
+    process_path = Path("data/processed/")
+    train_path = process_path / "train.csv"
+    test_path = process_path / "test.csv"
+    val_path = process_path / "val.csv"
+
+    # Check if files exist; if not, preprocess them
+    if not train_path.exists() or not test_path.exists() or not val_path.exists():
+        logger.info("Files not found. Preprocessing dataset.")
+        preprocess()
+    
+    train = pd.read_csv("data/processed/train.csv")
+    test = pd.read_csv("data/processed/test.csv")
+    val = pd.read_csv("data/processed/val.csv")
+    return (train, test, val)
 
 if __name__ == "__main__":
     typer.run(preprocess)

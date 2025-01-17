@@ -1,6 +1,6 @@
 from loguru import logger
 import pandas as pd
-from data import preprocess
+from data import load_data
 from model import SentimentModel
 from sklearn.metrics import f1_score
 import typer
@@ -9,19 +9,7 @@ from pathlib import Path
 
 def evaluate() -> None:
     "Evaluating model performance"
-    process_path = Path("data/processed/")
-    train_path = process_path / "train.csv"
-    test_path = process_path / "test.csv"
-    val_path = process_path / "val.csv"
-
-    # Check if files exist; if not, preprocess them
-    if not train_path.exists() or not test_path.exists() or not val_path.exists():
-        logger.info("Files not found. Preprocessing dataset.")
-        preprocess()
-    
-    train = pd.read_csv("data/processed/train.csv")
-    #test = pd.read_csv("data/processed/test.csv")
-    val = pd.read_csv("data/processed/val.csv")
+    train, test, val=load_data()
     pipe= SentimentModel()
 
     text_input = train['tweet_text'].iloc[0]
