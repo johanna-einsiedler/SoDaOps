@@ -6,6 +6,9 @@ source /etc/environment
 # Ensure logs and artifacts directories exist
 mkdir -p /app/logs /app/artifacts
 
+# Pull data
+dvc pull
+
 # Create the W&B sweep and capture its output
 echo "Creating W&B sweep..."
 sweep_output=$(wandb sweep configs/sweep.yaml 2>&1)
