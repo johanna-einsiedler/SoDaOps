@@ -5,6 +5,8 @@ source /etc/environment
 mkdir -p logs artifacts
 # Pull data
 dvc pull
+# Convert raw to processed data
+python src/tweet_sentiment_analysis/data.py
 # Create the W&B sweep and capture its output
 echo "Logging in to W&B"
 login_output=$(wandb login 2>&1)
