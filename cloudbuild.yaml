@@ -5,15 +5,17 @@ steps:
     'build',
     '.',
     '-t',
-    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/sentiment-image',
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/wandb-image',
     '-f',
     'dockerfiles/main.dockerfile'
   ]
+
 - name: 'gcr.io/cloud-builders/docker'
   id: 'Push container image'
   args: [
     'push',
-    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/sentiment-image'
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/wandb-image'
   ]
+
 options:
   logging: CLOUD_LOGGING_ONLY

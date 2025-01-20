@@ -1,7 +1,6 @@
 [core]
     remote = remote_storage
+    no_scm = true
 [remote "remote_storage"]
     url = gs://sentiment_dtumlops/
     version_aware = true
-
-

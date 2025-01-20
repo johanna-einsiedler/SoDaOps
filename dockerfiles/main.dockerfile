@@ -14,8 +14,9 @@ COPY pyproject.toml /app/pyproject.toml
 COPY requirements.txt /app/requirements.txt
 COPY src /app/src
 COPY configs /app/configs
-COPY data /app/data
 COPY entrypoint.sh /app/entrypoint.sh
+COPY .dvc/dockerconfig /app/.dvc/config
+COPY data.dvc /app/data.dvc
 
 # Install Python dependencies and the local package
 RUN pip install --no-cache-dir --upgrade pip

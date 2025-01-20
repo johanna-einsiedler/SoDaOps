@@ -1,6 +1,6 @@
 program: src/tweet_sentiment_analysis/train.py
-project: ${WANDB_PROJECT}
-entity: ${WANDB_ENTITY}
+project: hello-gcp
+entity: magnus-nielsen
 method: random
 metric:
   name: eval/loss
