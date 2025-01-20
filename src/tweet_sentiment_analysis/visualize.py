@@ -2,30 +2,18 @@ import matplotlib.pyplot as plt
 from loguru import logger
 import seaborn as sns
 import pandas as pd
-from data import preprocess
+from data import load_data
 from model import SentimentModel
 import sys
 from sklearn.metrics import classification_report, confusion_matrix, roc_curve, auc
 import typer
-from pathlib import Path
 
 logger.remove()
 logger.add(sys.stdout, level="DEBUG")
 
 def visualize() -> None:
     "Visualizing model performance"
-    process_path = Path("data/processed/")
-    train_path = process_path / "train.csv"
-    test_path = process_path / "test.csv"
-    val_path = process_path / "val.csv"
-    # Check if files exist; if not, preprocess them
-    if not train_path.exists() or not test_path.exists() or not val_path.exists():
-        logger.info("Files not found. Preprocessing dataset.")
-        preprocess()
-    
-    train = pd.read_csv("data/processed/train.csv")
-    #test = pd.read_csv("data/processed/test.csv")
-    val = pd.read_csv("data/processed/val.csv")
+    train, test, val=load_data()
     pipe= SentimentModel()
 
     text_input = train['tweet_text'].iloc[0]
@@ -37,7 +25,7 @@ def visualize() -> None:
     logger.debug(result)
 
     # Function to perform sentiment analysis using the pipeline
-    def analyze_sentiment(text):
+    def make_predictions(text):
         try:
             text = str(text)
             result = pipe.predict(text[:512])[0]  # Truncate to 512 tokens
@@ -46,16 +34,16 @@ def visualize() -> None:
             return 'ERROR', 0
 
     # Apply sentiment analysis to training set
-    train[['predicted_sentiment', 'confidence']] = train['tweet_text'].apply(lambda x: pd.Series(analyze_sentiment(x)))
+    train[['predicted_sentiment', 'confidence']] = train['tweet_text'].apply(lambda x: pd.Series(make_predictions(x)))
     logger.debug(f"Sentiment train head: {train[['tweet_text','predicted_sentiment','confidence']].head()}")
 
     # Apply sentiment analysis to validation set
-    val[['predicted_sentiment', 'confidence']] = val['tweet_text'].apply(lambda x: pd.Series(analyze_sentiment(x)))
+    val[['predicted_sentiment', 'confidence']] = val['tweet_text'].apply(lambda x: pd.Series(make_predictions(x)))
     logger.debug(f"Sentiment validation head: {val[['tweet_text', 'predicted_sentiment', 'confidence']].head()}")
 
     # Apply sentiment analysis to test set
-    # test[['predicted_sentiment', 'confidence']] = test['tweet_text'].apply(lambda x: pd.Series(analyze_sentiment(x)))
-    val['predicted_sentiment'] = val['tweet_text'].apply(lambda x: analyze_sentiment(x)[0])
+    # test[['predicted_sentiment', 'confidence']] = test['tweet_text'].apply(lambda x: pd.Series(make_predictions(x)))
+    val['predicted_sentiment'] = val['tweet_text'].apply(lambda x: make_predictions(x)[0])
 
     # Convert predicted sentiment to lowercase
     val['predicted_sentiment'] = val['predicted_sentiment'].str.lower()

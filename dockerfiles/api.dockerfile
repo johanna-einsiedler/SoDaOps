@@ -1,5 +1,6 @@
 # Change from latest to a specific version if your requirements.txt
 FROM python:3.10-slim AS base
+ENV PIP_TIMEOUT=600
 
 RUN apt update && \
     apt install --no-install-recommends -y build-essential gcc && \
