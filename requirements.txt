@@ -98,13 +98,12 @@ pycparser==2.22
 pydantic==2.10.5
 pydantic_core==2.27.2
 pydot==3.0.4
-python-dotenv==1.0.1
 pygit2==1.17.0
 Pygments==2.19.1
 pygtrie==2.5.0
 pyparsing==3.2.1
 python-dateutil==2.9.0.post0
-python-dotenv==1.0.1       
+python-dotenv==1.0.1
 pytz==2024.2
 PyYAML==6.0.2
 regex==2024.11.6

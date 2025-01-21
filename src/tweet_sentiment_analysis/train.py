@@ -17,8 +17,8 @@ import wandb
 
 def load_csv_data(csv_dir: str):
     """Load train and validation CSV files into Hugging Face Dataset."""
-    data_files = {"train": os.path.join(csv_dir, "train.csv"), "val": os.path.join(csv_dir, "val.csv")}
-    dataset = load_dataset("csv", data_files=data_files)
+    data_files = {"train": os.path.join(csv_dir, "train.parquet"), "val": os.path.join(csv_dir, "val.parquet")}
+    dataset = load_dataset("parquet", data_files=data_files)
 
     # Select only the relevant columns
     dataset = dataset.map(lambda x: {"clean_text": x["clean_text"], "label": x["sentiment_encoded"]})
@@ -111,7 +111,7 @@ def finetune():
         args=training_args,
         train_dataset=train_data,
         eval_dataset=val_data,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
     )
 
     # Train and save the best model
@@ -125,6 +125,7 @@ def finetune():
 
     # Save best model
     best_model_dir = os.path.join(output_dir, "best_model")
+    best_model_dir = str(best_model_dir)
     logger.info("Saving best model locally")
     model.save_pretrained(best_model_dir)
     logger.info("Saving tokenizer locally")
@@ -134,7 +135,9 @@ def finetune():
     logger.info("Saving model to wandb")
     artifact = wandb.Artifact(f"{run.name}_finetuned_model", type="model")
     artifact.add_dir(best_model_dir)
+    logger.info("Logging artifact")
     wandb.log_artifact(artifact)
+    logger.info("Finishing WandB")
     wandb.finish()
 
     # Remove local

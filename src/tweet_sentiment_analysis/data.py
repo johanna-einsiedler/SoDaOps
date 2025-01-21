@@ -6,12 +6,15 @@ from pathlib import Path
 
 import pandas as pd
 import typer
-from kagglehub import dataset_download
 from loguru import logger
 from sklearn.preprocessing import LabelEncoder
 
 logger.remove()
 logger.add(sys.stdout, level="DEBUG")
+try:
+    from kagglehub import dataset_download
+except ModuleNotFoundError as e:
+    logger.error(f"Failed to import module: {e}")
 
 
 def download():
@@ -75,25 +78,27 @@ def preprocess():
     logger.debug(f"Train-size: {train.shape}")
     logger.debug(f"Validation-size: {val.shape}")
     logger.debug(f"Test-size: {test.shape}")
-    train.to_csv("data/processed/train.csv")
-    val.to_csv("data/processed/val.csv")
-    test.to_csv("data/processed/test.csv")
+    train.to_parquet("data/processed/train.parquet")
+    val.to_parquet("data/processed/val.parquet")
+    test.to_parquet("data/processed/test.parquet")
+
 
 def load_data():
     process_path = Path("data/processed/")
-    train_path = process_path / "train.csv"
-    test_path = process_path / "test.csv"
-    val_path = process_path / "val.csv"
+    train_path = process_path / "train.parquet"
+    test_path = process_path / "test.parquet"
+    val_path = process_path / "val.parquet"
 
     # Check if files exist; if not, preprocess them
     if not train_path.exists() or not test_path.exists() or not val_path.exists():
         logger.info("Files not found. Preprocessing dataset.")
         preprocess()
-    
-    train = pd.read_csv("data/processed/train.csv")
-    test = pd.read_csv("data/processed/test.csv")
-    val = pd.read_csv("data/processed/val.csv")
+
+    train = pd.read_parquet("data/processed/train.parquet")
+    test = pd.read_parquet("data/processed/test.parquet")
+    val = pd.read_parquet("data/processed/val.parquet")
     return (train, test, val)
+
 
 if __name__ == "__main__":
     typer.run(preprocess)
