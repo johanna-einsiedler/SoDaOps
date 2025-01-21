@@ -1,12 +1,13 @@
-from transformers import pipeline
-from loguru import logger
 import sys
+
 from loguru import logger
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
+
 import wandb
 
 logger.remove()
 logger.add(sys.stdout, level="DEBUG")
+
 
 def get_best_model_artifact(entity_name: str, project_name: str, sweep_name: str):
     """Fetches the best model artifact based on the lowest eval_loss."""
@@ -66,19 +67,21 @@ def analyze_sentiment(text: str):
     logger.info(f"Sentiment analysis result: label={label}, score={score:.4f}")
     return label, score
 
+
 class SentimentModel:
-    #def __init__(self, model_path="cardiffnlp/twitter-roberta-base-sentiment-latest"):
+    # def __init__(self, model_path="cardiffnlp/twitter-roberta-base-sentiment-latest"):
     def __init__(self):
         try:
-            self.pipe=load_sentiment_pipeline()
+            self.pipe = load_sentiment_pipeline()
         except Exception:
-            model_path="distilbert-base-uncased-finetuned-sst-2-english"
+            model_path = "distilbert-base-uncased-finetuned-sst-2-english"
             self.model_path = model_path
             self.pipe = pipeline("sentiment-analysis", model=self.model_path, tokenizer=self.model_path)
             logger.warning(f"Best model not retrieved, default used: {self.model_path}")
 
     def predict(self, text):
         return self.pipe(text)
+
 
 if __name__ == "__main__":
     # Set up logging

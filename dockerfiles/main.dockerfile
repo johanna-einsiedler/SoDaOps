@@ -6,8 +6,9 @@ WORKDIR /app
 
 # Install required system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    && apt-get install -y dos2unix \
     curl \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* 
 
 # Copy only the necessary files and folders into the container
 COPY pyproject.toml /app/pyproject.toml
@@ -21,6 +22,9 @@ COPY data.dvc /app/data.dvc
 # Install Python dependencies and the local package
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir .
+
+# Ensure correct line endings
+RUN dos2unix entrypoint.sh
 
 # Ensure the entrypoint script is executable
 RUN chmod +x entrypoint.sh

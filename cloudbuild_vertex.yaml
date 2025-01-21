@@ -6,33 +6,22 @@ steps:
     - '-c'
     - |
       apk add --no-cache gettext
-      envsubst < config.yaml > config.yaml.tmp
-      mv config.yaml.tmp config.yaml
-  secretEnv: ['WANDB_API_KEY']
-
-- name: "alpine"
-  id: "Replace values in the sweep config"
-  entrypoint: "sh"
-  args:
-    - '-c'
-    - |
-      apk add --no-cache gettext
-      envsubst < configs/sweep.yaml > configs/sweep.yaml.tmp
-      mv configs/sweep.yaml.tmp configs/sweep.yaml
-  secretEnv: ['WANDB_PROJECT', 'WANDB_ENTITY']
+      envsubst < configs/vertex_config_secret.yaml > configs/vertex_config_secret.yaml.tmp
+      mv configs/vertex_config_secret.yaml.tmp configs/vertex_config_secret.yaml
+  secretEnv: ['WANDB_API_KEY', 'WANDB_PROJECT', 'WANDB_ENTITY']
 
 - name: 'alpine'
-  id: "Show config"
+  id: "Show training config"
   waitFor: ['Replace values in the training config']
   entrypoint: "sh"
   args:
     - '-c'
     - |
-    cat config.yaml
+      cat configs/vertex_config_secret.yaml
 
 - name: 'gcr.io/cloud-builders/gcloud'
   id: 'Train on vertex AI'
-  waitFor: ['Replace values in the training config', "Replace values in the sweep config"]
+  waitFor: ['Replace values in the training config']
   args: [
     'ai',
     'custom-jobs',
@@ -40,7 +29,7 @@ steps:
     '--region',
     'europe-west1',
     '--display-name',
-    'example-mlops-job',
+    'secret-insertion',
     '--config',
     '${_VERTEX_TRAIN_CONFIG}',
   ]
