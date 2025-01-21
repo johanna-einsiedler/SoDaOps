@@ -51,7 +51,6 @@ def preprocess():
         download()
 
     train = pd.read_csv("data/raw/train.csv")
-    train = train.head(50)
     test = pd.read_csv("data/raw/test.csv")
     val = pd.read_csv("data/raw/val.csv")
     # recombination, resplitting commented out as to keep original splits.
@@ -72,7 +71,7 @@ def preprocess():
         dataset["party_encoded"] = le_party.fit_transform(dataset["party"])
 
         # Map sentiment to numerical values for evaluation
-        sentiment_mapping = {"negative": 0, "neutral": 1, "positive": 2}
+        sentiment_mapping = {"negative": int(0), "neutral": int(1), "positive": int(2)}
         dataset["sentiment_encoded"] = dataset["sentiment"].map(sentiment_mapping)
 
     logger.debug(f"Train-size: {train.shape}")

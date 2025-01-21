@@ -4,10 +4,9 @@ from data import load_data
 from model import SentimentModel
 from sklearn.metrics import f1_score
 import typer
-from pathlib import Path
 
 
-def evaluate() -> None:
+def evaluate(use_test_set: bool=False) -> None:
     "Evaluating model performance"
     train, test, val=load_data()
     pipe= SentimentModel()
@@ -29,12 +28,22 @@ def evaluate() -> None:
             return 'ERROR', 0
 
     val['predicted_sentiment'] = val['tweet_text'].apply(lambda x: analyze_sentiment(x)[0])
-    # Convert predicted sentiment to lowercase
-    val['predicted_sentiment'] = val['predicted_sentiment'].str.lower()
-    # Convert to categorical AFTER converting to lowercase AND adding the category
-    val['predicted_sentiment'] = pd.Categorical(val['predicted_sentiment'], categories=['negative', 'neutral', 'positive'])
+    if use_test_set:
+        test['predicted_sentiment'] = test['tweet_text'].apply(lambda x: analyze_sentiment(x)[0])
+        # Convert predicted sentiment to lowercase
+        test['predicted_sentiment'] = test['predicted_sentiment'].str.lower()
+        # Convert to categorical AFTER converting to lowercase AND adding the category
+        test['predicted_sentiment'] = pd.Categorical(test['predicted_sentiment'], categories=['negative', 'neutral', 'positive'])
 
-    logger.info(f1_score(val['sentiment'], val['predicted_sentiment'], average="macro"))
+        logger.info(f1_score(test['sentiment'], test['predicted_sentiment'], average="macro"))
+        
+    else:     
+        # Convert predicted sentiment to lowercase
+        val['predicted_sentiment'] = val['predicted_sentiment'].str.lower()
+        # Convert to categorical AFTER converting to lowercase AND adding the category
+        val['predicted_sentiment'] = pd.Categorical(val['predicted_sentiment'], categories=['negative', 'neutral', 'positive'])
+
+        logger.info(f1_score(val['sentiment'], val['predicted_sentiment'], average="macro"))
     
 if __name__ == "__main__":
     typer.run(evaluate)
