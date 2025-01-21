@@ -4,10 +4,9 @@ from data import load_data
 from model import SentimentModel
 from sklearn.metrics import f1_score
 import typer
-from pathlib import Path
 
 
-def evaluate(use_test_set: False) -> None:
+def evaluate(use_test_set: bool=False) -> None:
     "Evaluating model performance"
     train, test, val=load_data()
     pipe= SentimentModel()
