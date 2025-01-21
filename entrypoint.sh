@@ -1,6 +1,4 @@
 #!/bin/bash
-# Load environment variables
-source /etc/environment
 # Ensure logs and artifacts directories exist
 mkdir -p logs artifacts
 # Pull data

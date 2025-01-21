@@ -1,6 +1,4 @@
 program: src/tweet_sentiment_analysis/train.py
-project: hello-gcp
-entity: magnus-nielsen
 method: random
 metric:
   name: eval/loss
