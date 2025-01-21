@@ -16,6 +16,7 @@ try:
 except ModuleNotFoundError as e:
     logger.error(f"Failed to import module: {e}")
 
+
 def download():
     # Note this is not used as we download via gcp
     # Define the target directory for the raw data
@@ -81,6 +82,7 @@ def preprocess():
     val.to_parquet("data/processed/val.parquet")
     test.to_parquet("data/processed/test.parquet")
 
+
 def load_data():
     process_path = Path("data/processed/")
     train_path = process_path / "train.parquet"
@@ -91,11 +93,12 @@ def load_data():
     if not train_path.exists() or not test_path.exists() or not val_path.exists():
         logger.info("Files not found. Preprocessing dataset.")
         preprocess()
-    
+
     train = pd.read_parquet("data/processed/train.parquet")
     test = pd.read_parquet("data/processed/test.parquet")
     val = pd.read_parquet("data/processed/val.parquet")
     return (train, test, val)
+
 
 if __name__ == "__main__":
     typer.run(preprocess)

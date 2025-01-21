@@ -1,10 +1,12 @@
-from loguru import logger
+from pathlib import Path
+
 import pandas as pd
-from data import preprocess
+import typer
+from loguru import logger
 from model import SentimentModel
 from sklearn.metrics import f1_score
-import typer
-from pathlib import Path
+
+from data import preprocess
 
 
 def evaluate() -> None:
@@ -18,36 +20,38 @@ def evaluate() -> None:
     if not train_path.exists() or not test_path.exists() or not val_path.exists():
         logger.info("Files not found. Preprocessing dataset.")
         preprocess()
-    
+
     train = pd.read_csv("data/processed/train.csv")
     test = pd.read_csv("data/processed/test.csv")
     val = pd.read_csv("data/processed/val.csv")
-    pipe= SentimentModel()
+    pipe = SentimentModel()
 
-    text_input = train['tweet_text'].iloc[0]
+    text_input = train["tweet_text"].iloc[0]
     if not isinstance(text_input, str):
         text_input = str(text_input)
 
     result = pipe.predict(text_input)
-    logger.debug(f'Check if model can produce results: {result}')
+    logger.debug(f"Check if model can produce results: {result}")
 
     # Function to perform sentiment analysis using the pipeline
     def analyze_sentiment(text):
         try:
             text = str(text)
             result = pipe.predict(text[:512])[0]  # Truncate to 512 tokens
-            return result['label'], result['score']
+            return result["label"], result["score"]
         except Exception as e:
-            return 'ERROR', 0
+            return "ERROR", 0
 
-    val['predicted_sentiment'] = val['tweet_text'].apply(lambda x: analyze_sentiment(x)[0])
+    val["predicted_sentiment"] = val["tweet_text"].apply(lambda x: analyze_sentiment(x)[0])
     # Convert predicted sentiment to lowercase
-    val['predicted_sentiment'] = val['predicted_sentiment'].str.lower()
+    val["predicted_sentiment"] = val["predicted_sentiment"].str.lower()
     # Convert to categorical AFTER converting to lowercase AND adding the category
-    val['predicted_sentiment'] = pd.Categorical(val['predicted_sentiment'], categories=['negative', 'neutral', 'positive'])
+    val["predicted_sentiment"] = pd.Categorical(
+        val["predicted_sentiment"], categories=["negative", "neutral", "positive"]
+    )
 
-    logger.info(f1_score(val['sentiment'], val['predicted_sentiment'], average="macro"))
-    
+    logger.info(f1_score(val["sentiment"], val["predicted_sentiment"], average="macro"))
+
+
 if __name__ == "__main__":
     typer.run(evaluate)
-    

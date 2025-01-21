@@ -5,12 +5,7 @@ import sys
 from datasets import load_dataset
 from dotenv import load_dotenv  # For loading .env variables
 from loguru import logger
-from transformers import (
-    AutoModelForSequenceClassification,
-    AutoTokenizer,
-    Trainer,
-    TrainingArguments,
-)
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments
 
 import wandb
 
