@@ -5,7 +5,7 @@ steps:
     'build',
     '.',
     '-t',
-    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/wandb-image',
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/from-home-3',
     '-f',
     'dockerfiles/main.dockerfile'
   ]
@@ -14,7 +14,7 @@ steps:
   id: 'Push container image'
   args: [
     'push',
-    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/wandb-image'
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/from-home-3'
   ]
 
 options:

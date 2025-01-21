@@ -23,7 +23,7 @@ RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir .
 
 # Ensure the entrypoint script is executable
-RUN chmod +x /app/entrypoint.sh
+RUN chmod +x entrypoint.sh
 
 # Set the entrypoint
 ENTRYPOINT ["/app/entrypoint.sh"]
