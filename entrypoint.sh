@@ -1,6 +1,6 @@
 #!/bin/bash
 # Ensure logs and artifacts directories exist
-mkdir -p logs artifacts
+mkdir -p logs artifacts data/processed
 # Load environment variables
 source /etc/environment
 # Pull data
@@ -26,6 +26,13 @@ if [ -z "$sweep_id" ]; then
 fi
 # Log the extracted sweep ID
 echo "Sweep created with ID: $sweep_id"
-echo "Starting W&B agent for sweep: $sweep_id"
+export WANDB_SWEEP_NAME=$(echo "$sweep_id" | awk -F'/' '{print $NF}')
+echo "Sweep name: $WANDB_SWEEP_NAME"
 # Start the W&B agent
+echo "Starting W&B agent for sweep: $sweep_id"
 wandb agent "$sweep_id"
+# Test inference with single tweet
+echo "Testing inference with single tweet"
+python src/tweet_sentiment_analysis/model.py
+echo "Testing evaluation of f1 score"
+python src/tweet_sentiment_analysis/evaluate.py

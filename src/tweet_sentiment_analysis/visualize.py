@@ -5,11 +5,11 @@ import pandas as pd
 import seaborn as sns
 import typer
 from loguru import logger
-from model import SentimentModel
 from sklearn.metrics import auc, classification_report, confusion_matrix, roc_curve
 from sklearn.preprocessing import label_binarize
 
-from data import load_data, preprocess
+from data import preprocess
+from tweet_sentiment_analysis.model import SentimentPipeline
 
 logger.remove()
 logger.add(sys.stdout, level="DEBUG")
@@ -17,8 +17,19 @@ logger.add(sys.stdout, level="DEBUG")
 
 def visualize(use_test_set: bool = False) -> None:
     "Visualizing model performance"
-    train, test, val = load_data()
-    pipe = SentimentModel()
+    process_path = Path("data/processed/")
+    train_path = process_path / "train.parquet"
+    test_path = process_path / "test.parquet"
+    val_path = process_path / "val.parquet"
+    # Check if files exist; if not, preprocess them
+    if not train_path.exists() or not test_path.exists() or not val_path.exists():
+        logger.info("Files not found. Preprocessing dataset.")
+        preprocess()
+
+    train = pd.read_parquet(train_path)
+    test = pd.read_parquet(test_path)
+    val = pd.read_parquet(val_path)
+    pipe = SentimentPipeline()
 
     text_input = train["tweet_text"].iloc[0]
     if not isinstance(text_input, str):
@@ -28,63 +39,17 @@ def visualize(use_test_set: bool = False) -> None:
     result = pipe.predict(text_input)
     logger.debug(result)
 
-    # Function to perform sentiment analysis using the pipeline
-    def make_predictions(text):
-        try:
-            text = str(text)
-            result = pipe.predict(text[:512])[0]  # Truncate to 512 tokens
-            return result["label"], result["score"]
-        except Exception:
-            return "ERROR", 0
-
     # Apply sentiment analysis to training set
-    train[["predicted_sentiment", "confidence"]] = train["tweet_text"].apply(lambda x: pd.Series(make_predictions(x)))
+    train[["predicted_sentiment", "confidence"]] = train["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
     logger.debug(f"Sentiment train head: {train[['tweet_text', 'predicted_sentiment', 'confidence']].head()}")
 
-    if use_test_set:
-        plot_name = "test_set"
-        # Apply sentiment analysis to validation set
-        test[["predicted_sentiment", "confidence"]] = test["tweet_text"].apply(lambda x: pd.Series(make_predictions(x)))
-        logger.debug(f"Sentiment validation head: {test[['tweet_text', 'predicted_sentiment', 'confidence']].head()}")
+    # Apply sentiment analysis to validation set
+    val[["predicted_sentiment", "confidence"]] = val["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
+    logger.debug(f"Sentiment validation head: {val[['tweet_text', 'predicted_sentiment', 'confidence']].head()}")
 
-        # Apply sentiment analysis to test set
-        # test[['predicted_sentiment', 'confidence']] = test['tweet_text'].apply(lambda x: pd.Series(make_predictions(x)))
-        test["predicted_sentiment"] = test["tweet_text"].apply(lambda x: make_predictions(x)[0])
-
-        # Convert predicted sentiment to lowercase
-        test["predicted_sentiment"] = test["predicted_sentiment"].str.lower()
-
-        # Convert to categorical AFTER converting to lowercase AND adding the category
-        test["predicted_sentiment"] = pd.Categorical(
-            test["predicted_sentiment"], categories=["negative", "neutral", "positive"]
-        )
-
-        # Generate classification report
-        logger.info(
-            classification_report(
-                test["sentiment"], test["predicted_sentiment"], target_names=["negative", "neutral", "positive"]
-            )
-        )  # Explicitly stating categories here
-
-        # Generate confusion matrix using lowercase labels
-        cm = confusion_matrix(
-            test["sentiment"], test["predicted_sentiment"], labels=["negative", "neutral", "positive"]
-        )  # Use lowercase labels
-
-        # Generate probabilities for each class
-        # Note: The pipeline provides only the top prediction, so for multi-class ROC, a different approach or model might be needed.
-        # Here, we demonstrate ROC for POSITIVE class only as an example.
-        y_prob = test["confidence"]  # Confidence scores for the predicted label
-        y_true = (test["sentiment"] == "POSITIVE").astype(int)
-    else:
-        plot_name = "val_set"
-        # Apply sentiment analysis to validation set
-        val[["predicted_sentiment", "confidence"]] = val["tweet_text"].apply(lambda x: pd.Series(make_predictions(x)))
-        logger.debug(f"Sentiment validation head: {val[['tweet_text', 'predicted_sentiment', 'confidence']].head()}")
-
-        # Apply sentiment analysis to test set
-        # test[['predicted_sentiment', 'confidence']] = test['tweet_text'].apply(lambda x: pd.Series(make_predictions(x)))
-        val["predicted_sentiment"] = val["tweet_text"].apply(lambda x: make_predictions(x)[0])
+    # Apply sentiment analysis to test set
+    # test[['predicted_sentiment', 'confidence']] = test['tweet_text'].apply(lambda x: pd.Series(analyze_sentiment(x)))
+    val["predicted_sentiment"] = val["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
 
         # Convert predicted sentiment to lowercase
         val["predicted_sentiment"] = val["predicted_sentiment"].str.lower()

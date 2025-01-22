@@ -1,4 +1,5 @@
 # from sklearn.model_selection import train_test_split
+import os
 import re
 import shutil
 import sys
@@ -6,6 +7,7 @@ from pathlib import Path
 
 import pandas as pd
 import typer
+from dotenv import load_dotenv
 from loguru import logger
 from sklearn.preprocessing import LabelEncoder
 
@@ -41,6 +43,7 @@ def clean_text(text):
 
 
 def preprocess():
+    load_dotenv()
     logger.info("Preprocessing data")
     raw_data_path = Path("data/raw/")
     train_path = raw_data_path / "train.csv"
@@ -55,10 +58,6 @@ def preprocess():
     train = pd.read_csv("data/raw/train.csv")
     test = pd.read_csv("data/raw/test.csv")
     val = pd.read_csv("data/raw/val.csv")
-    # recombination, resplitting commented out as to keep original splits.
-    # data = pd.concat([train.reset_index(), test.reset_index(), val.reset_index()], ignore_index=True)
-    # train, test = train_test_split(data, test_size=0.3, random_state=111)
-    # train, val = train_test_split(data, test_size=0.2, random_state=111)
 
     # List of datasets
     datasets = [train, test, val]
@@ -74,7 +73,10 @@ def preprocess():
 
         # Map sentiment to numerical values for evaluation
         sentiment_mapping = {"negative": int(0), "neutral": int(1), "positive": int(2)}
-        dataset["sentiment_encoded"] = dataset["sentiment"].map(sentiment_mapping)
+        dataset["sentiment_encoded"] = dataset["sentiment"].str.strip().map(sentiment_mapping)
+
+        if os.getenv("development_mode") == "Yes":  # yaml parsing doesn't like bools
+            dataset = dataset.iloc[:50, :]
 
     logger.debug(f"Train-size: {train.shape}")
     logger.debug(f"Validation-size: {val.shape}")

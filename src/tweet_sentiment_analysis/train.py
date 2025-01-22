@@ -9,13 +9,13 @@ from loguru import logger
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments
 
 
-def load_csv_data(csv_dir: str):
-    """Load train and validation CSV files into Hugging Face Dataset."""
+def load_parquet_data(csv_dir: str):
+    """Load train and validation parquet files into Hugging Face Dataset."""
     data_files = {"train": os.path.join(csv_dir, "train.parquet"), "val": os.path.join(csv_dir, "val.parquet")}
     dataset = load_dataset("parquet", data_files=data_files)
 
     # Select only the relevant columns
-    dataset = dataset.map(lambda x: {"clean_text": x["clean_text"], "label": x["sentiment_encoded"]})
+    dataset = dataset.map(lambda x: {"clean_text": x["clean_text"], "label": int(x["sentiment_encoded"])})
     return dataset
 
 
@@ -78,7 +78,7 @@ def finetune():
     # Load data
     logger.info("Loading data")
     csv_dir = "data/processed"
-    dataset = load_csv_data(csv_dir)
+    dataset = load_parquet_data(csv_dir)
     train_data = dataset["train"]
     val_data = dataset["val"]
 

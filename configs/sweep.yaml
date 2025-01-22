@@ -1,5 +1,5 @@
 program: src/tweet_sentiment_analysis/train.py
-method: random
+method: bayes
 metric:
   name: eval/loss
   goal: minimize
