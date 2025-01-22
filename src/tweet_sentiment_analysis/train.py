@@ -39,6 +39,10 @@ def finetune():
     wandb_project = os.getenv("WANDB_PROJECT")
     wandb_entity = os.getenv("WANDB_ENTITY")
     wandb_api_key = os.getenv("WANDB_API_KEY")
+    max_length = int(os.getenv("max_length"))
+    per_device_train_batch_size = int(os.getenv("per_device_train_batch_size"))
+    per_device_eval_batch_size = int(os.getenv("per_device_eval_batch_size"))
+    num_train_epochs = int(os.getenv("num_train_epochs"))
 
     # Ensure required W&B variables are available
     if not all([wandb_project, wandb_entity, wandb_api_key]):
@@ -60,6 +64,9 @@ def finetune():
     logger.add(sys.stderr, level=LOG_LEVEL)
     logger.add("logs/train_logs.log", level=LOG_LEVEL, rotation="10 MB", retention="10 days")
     logger.info(f"Starting run with project={run.project}, entity={run.entity}, run={run.name}")
+    logger.info(
+        f"Training hyperparameters not included in sweep: max_length={max_length}, per_device_train_batch_size={per_device_train_batch_size}, per_device_eval_batch_size={per_device_eval_batch_size}, num_train_epochs={num_train_epochs}"
+    )
 
     # Load model
     logger.info("Loading model")
@@ -77,7 +84,7 @@ def finetune():
     val_data = dataset["val"]
 
     def preprocess_function(examples):
-        return tokenizer(examples["clean_text"], truncation=True, padding="max_length", max_length=16)
+        return tokenizer(examples["clean_text"], truncation=True, padding="max_length", max_length=max_length)
 
     train_data = train_data.map(preprocess_function, batched=True)
     val_data = val_data.map(preprocess_function, batched=True)
@@ -88,9 +95,9 @@ def finetune():
         output_dir=output_dir,
         eval_strategy="epoch",
         learning_rate=lr,
-        per_device_train_batch_size=16,
-        per_device_eval_batch_size=16,
-        num_train_epochs=1,
+        per_device_train_batch_size=per_device_train_batch_size,
+        per_device_eval_batch_size=per_device_eval_batch_size,
+        num_train_epochs=num_train_epochs,
         weight_decay=weight_decay,
         logging_steps=10,
         save_total_limit=1,

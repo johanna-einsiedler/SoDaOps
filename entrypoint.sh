@@ -1,6 +1,8 @@
 #!/bin/bash
 # Ensure logs and artifacts directories exist
 mkdir -p logs artifacts
+# Load environment variables
+source /etc/environment
 # Pull data
 dvc pull
 # Convert raw to processed data
