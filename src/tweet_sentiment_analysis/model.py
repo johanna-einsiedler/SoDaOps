@@ -1,9 +1,8 @@
 import sys
 
+import wandb
 from loguru import logger
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
-
-import wandb
 
 logger.remove()
 logger.add(sys.stdout, level="DEBUG")

@@ -1,6 +1,9 @@
 from unittest.mock import patch
+
+from datasets import Dataset, DatasetDict
+
 from tweet_sentiment_analysis.train import load_csv_data
-from datasets import DatasetDict, Dataset
+
 
 @patch("tweet_sentiment_analysis.train.load_dataset")
 def test_load_csv_data(mock_load_dataset):

@@ -1,10 +1,15 @@
 import os
-
-import pytest
 from pathlib import Path
+from unittest.mock import MagicMock, patch
+
 import pandas as pd
-from unittest.mock import patch, MagicMock
-from tweet_sentiment_analysis.data import clean_text, preprocess, load_data  # Replace 'your_module' with the module name
+import pytest
+
+from tweet_sentiment_analysis.data import (  # Replace 'your_module' with the module name
+    clean_text,
+    load_data,
+    preprocess,
+)
 
 # Mock paths for testing
 RAW_DATA_PATH = Path("data/raw/")

@@ -1,5 +1,6 @@
 import pytest
 
+
 @pytest.fixture
 def requirements_file():
     """Load the contents of the requirements.txt file."""
