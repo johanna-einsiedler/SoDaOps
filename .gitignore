@@ -1,15 +1,13 @@
-data/*
+data/processed/*
+!data/processed/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
 src/tweet_sentiment_anlaysis.egg-info/*
 artifacts/*
 logs/*
 wandb/*
-/data
 .DS_Store
-<<<<<<< HEAD
-
-=======
 notes.md
 .env
 models/*
 configs/vertex_config.yaml
->>>>>>> main
