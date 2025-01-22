@@ -3,28 +3,16 @@ from pathlib import Path
 import pandas as pd
 import typer
 from loguru import logger
-from model import SentimentModel
 from sklearn.metrics import f1_score
 
-from data import preprocess
+from tweet_sentiment_analysis.data import load_data, preprocess
+from tweet_sentiment_analysis.model import SentimentPipeline
 
 
-def evaluate() -> None:
+def evaluate(use_test_set: bool = False) -> None:
     "Evaluating model performance"
-    process_path = Path("data/processed/")
-    train_path = process_path / "train.csv"
-    test_path = process_path / "test.csv"
-    val_path = process_path / "val.csv"
-
-    # Check if files exist; if not, preprocess them
-    if not train_path.exists() or not test_path.exists() or not val_path.exists():
-        logger.info("Files not found. Preprocessing dataset.")
-        preprocess()
-
-    train = pd.read_csv("data/processed/train.csv")
-    test = pd.read_csv("data/processed/test.csv")
-    val = pd.read_csv("data/processed/val.csv")
-    pipe = SentimentModel()
+    train, test, val = load_data()
+    pipe = SentimentPipeline()
 
     text_input = train["tweet_text"].iloc[0]
     if not isinstance(text_input, str):
@@ -33,24 +21,28 @@ def evaluate() -> None:
     result = pipe.predict(text_input)
     logger.debug(f"Check if model can produce results: {result}")
 
-    # Function to perform sentiment analysis using the pipeline
-    def analyze_sentiment(text):
-        try:
-            text = str(text)
-            result = pipe.predict(text[:512])[0]  # Truncate to 512 tokens
-            return result["label"], result["score"]
-        except Exception as e:
-            return "ERROR", 0
+    val["predicted_sentiment"] = test["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
 
-    val["predicted_sentiment"] = val["tweet_text"].apply(lambda x: analyze_sentiment(x)[0])
-    # Convert predicted sentiment to lowercase
-    val["predicted_sentiment"] = val["predicted_sentiment"].str.lower()
-    # Convert to categorical AFTER converting to lowercase AND adding the category
-    val["predicted_sentiment"] = pd.Categorical(
-        val["predicted_sentiment"], categories=["negative", "neutral", "positive"]
-    )
+    if use_test_set:
+        test["predicted_sentiment"] = test["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
+        # Convert predicted sentiment to lowercase
+        test["predicted_sentiment"] = test["predicted_sentiment"].str.lower()
+        # Convert to categorical AFTER converting to lowercase AND adding the category
+        test["predicted_sentiment"] = pd.Categorical(
+            test["predicted_sentiment"], categories=["negative", "neutral", "positive"]
+        )
 
-    logger.info(f1_score(val["sentiment"], val["predicted_sentiment"], average="macro"))
+        logger.info(f1_score(test["sentiment"], test["predicted_sentiment"], average="macro"))
+
+    else:
+        # Convert predicted sentiment to lowercase
+        val["predicted_sentiment"] = val["predicted_sentiment"].str.lower()
+        # Convert to categorical AFTER converting to lowercase AND adding the category
+        val["predicted_sentiment"] = pd.Categorical(
+            val["predicted_sentiment"], categories=["negative", "neutral", "positive"]
+        )
+
+        logger.info(f1_score(val["sentiment"], val["predicted_sentiment"], average="macro"))
 
 
 if __name__ == "__main__":
