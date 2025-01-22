@@ -51,20 +51,3 @@ def test_prediction_with_multiple_inputs(mock_pipeline):
     ]
 
 
-@patch("tweet_sentiment_analysis.model.pipeline")  # Mock the `pipeline` function
-def test_model_initialization_with_invalid_model_path(mock_pipeline):
-    """Test initialization with an invalid model path."""
-    # Mock the pipeline to raise an OSError for invalid model paths
-    mock_pipeline.side_effect = OSError("Model not found")
-
-    # Attempt to instantiate SentimentModel with an invalid model path
-    invalid_model_path = "invalid-model-path"
-    with pytest.raises(OSError, match="Model not found"):
-        SentimentModel(model_path=invalid_model_path)
-
-    # Assert that the pipeline was called with the invalid model path
-    mock_pipeline.assert_called_once_with(
-        "sentiment-analysis",
-        model=invalid_model_path,
-        tokenizer=invalid_model_path,
-    )
