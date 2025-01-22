@@ -13,7 +13,7 @@ def test_load_csv_data(mock_load_dataset):
     dataset = load_csv_data("mock/path")
 
     # Assert that `load_dataset` was called with correct arguments
-    mock_load_dataset.assert_called_once_with("csv", data_files={"train": "mock/path/train.csv", "val": "mock/path/val.csv"})
+    mock_load_dataset.assert_called_once_with("parquet", data_files={"train": "mock/path/train.parquet", "val": "mock/path/val.parquet"})
 
     # Check that dataset is of type DatasetDict
     assert isinstance(dataset, DatasetDict)
