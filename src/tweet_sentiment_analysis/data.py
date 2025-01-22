@@ -35,6 +35,8 @@ def clean_text(text):
     text = re.sub(r"@\w+", "", text)  # Remove mentions
     text = re.sub(r"#\w+", "", text)  # Remove hashtags
     text = re.sub(r"[^a-zA-Z\s]", "", text)  # Remove non-alphabetic characters
+    text = re.sub(r"^\s+|\s+$", "", text)  # Remove leading and trailing spaces
+
     return text
 
 

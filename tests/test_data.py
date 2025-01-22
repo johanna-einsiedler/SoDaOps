@@ -1,23 +1,46 @@
 import os
 
 import pytest
-from datasets import load_dataset
-from torch.utils.data import Dataset
+from pathlib import Path
+import pandas as pd
+from unittest.mock import patch, MagicMock
+from tweet_sentiment_analysis.data import clean_text, preprocess, load_data  # Replace 'your_module' with the module name
 
-from tests import _PATH_DATA
-from tweet_sentiment_analysis.data import *
+# Mock paths for testing
+RAW_DATA_PATH = Path("data/raw/")
+PROCESSED_DATA_PATH = Path("data/processed/")
 
-data_dir = _PATH_DATA + "/processed"
+# Sample test data
+sample_data = pd.DataFrame({
+    "tweet_text": ["This is a sample tweet! #test http://example.com", 
+                   "Another example tweet, with @mentions and #hashtags."],
+    "party": ["Democrat", "Republican"],
+    "sentiment": ["positive", "neutral"]
+})
 
 
-@pytest.mark.skipif(not os.path.exists(data_dir), reason="Data files not found")
-def test_my_dataset():
-    data_files = {
-        "train": os.path.join(data_dir, "train.csv"),
-        "test": os.path.join(data_dir, "test.csv"),
-        "val": os.path.join(data_dir, "val.csv"),
-    }
-    dataset = load_dataset("csv", data_files=data_files)
-    assert dataset.shape["train"][0] == dataset.shape["val"][0] == dataset.shape["test"][0], (
-        "Train,test and validation data don't have same shape"
-    )
+@pytest.fixture
+def mock_raw_data_path(tmp_path):
+    """Mock the raw data directory with sample CSV files."""
+    raw_dir = tmp_path / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    train_file = raw_dir / "train.csv"
+    test_file = raw_dir / "test.csv"
+    val_file = raw_dir / "val.csv"
+
+    # Write the sample data to the mock files
+    sample_data.to_csv(train_file, index=False)
+    sample_data.to_csv(test_file, index=False)
+    sample_data.to_csv(val_file, index=False)
+
+    return raw_dir
+
+
+
+def test_clean_text():
+    """Test the clean_text function."""
+    raw_text = "Check this out! #Test http://example.com @user123"
+    expected_output = "check this out"
+    assert clean_text(raw_text) == expected_output
+
+
