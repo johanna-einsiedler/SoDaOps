@@ -74,9 +74,11 @@ def preprocess():
         # Map sentiment to numerical values for evaluation
         sentiment_mapping = {"negative": int(0), "neutral": int(1), "positive": int(2)}
         dataset["sentiment_encoded"] = dataset["sentiment"].str.strip().map(sentiment_mapping)
-
-        if os.getenv("development_mode") == "Yes":  # yaml parsing doesn't like bools
-            dataset = dataset.iloc[:50, :]
+        if (
+            os.getenv("development_mode").replace("'", "").replace('"', "") == "Yes"
+        ):  # yaml parsing doesn't like bools and I don't like yaml parsing
+            logger.warning("Reducing dataset size to max 50 rows for development purposes!")
+            dataset.drop(dataset[dataset.index > 49].index, inplace=True)
 
     logger.debug(f"Train-size: {train.shape}")
     logger.debug(f"Validation-size: {val.shape}")

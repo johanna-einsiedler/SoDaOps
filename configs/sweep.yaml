@@ -13,5 +13,3 @@ parameters:
     distribution: uniform
     min: 0.01
     max: 0.1
-
-run_cap: 2

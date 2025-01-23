@@ -1,7 +1,10 @@
 import os
 import sys
+from datetime import datetime
+from pathlib import Path
 
 from dotenv import load_dotenv
+from google.cloud import storage
 from loguru import logger
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 
@@ -11,8 +14,26 @@ logger.remove()
 logger.add(sys.stdout, level="DEBUG")
 
 
-def get_best_model_artifact(entity_name: str, project_name: str, sweep_name: str):
-    """Fetches the best model artifact based on the lowest eval_loss."""
+def upload_to_gcs(local_path: Path, bucket_name: str, destination_blob_name: str):
+    """Uploads a file or directory to a GCP bucket."""
+    client = storage.Client()
+    bucket = client.bucket(bucket_name)
+
+    if local_path.is_dir():
+        for file_path in local_path.glob("**/*"):
+            if file_path.is_file():
+                relative_path = file_path.relative_to(local_path)
+                blob = bucket.blob(f"{destination_blob_name}/{relative_path}")
+                blob.upload_from_filename(str(file_path))
+                logger.info(f"Uploaded {file_path} to gs://{bucket_name}/{destination_blob_name}/{relative_path}")
+    else:
+        blob = bucket.blob(destination_blob_name)
+        blob.upload_from_filename(str(local_path))
+        logger.info(f"Uploaded {local_path} to gs://{bucket_name}/{destination_blob_name}")
+
+
+def get_best_model_artifact(entity_name: str, project_name: str, sweep_name: str) -> str:
+    """Fetches the best model artifact based on the lowest eval_loss and saves it to the GCP bucket."""
     logger.info("Fetching the best model artifact")
     api = wandb.Api()
     sweep = api.sweep(f"{entity_name}/{project_name}/{sweep_name}")
@@ -25,14 +46,19 @@ def get_best_model_artifact(entity_name: str, project_name: str, sweep_name: str
 
     sorted_runs = sorted(successful_runs, key=lambda run: run.summary.get("eval/loss", float("inf")))
     best_run = sorted_runs[0]
-    print(best_run)
     logger.info(f"Best run selected: {best_run.name} with eval_loss={best_run.summary.get('eval/loss')}")
 
     for artifact in best_run.logged_artifacts():
         artifact_path = artifact.download()
         logger.info(f"Downloaded artifact to: {artifact_path}")
 
-    return artifact_path
+        # Save the artifact to the GCP bucket with a timestamp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        bucket_name = "sentiment-output-dtu"
+        destination_blob_name = f"model_{timestamp}"
+        upload_to_gcs(Path(artifact_path), bucket_name, destination_blob_name)
+
+    return f"gs://{bucket_name}/{destination_blob_name}"
 
 
 def load_sentiment_pipeline():
@@ -44,7 +70,8 @@ def load_sentiment_pipeline():
     wandb_entity = os.getenv("WANDB_ENTITY")
     wandb_sweep_name = os.getenv("WANDB_SWEEP_NAME")
     max_length = int(os.getenv("max_length"))
-    # TODO: Add loading of local artifact if already loaded to speed up inference
+
+    # Fetch the best model artifact
     model_dir = get_best_model_artifact(
         entity_name=wandb_entity, project_name=wandb_project, sweep_name=wandb_sweep_name
     )
@@ -99,7 +126,9 @@ if __name__ == "__main__":
     LOG_LEVEL = "INFO"
     logger.add(sys.stderr, level=LOG_LEVEL)
     logger.add("logs/inference_logs.log", level=LOG_LEVEL, rotation="10 MB", retention="10 days")
+
     pipeline = SentimentPipeline()
+
     # Analyze sample text
     text_to_analyze = "This movie was fantastic! I loved it!"
     output = pipeline.predict(text_to_analyze)

@@ -12,3 +12,4 @@ notes.md
 models/*
 configs/vertex_config.yaml
 src/tweet_sentiment_analysis/__pycache__/*
+set_env_vars.py
