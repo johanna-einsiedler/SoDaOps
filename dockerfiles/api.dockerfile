@@ -1,18 +1,23 @@
-# Change from latest to a specific version if your requirements.txt
-FROM python:3.10-slim AS base
-ENV PIP_TIMEOUT=600
+FROM python:3.10-slim
 
-RUN apt update && \
-    apt install --no-install-recommends -y build-essential gcc && \
-    apt clean && rm -rf /var/lib/apt/lists/*
+# Set the working directory in the container
+WORKDIR /app
+ 
+# Install required system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    && apt-get install -y dos2unix \
+    curl \
+    && rm -rf /var/lib/apt/lists/* 
 
-COPY src src/
-COPY requirements.txt requirements.txt
-COPY requirements_dev.txt requirements_dev.txt
-COPY README.md README.md
-COPY pyproject.toml pyproject.toml
+# Copy only the necessary files and folders into the container
+COPY pyproject.toml /app/pyproject.toml
+COPY requirements.txt /app/requirements.txt
+COPY src /app/src
 
-RUN pip install -r requirements.txt --no-cache-dir --verbose
-RUN pip install . --no-deps --no-cache-dir --verbose
+# Install Python dependencies and the local package
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir .
 
-ENTRYPOINT ["uvicorn", "src/tweet_sentiment_anlaysis/api:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE $PORT
+
+CMD exec uvicorn src/tweet_sentiment_analysis/api:app --port $PORT --host 0.0.0.0 --workers 1
