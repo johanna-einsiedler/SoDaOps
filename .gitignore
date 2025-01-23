@@ -10,3 +10,7 @@ notes.md
 models/*
 configs/vertex_config.yaml
 src/tweet_sentiment_analysis/__pycache__/*
+downloaded_model/*
+!downloaded_model/.gitkeep
+set_env_vars.py
+src/tweet_sentiment_analysis/__pycache__/__init__.cpython-310.pyc

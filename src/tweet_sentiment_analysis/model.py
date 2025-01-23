@@ -1,106 +1,116 @@
 import os
 import sys
+from pathlib import Path
 
 from dotenv import load_dotenv
+from google.cloud import storage
 from loguru import logger
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 
-import wandb
+from tweet_sentiment_analysis.utils import download_from_gcs
 
 logger.remove()
 logger.add(sys.stdout, level="DEBUG")
 
 
-def get_best_model_artifact(entity_name: str, project_name: str, sweep_name: str):
-    """Fetches the best model artifact based on the lowest eval_loss."""
-    logger.info("Fetching the best model artifact")
-    api = wandb.Api()
-    sweep = api.sweep(f"{entity_name}/{project_name}/{sweep_name}")
+def get_latest_model_timestamp(bucket_name: str, prefix: str = "models/") -> str:
+    """
+    Gets the latest timestamped model folder in the specified GCS bucket under the given prefix.
 
-    # Filter out only successful runs
-    successful_runs = [run for run in sweep.runs if run.state == "finished"]
-    if not successful_runs:
-        logger.error("No successful runs found for the specified sweep")
-        return None
+    Args:
+        bucket_name (str): Name of the GCS bucket.
+        prefix (str): Prefix for the model folders (e.g., 'model/').
 
-    sorted_runs = sorted(successful_runs, key=lambda run: run.summary.get("eval/loss", float("inf")))
-    best_run = sorted_runs[0]
-    print(best_run)
-    logger.info(f"Best run selected: {best_run.name} with eval_loss={best_run.summary.get('eval/loss')}")
+    Returns:
+        str: The latest timestamp folder name.
+    """
+    client = storage.Client()
+    bucket = client.bucket(bucket_name)
+    blobs = list(bucket.list_blobs(prefix=prefix))
 
-    for artifact in best_run.logged_artifacts():
-        artifact_path = artifact.download()
-        logger.info(f"Downloaded artifact to: {artifact_path}")
+    # Extract folder names directly under the prefix (e.g., 'model/20250123_153000/')
+    timestamps = [
+        blob.name[len(prefix) :].split("/")[0]
+        for blob in blobs
+        if blob.name[len(prefix) :].strip() and "/" in blob.name[len(prefix) :]
+    ]
 
-    return artifact_path
+    if not timestamps:
+        logger.error("No model folders found in the GCS bucket.")
+        raise FileNotFoundError("No model folders found in the GCS bucket.")
 
-
-def load_sentiment_pipeline():
-    """Loads the model and tokenizer from the best artifact."""
-    logger.info("Loading sentiment analysis pipeline")
-
-    load_dotenv()
-    wandb_project = os.getenv("WANDB_PROJECT")
-    wandb_entity = os.getenv("WANDB_ENTITY")
-    wandb_sweep_name = os.getenv("WANDB_SWEEP_NAME")
-    max_length = int(os.getenv("max_length"))
-    # TODO: Add loading of local artifact if already loaded to speed up inference
-    model_dir = get_best_model_artifact(
-        entity_name=wandb_entity, project_name=wandb_project, sweep_name=wandb_sweep_name
-    )
-    if not model_dir:
-        logger.error("Failed to load model artifact")
-        sys.exit(1)
-
-    # Load both the model and tokenizer from the artifact directory
-    model = AutoModelForSequenceClassification.from_pretrained(model_dir)
-    tokenizer = AutoTokenizer.from_pretrained(model_dir)
-    logger.info("Model and tokenizer loaded successfully")
-
-    # Initialize the sentiment analysis pipeline
-    sentiment_pipeline = pipeline(
-        "text-classification",
-        model=model,
-        tokenizer=tokenizer,
-        truncation=True,
-        padding="max_length",
-        max_length=max_length,
-    )
-    logger.info("Sentiment analysis pipeline initialized")
-    return sentiment_pipeline
+    # Sort timestamps and return the latest one
+    latest_timestamp = sorted(timestamps)[-1]
+    logger.info(f"Latest model timestamp found: {latest_timestamp}")
+    return latest_timestamp
 
 
 class SentimentPipeline:
-    def __init__(self):
+    def __init__(self, timestamp: str | None = None):
+        """
+        Initialize the SentimentPipeline.
+
+        Args:
+            timestamp (str | None): The timestamp for the model folder. If None, fetches the latest model timestamp.
+        """
         load_dotenv()
         max_length = int(os.getenv("max_length"))
+        bucket_name = "sentiment-output-dtu"
+        local_model_dir = Path("downloaded_model")
+
         try:
-            self.pipe = load_sentiment_pipeline()
-        except Exception:
-            model_path = "cardiffnlp/twitter-roberta-base-sentiment-latest"
-            self.model_path = model_path
+            # Get the latest model timestamp from GCS
+            # Determine the model timestamp to use
+            if timestamp is None:
+                logger.info("Fetching the latest model timestamp from GCS")
+                timestamp = get_latest_model_timestamp(bucket_name)
+            else:
+                logger.info(f"Using provided timestamp: {timestamp}")
+
+            # Define the local path for the model
+            timestamp_model_dir = local_model_dir / timestamp
+
+            # Check if the model folder already exists locally
+            if timestamp_model_dir.exists():
+                logger.info(f"Model folder already exists locally: {timestamp_model_dir}")
+            else:
+                # Download the model from GCS
+                logger.info(f"Downloading the model for timestamp {timestamp} from GCS")
+                model_folder_name = f"models/{timestamp}"
+                download_from_gcs(bucket_name, model_folder_name, str(timestamp_model_dir))
+
+            # Load model and tokenizer from the local directory
             self.pipe = pipeline(
                 "text-classification",
-                model=self.model_path,
-                tokenizer=self.model_path,
+                model=AutoModelForSequenceClassification.from_pretrained(timestamp_model_dir),
+                tokenizer=AutoTokenizer.from_pretrained(timestamp_model_dir),
                 truncation=True,
                 padding="max_length",
                 max_length=max_length,
             )
-            logger.warning(f"Best model not retrieved, default used: {self.model_path}")
+            logger.info("Model pipeline loaded successfully")
+        except Exception as e:
+            logger.error(f"Failed to load model from GCS: {e}")
+            model_path = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+            self.pipe = pipeline(
+                "text-classification",
+                model=model_path,
+                tokenizer=model_path,
+                truncation=True,
+                padding="max_length",
+                max_length=max_length,
+            )
+            logger.warning(f"Using default model: {model_path}")
 
-    def predict(self, text):
+    def predict(self, text: str):
         return self.pipe(text)
 
 
 if __name__ == "__main__":
-    # Set up logging
     logger.remove()
-    LOG_LEVEL = "INFO"
-    logger.add(sys.stderr, level=LOG_LEVEL)
-    logger.add("logs/inference_logs.log", level=LOG_LEVEL, rotation="10 MB", retention="10 days")
+    logger.add(sys.stderr, level="INFO")
+
     pipeline = SentimentPipeline()
-    # Analyze sample text
     text_to_analyze = "This movie was fantastic! I loved it!"
     output = pipeline.predict(text_to_analyze)
     logger.info(f"Text: {text_to_analyze}")
