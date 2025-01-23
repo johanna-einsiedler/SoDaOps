@@ -15,13 +15,18 @@ COPY pyproject.toml /app/pyproject.toml
 COPY requirements.txt /app/requirements.txt
 COPY src /app/src
 COPY configs /app/configs
-COPY .dvc/dockerconfig /app/.dvc/config
-COPY data.dvc /app/data.dvc
 
 # Install Python dependencies and the local package
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir .
 
+# retrieving data
+RUN dvc init --no-scm
+COPY .dvc/dockerconfig /app/.dvc/config
+COPY data.dvc /app/data.dvc
+RUN dvc config core.no_scm true
+RUN dvc pull
+
 
 # Set the entrypoint
-ENTRYPOINT ["uvicorn", "drift_report:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["uvicorn", "src.tweet_sentiment_analysis.drift_report:app", "--host", "0.0.0.0", "--port", "8000"]
