@@ -20,4 +20,4 @@ RUN pip install --no-cache-dir .
 
 EXPOSE $PORT
 
-CMD exec uvicorn src/tweet_sentiment_analysis/api:app --port $PORT --host 0.0.0.0 --workers 1
+CMD exec uvicorn src.tweet_sentiment_analysis.api:app --port $PORT --host 0.0.0.0 --workers 1

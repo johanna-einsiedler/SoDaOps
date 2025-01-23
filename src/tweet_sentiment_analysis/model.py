@@ -54,7 +54,7 @@ class SentimentPipeline:
             timestamp (str | None): The timestamp for the model folder. If None, fetches the latest model timestamp.
         """
         load_dotenv()
-        max_length = int(os.getenv("max_length"))
+        max_length = int(os.getenv("max_length", 78))
         bucket_name = "sentiment-output-dtu"
         local_model_dir = Path("downloaded_model")
 
