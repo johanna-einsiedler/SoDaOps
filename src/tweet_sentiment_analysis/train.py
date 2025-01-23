@@ -10,9 +10,9 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trai
 import wandb
 
 
-def load_parquet_data(csv_dir: str):
+def load_parquet_data(dir: str):
     """Load train and validation parquet files into Hugging Face Dataset."""
-    data_files = {"train": os.path.join(csv_dir, "train.parquet"), "val": os.path.join(csv_dir, "val.parquet")}
+    data_files = {"train": os.path.join(dir, "train.parquet"), "val": os.path.join(dir, "val.parquet")}
     dataset = load_dataset("parquet", data_files=data_files)
 
     # Select only the relevant columns
@@ -78,8 +78,8 @@ def finetune():
 
     # Load data
     logger.info("Loading data")
-    csv_dir = "data/processed"
-    dataset = load_parquet_data(csv_dir)
+    processed_dir = "data/processed"
+    dataset = load_parquet_data(processed_dir)
     train_data = dataset["train"]
     val_data = dataset["val"]
 
@@ -149,4 +149,5 @@ def finetune():
 
 
 if __name__ == "__main__":
+    finetune()
     finetune()

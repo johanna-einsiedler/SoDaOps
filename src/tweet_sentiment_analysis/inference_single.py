@@ -1,10 +1,8 @@
-import os
 import sys
 
+import wandb
 from loguru import logger
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
-
-import wandb
 
 
 def get_best_model_artifact(entity_name: str, project_name: str, sweep_name: str):

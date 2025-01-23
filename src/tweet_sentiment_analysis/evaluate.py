@@ -21,7 +21,7 @@ def evaluate(use_test_set: bool = False) -> None:
     result = pipe.predict(text_input)
     logger.debug(f"Check if model can produce results: {result}")
 
-    val["predicted_sentiment"] = test["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
+    val["predicted_sentiment"] = val["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
 
     if use_test_set:
         test["predicted_sentiment"] = test["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])

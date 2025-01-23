@@ -1,9 +1,11 @@
-data/*
+data/processed/*
+!data/processed/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
 src/tweet_sentiment_anlaysis.egg-info/*
 artifacts/*
 logs/*
 wandb/*
-/data
 .DS_Store
 notes.md
 .env
@@ -14,3 +16,4 @@ downloaded_model/*
 !downloaded_model/.gitkeep
 set_env_vars.py
 src/tweet_sentiment_analysis/__pycache__/__init__.cpython-310.pyc
+set_env_vars.py
