@@ -212,7 +212,13 @@ Yes, we used ruff to automatically format our codebase and make sure that the co
 >
 > Answer:
 
---- question 7 fill here ---
+We implemented
+- 2 test for data preprocessing, checking the data saving process and the data cleaning prcoess with mock data
+- 1 test for the training, checking that the data loading works
+- 1 test for the model, checking that the pipeline works
+- 1 test for the api with a sample input
+
+So in total we implemented 5 tests, asserting that the key functions work as expected. 
 
 ### Question 8
 
@@ -227,7 +233,7 @@ Yes, we used ruff to automatically format our codebase and make sure that the co
 >
 > Answer:
 
---- question 8 fill here ---
+The overall coerage is 13\%, partially also because we did not implement test for non-cores scripts such as the visualisation fo the model outcomes. However, also if the coverage would be close to 100\% one cannot be sure that everything works as expected. Unit test always only test very particular aspects of isolated parts of code. Thus, there can also occur errors that hadn't been anticipated (and thus not considered in the testing) or that occur when parts of the application are connected (which would need more integrative testing to be detected).
 
 ### Question 9
 
