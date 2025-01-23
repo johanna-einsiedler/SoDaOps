@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 import pytest
 
-from tweet_sentiment_analysis.data import (  # Replace 'your_module' with the module name
+from tweet_sentiment_analysis.data import (
     clean_text,
     load_data,
     preprocess,
