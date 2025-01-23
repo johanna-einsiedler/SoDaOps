@@ -69,8 +69,7 @@ def load_sentiment_pipeline():
     wandb_project = os.getenv("WANDB_PROJECT")
     wandb_entity = os.getenv("WANDB_ENTITY")
     wandb_sweep_name = os.getenv("WANDB_SWEEP_NAME")
-    max_length = int(os.getenv("max_length"))
-
+    max_length = int(os.getenv("max_length", 78))
     # Fetch the best model artifact
     model_dir = get_best_model_artifact(
         entity_name=wandb_entity, project_name=wandb_project, sweep_name=wandb_sweep_name
@@ -100,7 +99,7 @@ def load_sentiment_pipeline():
 class SentimentPipeline:
     def __init__(self):
         load_dotenv()
-        max_length = int(os.getenv("max_length"))
+        max_length = int(os.getenv("max_length", 78))
         try:
             self.pipe = load_sentiment_pipeline()
         except Exception:
