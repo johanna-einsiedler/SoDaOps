@@ -29,8 +29,8 @@ echo "Sweep created with ID: $sweep_id"
 export WANDB_SWEEP_NAME=$(echo "$sweep_id" | awk -F'/' '{print $NF}')
 echo "Sweep name: $WANDB_SWEEP_NAME"
 # Start the W&B agent
-echo "Starting W&B agent for sweep: $sweep_id"
-wandb agent "$sweep_id"
+echo "Starting W&B agent for sweep: $WANDB_SWEEP_NAME"
+wandb agent --count "$((WANDB_RUN_COUNT))" "$WANDB_ENTITY/$WANDB_PROJECT/$WANDB_SWEEP_NAME"
 # Test inference with single tweet
 echo "Testing inference with single tweet"
 python src/tweet_sentiment_analysis/model.py
