@@ -26,17 +26,17 @@ sample_data = pd.DataFrame({
 
 @pytest.fixture
 def mock_raw_data_path(tmp_path):
-    """Mock the raw data directory with sample CSV files."""
+    """Mock the raw data directory with sample parquet files."""
     raw_dir = tmp_path / "raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
-    train_file = raw_dir / "train.csv"
-    test_file = raw_dir / "test.csv"
-    val_file = raw_dir / "val.csv"
+    train_file = raw_dir / "train.parquet"
+    test_file = raw_dir / "test.parquet"
+    val_file = raw_dir / "val.parquet"
 
     # Write the sample data to the mock files
-    sample_data.to_csv(train_file, index=False)
-    sample_data.to_csv(test_file, index=False)
-    sample_data.to_csv(val_file, index=False)
+    sample_data.to_parquet(train_file, index=False)
+    sample_data.to_parquet(test_file, index=False)
+    sample_data.to_parquet(val_file, index=False)
 
     return raw_dir
 
