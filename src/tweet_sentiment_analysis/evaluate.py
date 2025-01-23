@@ -1,4 +1,5 @@
 from pathlib import Path
+from google.cloud import storage
 
 import pandas as pd
 import typer
@@ -12,12 +13,17 @@ from tweet_sentiment_analysis.model import SentimentPipeline
 def evaluate(use_test_set: bool = False) -> None:
     "Evaluating model performance"
     train, test, val = load_data()
+
+
+    # train = pd.read_parquet("../../data/processed/train.parquet")
+    # test = pd.read_parquet("../../data/processed/test.parquet")
+    # val = pd.read_parquet("../../data/processed/val.parquet")
     pipe = SentimentPipeline()
 
     text_input = train["tweet_text"].iloc[0]
     if not isinstance(text_input, str):
         text_input = str(text_input)
-
+ 
     result = pipe.predict(text_input)
     logger.debug(f"Check if model can produce results: {result}")
 
@@ -41,8 +47,35 @@ def evaluate(use_test_set: bool = False) -> None:
         val["predicted_sentiment"] = pd.Categorical(
             val["predicted_sentiment"], categories=["negative", "neutral", "positive"]
         )
+        f1 = f1_score(val["sentiment"], val["predicted_sentiment"], average="macro")
+        logger.info(f1)
+        # save to cloud 
+        # (local_path: Path, bucket_name: str, destination_blob_name: str):
+        bucket_name = "sentiment-output-dtu"
+        destination_blob_name = "evaluation/evaluate-output.txt"
+        client = storage.Client()
+        bucket = client.bucket(bucket_name)
+        blob = bucket.blob(destination_blob_name)
+        blob.upload_from_string("F1-Score: "+str(f1))
 
-        logger.info(f1_score(val["sentiment"], val["predicted_sentiment"], average="macro"))
+
+
+# def upload_to_gcs(local_path: Path, bucket_name: str, destination_blob_name: str):
+#     """Uploads a file or directory to a GCP bucket."""
+#     client = storage.Client()
+#     bucket = client.bucket(bucket_name)
+
+#     if local_path.is_dir():
+#         for file_path in local_path.glob("**/*"):
+#             if file_path.is_file():
+#                 relative_path = file_path.relative_to(local_path)
+#                 blob = bucket.blob(f"{destination_blob_name}/{relative_path}")
+#                 blob.upload_from_filename(str(file_path))
+#                 logger.info(f"Uploaded {file_path} to gs://{bucket_name}/{destination_blob_name}/{relative_path}")
+#     else:
+#         blob = bucket.blob(destination_blob_name)
+#         blob.upload_from_filename(str(local_path))
+#         logger.info(f"Uploaded {local_path} to gs://{bucket_name}/{destination_blob_name}")
 
 
 if __name__ == "__main__":
