@@ -1,12 +1,31 @@
+import time
 from contextlib import asynccontextmanager
+from pathlib import Path
 
-import torch
-import torch.nn as nn
 from fastapi import FastAPI, HTTPException
+from loguru import logger
 from pydantic import BaseModel
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, BertModel, BertTokenizer, pipeline
 
 from tweet_sentiment_analysis.model import SentimentPipeline
+from tweet_sentiment_analysis.utils import upload_to_gcs
+
+
+def make_filter(name):
+    def filter(record):
+        return record["extra"].get("name") == name
+
+    return filter
+
+
+logger.add("logs/api_logs.log", rotation="10 MB", retention="10 days")
+logger.add(
+    "logs/csv_logs.csv",
+    format="{time:YYYY-MM-DD HH:mm:ss},{message}",
+    level="INFO",
+    rotation="10 MB",
+    filter=make_filter("csv_logs"),
+)
+csv_logger = logger.bind(name="csv_logs")
 
 
 class ReviewInput(BaseModel):
@@ -25,14 +44,20 @@ class PredictionOutput(BaseModel):
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Load the model and tokenizer when the app starts and clean up when the app stops."""
+    logger.info("Attempting to load model and tokenizer")
     global pipeline
     pipeline = SentimentPipeline()
 
-    print("Model and tokenizer loaded successfully")
+    logger.info("Model and tokenizer loaded successfully")
 
     yield
 
-    # del model, tokenizer
+    bucket_name = "sentiment-output-dtu"
+    try:
+        upload_to_gcs(Path("logs/csv_logs.csv"), bucket_name, f"logs/csv_logs_{time.strftime('%Y%m%d-%H%M%S')}.csv")
+        upload_to_gcs(Path("logs/api_logs.log"), bucket_name, f"logs/api_logs_{time.strftime('%Y%m%d-%H%M%S')}.log")
+    except Exception as e:
+        logger.error(f"Failed to upload logs to GCS: {e}")
 
 
 # Initialize FastAPI app
@@ -51,6 +76,7 @@ async def get_predict_sentiment(review_input: ReviewInput):
     try:
         result = pipeline.predict(review_input.review)[0]
         label, score = result["label"], result["score"]
+        csv_logger.info(f"{label},{score},{review_input.review}")
         return PredictionOutput(label=label, score=score)
 
     except Exception as e:
@@ -69,6 +95,8 @@ async def get_predict_sentiment_browser(review: str):
     try:
         result = pipeline.predict(review)[0]
         label, score = result["label"], result["score"]
+
+        csv_logger.info(f"{label},{score},{review}")
         return PredictionOutput(label=label, score=score)
 
     except Exception as e:
