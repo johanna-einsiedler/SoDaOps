@@ -9,10 +9,9 @@ from evidently.report import Report
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from google.cloud import storage
+from src.tweet_sentiment_analysis.data import load_data
+from src.tweet_sentiment_analysis.model  import SentimentPipeline
 from loguru import logger
-from model import SentimentPipeline
-
-from data import load_data
 
 BUCKET_NAME = "mlops_monitoring"
 logger.remove()
