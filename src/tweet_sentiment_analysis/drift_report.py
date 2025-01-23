@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from google.cloud import storage
 from src.tweet_sentiment_analysis.data import load_data
-from src.tweet_sentiment_analysis.model import SentimentModel
+from src.tweet_sentiment_analysis.model import SentimentPipeline
 
 
 from loguru import logger
@@ -35,7 +35,7 @@ def lifespan(app: FastAPI):
     global train, class_names
     train, test, val = load_data()
     train["content"] = train["tweet_text"]
-    pipe = SentimentModel()
+    pipe = SentimentPipeline()
     def analyze_sentiment(text):
         try:
             text = str(text)
@@ -84,7 +84,7 @@ def load_latest_files(directory: Path, n: int) -> pd.DataFrame:
         dataframe = pd.concat([dataframe, tmp], axis=0)
 
     dataframe["content"] = dataframe["tweet_text"]
-    pipe = SentimentModel()
+    pipe = SentimentPipeline()
     def analyze_sentiment(text):
         try:
             text = str(text)
