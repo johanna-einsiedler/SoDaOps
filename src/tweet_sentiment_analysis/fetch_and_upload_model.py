@@ -3,10 +3,10 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+import wandb
 from dotenv import load_dotenv
 from loguru import logger
 
-import wandb
 from tweet_sentiment_analysis.utils import upload_to_gcs
 
 logger.remove()

@@ -1,7 +1,10 @@
-from unittest.mock import MagicMock, patch
-from tweet_sentiment_analysis.model import pipeline, load_sentiment_pipeline, SentimentPipeline
-import pytest
 import os
+from unittest.mock import MagicMock, patch
+
+import pytest
+
+from tweet_sentiment_analysis.model import SentimentPipeline
+
 
 # Test for `SentimentPipeline` class
 @patch("tweet_sentiment_analysis.model.pipeline")

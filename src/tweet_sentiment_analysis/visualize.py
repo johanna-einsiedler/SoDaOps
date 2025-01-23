@@ -1,16 +1,18 @@
 import sys
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import typer
+from google.cloud import storage
 from loguru import logger
 from sklearn.metrics import auc, classification_report, confusion_matrix, roc_curve
 from sklearn.preprocessing import label_binarize
-from pathlib import Path
+
 from data import preprocess
 from tweet_sentiment_analysis.model import SentimentPipeline
-from google.cloud import storage
+
 logger.remove()
 logger.add(sys.stdout, level="DEBUG")
 

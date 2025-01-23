@@ -1,8 +1,8 @@
 from pathlib import Path
-from google.cloud import storage
 
 import pandas as pd
 import typer
+from google.cloud import storage
 from loguru import logger
 from sklearn.metrics import f1_score
 

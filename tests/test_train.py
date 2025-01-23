@@ -2,11 +2,11 @@ from unittest.mock import patch
 
 from datasets import Dataset, DatasetDict
 
-from tweet_sentiment_analysis.train import load_csv_data
+from tweet_sentiment_analysis.train import load_parquet_data
 
 
 @patch("tweet_sentiment_analysis.train.load_dataset")
-def test_load_csv_data(mock_load_dataset):
+def test_load_parquet_data(mock_load_dataset):
    # Create mock datasets with necessary keys
     mock_train_data = Dataset.from_dict({'clean_text': ['mock text'], 'sentiment_encoded': [1]})
     mock_val_data = Dataset.from_dict({'clean_text': ['mock text'], 'sentiment_encoded': [1]})
