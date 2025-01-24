@@ -144,6 +144,7 @@ will check the repositories and the code to verify your answers.
 
 We used the third-party framework HuggingFace in our project. We used functionality of downloading a pretrained transformer from HuggingFace Hub and finetuning it using their Trainer functionality.
 These finetuned models are then used as our final models.
+We also used the Arrow framework for saving files to parquet format. This was done using the pyarrow package in interaction with pandas. We needed this in order to ensure that column format across saves remained the same. This was due to empty spaces in the original csv files in some instances returning floats instead of int's, which created problems when training the model.
 
 ## Coding environment
 

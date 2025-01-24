@@ -18,9 +18,13 @@ logger.add(sys.stdout, level="DEBUG")
 
 
 def visualize(use_test_set: bool = False) -> None:
-    "Visualizing model performance"
-    plot_name = "test" if use_test_set else "val"
 
+    if use_test_set:
+        plot_name="test"
+    else:
+        plot_name="val"
+
+    "Visualizing model performance"
     process_path = Path("data/processed/")
     train_path = process_path / "train.parquet"
     test_path = process_path / "test.parquet"
@@ -61,39 +65,77 @@ def visualize(use_test_set: bool = False) -> None:
     train[["predicted_sentiment", "confidence"]] = pd.DataFrame(list(train["tweet_text"].apply(lambda x: pipe.predict(x)[0])))
     logger.debug(f"Sentiment train head: {train[['tweet_text', 'predicted_sentiment', 'confidence']].head()}")
 
-    # Apply sentiment analysis to validation set
-    val[["predicted_sentiment", "confidence"]] = pd.DataFrame(list(val["tweet_text"].apply(lambda x: pipe.predict(x)[0])))
-    logger.debug(f"Sentiment validation head: {val[['tweet_text', 'predicted_sentiment', 'confidence']].head()}")
+    if use_test_set:
+        # Apply sentiment analysis to validation set
+        test[["predicted_sentiment", "confidence"]] = pd.DataFrame(list(test["tweet_text"].apply(lambda x: pipe.predict(x)[0])))
+        logger.debug(f"Sentiment validation head: {test[['tweet_text', 'predicted_sentiment', 'confidence']].head()}")
 
-    # Apply sentiment analysis to test set
-    # test[['predicted_sentiment', 'confidence']] = test['tweet_text'].apply(lambda x: pd.Series(analyze_sentiment(x)))
-    val["predicted_sentiment"] = val["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
+        # Apply sentiment analysis to test set
+        # test[['predicted_sentiment', 'confidence']] = test['tweet_text'].apply(lambda x: pd.Series(analyze_sentiment(x)))
+        test["predicted_sentiment"] = test["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
 
-    # Convert predicted sentiment to lowercase
-    val["predicted_sentiment"] = val["predicted_sentiment"].str.lower()
+        # Convert predicted sentiment to lowercase
+        test["predicted_sentiment"] = test["predicted_sentiment"].str.lower()
 
-    # Convert to categorical AFTER converting to lowercase AND adding the category
-    val["predicted_sentiment"] = pd.Categorical(
-        val["predicted_sentiment"], categories=["negative", "neutral", "positive"]
-    )
-
-    # Generate classification report
-    logger.info(
-        classification_report(
-            val["sentiment"], val["predicted_sentiment"], target_names=["negative", "neutral", "positive"]
+        # Convert to categorical AFTER converting to lowercase AND adding the category
+        test["predicted_sentiment"] = pd.Categorical(
+            test["predicted_sentiment"], categories=["negative", "neutral", "positive"]
         )
-    )  # Explicitly stating categories here
 
-    # Generate confusion matrix using lowercase labels
-    cm = confusion_matrix(
-        val["sentiment"], val["predicted_sentiment"], labels=["negative", "neutral", "positive"]
-    )  # Use lowercase labels
+        # Generate classification report
+        logger.info(
+            classification_report(
+                test["sentiment"], test["predicted_sentiment"], target_names=["negative", "neutral", "positive"]
+            )
+        )  # Explicitly stating categories here
 
-    # Generate probabilities for each class
-    # Note: The pipeline provides only the top prediction, so for multi-class ROC, a different approach or model might be needed.
-    # Here, we demonstrate ROC for POSITIVE class only as an example.
-    y_prob = val["confidence"]  # Confidence scores for the predicted label
-    y_true = (val["sentiment"] == "POSITIVE").astype(int)
+        # Generate confusion matrix using lowercase labels
+        cm = confusion_matrix(
+            test["sentiment"], test["predicted_sentiment"], labels=["negative", "neutral", "positive"]
+        )  # Use lowercase labels
+
+        # Generate probabilities for each class
+        # Note: The pipeline provides only the top prediction, so for multi-class ROC, a different approach or model might be needed.
+        # Here, we demonstrate ROC for POSITIVE class only as an example.
+        y_prob = test["confidence"]  # Confidence scores for the predicted label
+        y_true = (test["sentiment"] == "POSITIVE").astype(int)
+
+    else:
+        # Apply sentiment analysis to validation set
+        val[["predicted_sentiment", "confidence"]] = pd.DataFrame(list(val["tweet_text"].apply(lambda x: pipe.predict(x)[0])))
+        logger.debug(f"Sentiment validation head: {val[['tweet_text', 'predicted_sentiment', 'confidence']].head()}")
+
+        # Apply sentiment analysis to test set
+        # test[['predicted_sentiment', 'confidence']] = test['tweet_text'].apply(lambda x: pd.Series(analyze_sentiment(x)))
+        val["predicted_sentiment"] = val["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
+
+        # Convert predicted sentiment to lowercase
+        val["predicted_sentiment"] = val["predicted_sentiment"].str.lower()
+
+        # Convert to categorical AFTER converting to lowercase AND adding the category
+        val["predicted_sentiment"] = pd.Categorical(
+            val["predicted_sentiment"], categories=["negative", "neutral", "positive"]
+        )
+
+        # Generate classification report
+        logger.info(
+            classification_report(
+                val["sentiment"], val["predicted_sentiment"], target_names=["negative", "neutral", "positive"]
+            )
+        )  # Explicitly stating categories here
+
+        # Generate confusion matrix using lowercase labels
+        cm = confusion_matrix(
+            val["sentiment"], val["predicted_sentiment"], labels=["negative", "neutral", "positive"]
+        )  # Use lowercase labels
+
+        # Generate probabilities for each class
+        # Note: The pipeline provides only the top prediction, so for multi-class ROC, a different approach or model might be needed.
+        # Here, we demonstrate ROC for POSITIVE class only as an example.
+        y_prob = val["confidence"]  # Confidence scores for the predicted label
+        y_true = (val["sentiment"] == "POSITIVE").astype(int)
+
+    
     # # Plot confusion matrix
     plt.figure(figsize=(8, 6))
     sns.heatmap(
@@ -153,8 +195,6 @@ def visualize(use_test_set: bool = False) -> None:
     plt.savefig(fig_path+"confidence_by_party_and_sentiment_"+plot_name)
     blob_img = bucket.blob(destination_blob_name+"confidence_by_party_and_sentiment_"+plot_name+'.png')
     blob_img.upload_from_filename(fig_path+"confidence_by_party_and_sentiment_"+plot_name+'.png')
-
-
 
 
 if __name__ == "__main__":
