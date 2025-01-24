@@ -523,7 +523,10 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
---- question 27 fill here ---
+Marten used 109 dkk.
+Johanna used xxx dkk.
+Magnus used xxx dkk.
+The service costing the most was xxx
 
 ### Question 28
 
@@ -539,7 +542,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
---- question 28 fill here ---
+We implemented a drift detection system that can run in the cloud. Currently it is only run on the validation set of our original data, but can hypothetically be used to detect drift in input to the api. The drift detection was implemented using evidently. 
 
 ### Question 29
 
@@ -556,7 +559,8 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
---- question 29 fill here ---
+[architecture](figures/overview.png)
+
 
 ### Question 30
 
@@ -570,7 +574,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
---- question 30 fill here ---
+The biggest challenge in the project was to get docker images to work and to work in the cloud due to the long compile times making fixing errors a headache.
 
 ### Question 31
 
@@ -588,4 +592,6 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 > *We have used ChatGPT to help debug our code. Additionally, we used GitHub Copilot to help write some of our code.*
 > Answer:
 
---- question 31 fill here ---
+Johanna was responsible for setting up Github, the API and testing.
+Marten was responsible for setting up the initial python scripts, the dvc and create the data drift evaluation. 
+Magnus was responsible for getting the entire setup to work with google cloud, covering work in regards to updating scripts, integrating github, gcp and wandb and retrieving the final model for the API. 
