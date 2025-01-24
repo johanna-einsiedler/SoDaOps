@@ -558,9 +558,9 @@ We implemented monitoring of our deploymed model using GCP triggers. These ensur
 > Answer:
 
 Marten used 109 dkk.
-Johanna used xxx dkk.
+Johanna used 29 dkk.
 Magnus used 45 dkk.
-The service costing the most was Artifact Registry (Magnus) and Compute Engine (Marten)
+The service costing the most was Artifact Registry (Magnus) and Compute Engine (Marten, Johanna)
 
 We purposefully chose a very small dataset (train N = 500) and used only CPU, as had issues accessing GPUs due to ressource shortages during exercises.
 
