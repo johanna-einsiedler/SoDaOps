@@ -601,6 +601,22 @@ We created two Cloud Build triggers on branches on a forked GitHub Repo (<https:
 
 ![architecture](figures/architecture.PNG)
 
+We begin locally. From here, we run push raw data to GCP bucket using DVC, which enables us to always pull raw data using DVC. From here we push code to GitHub. On GitHub, we have Github Actions to do formatting, coverage, unit tests and API tests, checking if the code is up to standard. From here, there are two options: We have several Cloud Build files which can be run manually, or two which can be run through a forked GitHub repo (<https://github.com/Magnus-Nielsen/SoDaOps>) (this is done through a forked repo due to GCP not allowing one group member to set up triggers for a GitHub repo owned by another member) in which there are two branches, `ci` and `ci-cd`, which have GCP Triggers of the CI and CI-CD cloudbuilds. The CI-CD pipeline does the following:
+
+- Creates a Docker image for training.
+- Pushes the Docker image to the GCP Artifact Registry.
+- Runs the Docker training image on Vertex AI, which:
+    - Does datapreprocessing, pulling GCP bucket using DVC and pushing to processed to GCP bucket.
+    - Trains, which uses a pretrained `HuggingFace` transformer in a WandB sweep, saving all models to the WandB artifact registry.
+    - Select the best model from the WandB artifact registry and puts this in the GCP Artifact Registry to be used by API. Additionally does some reporting which is put in a GCP bucket.
+- Creates a Docker image for API deployment.
+    - This uses FastAPI and queries the GCP Artifact Registry for the best model. 
+- Runs the Docker API image on Cloud Run.
+    - The Cloud Run logs are monitored using alerts.
+
+This is the main pipeline, and trains and deploys a model based on new commits to the `ci-cd` branch. The API can now be accessed, and when it is accessed it saves queries to a GCP bucket for possible later annotation and inclusion in the training data. 
+
+Additionally we have a cloudbuild file which deploys data drift detection on Cloud Run. This does not monitor the live API requests, but the validation dataset due to time constraints.
 
 ### Question 30
 
