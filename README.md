@@ -2,9 +2,9 @@
 
 This is the course project for the 2025 MLOps course at DTU of Marten, Magnus and Johanna.
 
-The goal of our project is to analyse tweets related to the U.S.  2024 Elections and analyse their sentiment. Additionally we aim to compare the performance of an 'out-of-the-box' transformer model with one fine-tuned on the our dataset.
+The goal of our project was to predict tweet sentiment related to the U.S. 2024 Elections. We did this by finetuning a Roberta-model on our training set of tweets. The resulting model was deployed using an API that allowed to predict the sentiment of given text input. For additional description of the project see question answers in report/README.md
 
-The dataset is published on Kaggle: https://www.kaggle.com/datasets/emirhanai/2024-u-s-election-sentiment-on-x
+The used dataset was published on Kaggle: https://www.kaggle.com/datasets/emirhanai/2024-u-s-election-sentiment-on-x
 
 ## Project structure
 
