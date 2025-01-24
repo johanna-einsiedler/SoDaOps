@@ -1,4 +1,5 @@
 import sys
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -17,6 +18,8 @@ logger.add(sys.stdout, level="DEBUG")
 
 def visualize(use_test_set: bool = False) -> None:
     "Visualizing model performance"
+    plot_name = "test" if use_test_set else "val"
+
     process_path = Path("data/processed/")
     train_path = process_path / "train.parquet"
     test_path = process_path / "test.parquet"
@@ -51,31 +54,31 @@ def visualize(use_test_set: bool = False) -> None:
     # test[['predicted_sentiment', 'confidence']] = test['tweet_text'].apply(lambda x: pd.Series(analyze_sentiment(x)))
     val["predicted_sentiment"] = val["tweet_text"].apply(lambda x: pipe.predict(x)[0]["label"])
 
-        # Convert predicted sentiment to lowercase
-        val["predicted_sentiment"] = val["predicted_sentiment"].str.lower()
+    # Convert predicted sentiment to lowercase
+    val["predicted_sentiment"] = val["predicted_sentiment"].str.lower()
 
-        # Convert to categorical AFTER converting to lowercase AND adding the category
-        val["predicted_sentiment"] = pd.Categorical(
-            val["predicted_sentiment"], categories=["negative", "neutral", "positive"]
+    # Convert to categorical AFTER converting to lowercase AND adding the category
+    val["predicted_sentiment"] = pd.Categorical(
+        val["predicted_sentiment"], categories=["negative", "neutral", "positive"]
+    )
+
+    # Generate classification report
+    logger.info(
+        classification_report(
+            val["sentiment"], val["predicted_sentiment"], target_names=["negative", "neutral", "positive"]
         )
+    )  # Explicitly stating categories here
 
-        # Generate classification report
-        logger.info(
-            classification_report(
-                val["sentiment"], val["predicted_sentiment"], target_names=["negative", "neutral", "positive"]
-            )
-        )  # Explicitly stating categories here
+    # Generate confusion matrix using lowercase labels
+    cm = confusion_matrix(
+        val["sentiment"], val["predicted_sentiment"], labels=["negative", "neutral", "positive"]
+    )  # Use lowercase labels
 
-        # Generate confusion matrix using lowercase labels
-        cm = confusion_matrix(
-            val["sentiment"], val["predicted_sentiment"], labels=["negative", "neutral", "positive"]
-        )  # Use lowercase labels
-
-        # Generate probabilities for each class
-        # Note: The pipeline provides only the top prediction, so for multi-class ROC, a different approach or model might be needed.
-        # Here, we demonstrate ROC for POSITIVE class only as an example.
-        y_prob = val["confidence"]  # Confidence scores for the predicted label
-        y_true = (val["sentiment"] == "POSITIVE").astype(int)
+    # Generate probabilities for each class
+    # Note: The pipeline provides only the top prediction, so for multi-class ROC, a different approach or model might be needed.
+    # Here, we demonstrate ROC for POSITIVE class only as an example.
+    y_prob = val["confidence"]  # Confidence scores for the predicted label
+    y_true = (val["sentiment"] == "POSITIVE").astype(int)
     # # Plot confusion matrix
     plt.figure(figsize=(8, 6))
     sns.heatmap(

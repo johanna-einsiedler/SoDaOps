@@ -3,6 +3,7 @@ from tweet_sentiment_analysis.model import pipeline, load_sentiment_pipeline, Se
 import pytest
 import os
 
+
 # Test for `SentimentPipeline` class
 @patch("tweet_sentiment_analysis.model.pipeline")
 @patch("tweet_sentiment_analysis.model.load_sentiment_pipeline")
@@ -22,6 +23,7 @@ def test_sentiment_pipeline_default(mock_load_sentiment_pipeline, mock_pipeline)
         padding="max_length",
         max_length=128,
     )
+
 
 # Test `SentimentPipeline.predict`
 @patch("tweet_sentiment_analysis.model.SentimentPipeline")
