@@ -450,7 +450,7 @@ We used the Compute Engine to run docker images in the beginning for debugging p
 >
 > Answer:
 
-![Registry](figures/artifact_registry.png)
+![Registry](figures/artifact_registry.PNG)
 
 ### Question 21
 
@@ -459,7 +459,7 @@ We used the Compute Engine to run docker images in the beginning for debugging p
 >
 > Answer:
 
-![Build History](figures/cloud_build.png)
+![Build History](figures/cloud_build.PNG)
 
 ### Question 22
 
