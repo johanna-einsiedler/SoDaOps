@@ -2,11 +2,12 @@ import os
 import shutil
 import sys
 
-import wandb
 from datasets import load_dataset
 from dotenv import load_dotenv  # For loading .env variables
 from loguru import logger
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments
+
+import wandb
 
 
 def load_parquet_data(dir: str):
