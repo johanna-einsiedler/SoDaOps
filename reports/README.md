@@ -598,7 +598,7 @@ We created two Cloud Build triggers on branches on a forked GitHub Repo (<https:
 >
 > Answer:
 
-[architecture](figures/architecture.PNG)
+![architecture](figures/architecture.PNG)
 
 
 ### Question 30
