@@ -18,7 +18,7 @@ COPY configs /app/configs
 
 # Install Python dependencies and the local package
 RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir .
+RUN pip install -r /app/requirements_drift.txt --no-cache-dir
 
 # retrieving data
 RUN dvc init --no-scm
