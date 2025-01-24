@@ -1,4 +1,5 @@
 import sys
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -17,6 +18,8 @@ logger.add(sys.stdout, level="DEBUG")
 
 def visualize(use_test_set: bool = False) -> None:
     "Visualizing model performance"
+    plot_name = "test" if use_test_set else "val"
+
     process_path = Path("data/processed/")
     train_path = process_path / "train.parquet"
     test_path = process_path / "test.parquet"
