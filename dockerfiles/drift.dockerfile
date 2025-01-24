@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy only the necessary files and folders into the container
 COPY pyproject.toml /app/pyproject.toml
-COPY requirements.txt /app/requirements.txt
+COPY requirements.txt /app/requirements_drift.txt
 COPY src /app/src
 COPY configs /app/configs
 
