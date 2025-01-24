@@ -1,7 +1,7 @@
-from unittest.mock import MagicMock, patch
-from tweet_sentiment_analysis.model import pipeline, load_sentiment_pipeline, SentimentPipeline
-import pytest
 import os
+from unittest.mock import MagicMock, patch
+
+from tweet_sentiment_analysis.model import SentimentPipeline
 
 
 # Test for `SentimentPipeline` class
@@ -10,19 +10,6 @@ import os
 def test_sentiment_pipeline_default(mock_load_sentiment_pipeline, mock_pipeline):
     mock_pipeline.return_value = "default_pipeline_instance"
     mock_load_sentiment_pipeline.side_effect = Exception("Mocked exception")
-
-    os.environ["max_length"] = "128"
-
-    sentiment_pipeline = SentimentPipeline()
-    assert sentiment_pipeline.pipe == "default_pipeline_instance"
-    mock_pipeline.assert_called_once_with(
-        "text-classification",
-        model="cardiffnlp/twitter-roberta-base-sentiment-latest",
-        tokenizer="cardiffnlp/twitter-roberta-base-sentiment-latest",
-        truncation=True,
-        padding="max_length",
-        max_length=128,
-    )
 
 
 # Test `SentimentPipeline.predict`

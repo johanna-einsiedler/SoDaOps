@@ -48,44 +48,44 @@ will check the repositories and the code to verify your answers.
 
 ### Week 1
 
-* [ ] Create a git repository (M5)
-* [ ] Make sure that all team members have write access to the GitHub repository (M5)
-* [ ] Create a dedicated environment for you project to keep track of your packages (M2)
-* [ ] Create the initial file structure using cookiecutter with an appropriate template (M6)
-* [ ] Fill out the `data.py` file such that it downloads whatever data you need and preprocesses it (if necessary) (M6)
-* [ ] Add a model to `model.py` and a training procedure to `train.py` and get that running (M6)
-* [ ] Remember to fill out the `requirements.txt` and `requirements_dev.txt` file with whatever dependencies that you
+* [x] Create a git repository (M5)
+* [x] Make sure that all team members have write access to the GitHub repository (M5)
+* [x] Create a dedicated environment for you project to keep track of your packages (M2)
+* [x] Create the initial file structure using cookiecutter with an appropriate template (M6)
+* [x] Fill out the `data.py` file such that it downloads whatever data you need and preprocesses it (if necessary) (M6)
+* [x] Add a model to `model.py` and a training procedure to `train.py` and get that running (M6)
+* [x] Remember to fill out the `requirements.txt` and `requirements_dev.txt` file with whatever dependencies that you
     are using (M2+M6)
-* [ ] Remember to comply with good coding practices (`pep8`) while doing the project (M7)
-* [ ] Do a bit of code typing and remember to document essential parts of your code (M7)
-* [ ] Setup version control for your data or part of your data (M8)
-* [ ] Add command line interfaces and project commands to your code where it makes sense (M9)
-* [ ] Construct one or multiple docker files for your code (M10)
-* [ ] Build the docker files locally and make sure they work as intended (M10)
-* [ ] Write one or multiple configurations files for your experiments (M11)
+* [x] Remember to comply with good coding practices (`pep8`) while doing the project (M7)
+* [x] Do a bit of code typing and remember to document essential parts of your code (M7)
+* [x] Setup version control for your data or part of your data (M8)
+* [x] Add command line interfaces and project commands to your code where it makes sense (M9)
+* [x] Construct one or multiple docker files for your code (M10)
+* [x] Build the docker files locally and make sure they work as intended (M10)
+* [x] Write one or multiple configurations files for your experiments (M11)
 * [ ] Used Hydra to load the configurations and manage your hyperparameters (M11)
 * [ ] Use profiling to optimize your code (M12)
-* [ ] Use logging to log important events in your code (M14)
-* [ ] Use Weights & Biases to log training progress and other important metrics/artifacts in your code (M14)
-* [ ] Consider running a hyperparameter optimization sweep (M14)
-* [ ] Use PyTorch-lightning (if applicable) to reduce the amount of boilerplate in your code (M15)
+* [x] Use logging to log important events in your code (M14)
+* [x] Use Weights & Biases to log training progress and other important metrics/artifacts in your code (M14)
+* [x] Consider running a hyperparameter optimization sweep (M14)
+* [x] Use PyTorch-lightning (if applicable) to reduce the amount of boilerplate in your code (M15) [used huggingface]
 
 ### Week 2
 
-* [ ] Write unit tests related to the data part of your code (M16)
-* [ ] Write unit tests related to model construction and or model training (M16)
-* [ ] Calculate the code coverage (M16)
-* [ ] Get some continuous integration running on the GitHub repository (M17)
+* [x] Write unit tests related to the data part of your code (M16)
+* [x] Write unit tests related to model construction and or model training (M16)
+* [x] Calculate the code coverage (M16)
+* [x] Get some continuous integration running on the GitHub repository (M17)
 * [ ] Add caching and multi-os/python/pytorch testing to your continuous integration (M17)
 * [ ] Add a linting step to your continuous integration (M17)
 * [ ] Add pre-commit hooks to your version control setup (M18)
 * [ ] Add a continues workflow that triggers when data changes (M19)
 * [ ] Add a continues workflow that triggers when changes to the model registry is made (M19)
-* [ ] Create a data storage in GCP Bucket for your data and link this with your data version control setup (M21)
-* [ ] Create a trigger workflow for automatically building your docker images (M21)
-* [ ] Get your model training in GCP using either the Engine or Vertex AI (M21)
-* [ ] Create a FastAPI application that can do inference using your model (M22)
-* [ ] Deploy your model in GCP using either Functions or Run as the backend (M23)
+* [x] Create a data storage in GCP Bucket for your data and link this with your data version control setup (M21)
+* [x] Create a trigger workflow for automatically building your docker images (M21)
+* [x] Get your model training in GCP using either the Engine or Vertex AI (M21)
+* [x] Create a FastAPI application that can do inference using your model (M22)
+* [x] Deploy your model in GCP using either Functions or Run as the backend (M23)
 * [ ] Write API tests for your application and setup continues integration for these (M24)
 * [ ] Load test your application (M24)
 * [ ] Create a more specialized ML-deployment API using either ONNX or BentoML, or both (M25)
@@ -93,23 +93,23 @@ will check the repositories and the code to verify your answers.
 
 ### Week 3
 
-* [ ] Check how robust your model is towards data drifting (M27)
-* [ ] Deploy to the cloud a drift detection API (M27)
+* [x] Check how robust your model is towards data drifting (M27)
+* [x] Deploy to the cloud a drift detection API (M27)
 * [ ] Instrument your API with a couple of system metrics (M28)
 * [ ] Setup cloud monitoring of your instrumented application (M28)
-* [ ] Create one or more alert systems in GCP to alert you if your app is not behaving correctly (M28)
+* [x] Create one or more alert systems in GCP to alert you if your app is not behaving correctly (M28)
 * [ ] If applicable, optimize the performance of your data loading using distributed data loading (M29)
 * [ ] If applicable, optimize the performance of your training pipeline by using distributed training (M30)
 * [ ] Play around with quantization, compilation and pruning for you trained models to increase inference speed (M31)
 
 ### Extra
 
-* [ ] Write some documentation for your application (M32)
-* [ ] Publish the documentation to GitHub Pages (M32)
-* [ ] Revisit your initial project description. Did the project turn out as you wanted?
-* [ ] Create an architectural diagram over your MLOps pipeline
-* [ ] Make sure all group members have an understanding about all parts of the project
-* [ ] Uploaded all your code to GitHub
+* [x] Write some documentation for your application (M32)
+* [x] Publish the documentation to GitHub Pages (M32)
+* [x] Revisit your initial project description. Did the project turn out as you wanted?
+* [x] Create an architectural diagram over your MLOps pipeline
+* [x] Make sure all group members have an understanding about all parts of the project
+* [x] Uploaded all your code to GitHub
 
 ## Group information
 
@@ -126,9 +126,9 @@ MLOps51
 >
 >
 > Answer:
-Johanna Einsiedler - s250338
-Magnus Nielsen
-Marten Appel
+- Johanna Einsiedler - s250338
+- Magnus Nielsen - enrolment difficulties
+- Marten Appel - enrolment difficulties
 
 ### Question 3
 > **A requirement to the project is that you include a third-party package not covered in the course. What framework**
@@ -142,7 +142,8 @@ Marten Appel
 >
 > Answer:
 
---- question 3 fill here ---
+We used the third-party framework HuggingFace in our project. We used functionality of downloading a pretrained transformer from HuggingFace Hub and finetuning it using their Trainer functionality.
+These finetuned models are then used as our final models.
 
 ## Coding environment
 
@@ -162,7 +163,7 @@ Marten Appel
 >
 > Answer:
 
---- question 4 fill here ---
+We used pip and conda for managing our dependencies. The list of dependencies was auto-generated using pip freeze > requirements.txt . To get a complete copy of our development environment, one would have to run the following commands "conda create --name my_environment python=3.10" and "pip install -r requirements.txt"
 
 ### Question 5
 
@@ -178,7 +179,10 @@ Marten Appel
 >
 > Answer:
 
-We used the cookiecutter template provided by the course. Apart from adding additional files to the src repository we did not change the structure.
+We used the cookiecutter template provided by the course. We added the following folders
+- .dvc
+- downloaded_model
+These are used to track data using dvc and to contain the best downloaded model, whereas the model folder is used to save models during training.
 
 ### Question 6
 
@@ -212,7 +216,13 @@ Yes, we used ruff to automatically format our codebase and make sure that the co
 >
 > Answer:
 
---- question 7 fill here ---
+We implemented
+- 2 test for data preprocessing, checking the data saving process and the data cleaning prcoess with mock data
+- 1 test for the training, checking that the data loading works
+- 1 test for the model, checking that the pipeline works
+- 1 test for the api with a sample input
+
+So in total we implemented 5 tests, asserting that the key functions work as expected. 
 
 ### Question 8
 
@@ -227,7 +237,7 @@ Yes, we used ruff to automatically format our codebase and make sure that the co
 >
 > Answer:
 
---- question 8 fill here ---
+The overall coerage is 13\%, partially also because we did not implement test for non-cores scripts such as the visualisation fo the model outcomes. However, also if the coverage would be close to 100\% one cannot be sure that everything works as expected. Unit test always only test very particular aspects of isolated parts of code. Thus, there can also occur errors that hadn't been anticipated (and thus not considered in the testing) or that occur when parts of the application are connected (which would need more integrative testing to be detected).
 
 ### Question 9
 
@@ -242,7 +252,7 @@ Yes, we used ruff to automatically format our codebase and make sure that the co
 >
 > Answer:
 
-Yes, our workflow did include branches and pull requests. Initially, we all created personal branches to work on. In the end, however, we mostly worked on the main branch since we were anyways in close communication all the time. However, especially for larger coding projects were it is much harder to maintain an overview of who is working on what, branches in combination with pull requests and a list of required test that need to be passed before a merge is enabled, are definitely helpful to make sure it doesn't get all messy.
+Yes, our workflow did include branches but not pull requests. Initially, we all created personal branches to work on, which we mainly worked on and pushed to main. We originally implemented branch protection rules, but due to the rapid development pace at the beginning of a project, this was too cumbersome. However, especially for larger coding projects were it is much harder to maintain an overview of who is working on what, branches in combination with pull requests and a list of required test that need to be passed before a merge is enabled, are definitely helpful to make sure it doesn't get all messy. Due to GCP authorization, we created a forked GitHub repo where we implement CI and CI/CD pipelines with cloudbuild triggers on CI and CI/CD branches. Here we would create branch protection rules such as requiring review and passing tests before allowing merging.
 
 ### Question 10
 
@@ -257,7 +267,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 10 fill here ---
+We used DVC in our project by uploading the raw data to a public bucket. It did as such not help us in this specific project as we did not require updating the version, but in future cases it will be helpful as it allows to version the training/validation and test data used. As a hypothetical scenario, we log requests to our API and would be able to download these logs and annotate them, adding them to the raw data files in DVC. We could then train a new model with this extended data.
 
 ### Question 11
 
@@ -274,7 +284,16 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 11 fill here ---
+We use GitHub actions to test:
+- Formatting
+- Unit testing
+- API testing
+- Coverage
+
+We only run tests on Linux as our Docker images also use Linux, using caching for pip to reduce test times. Triggered GitHub actions can be seen here <https://github.com/johanna-einsiedler/SoDaOps/actions>. 
+
+Additionally we created a forked repo (due to GCP requiring that triggers are associated with repos owned by the user) 
+
 
 ## Running code and tracking experiments
 
@@ -293,7 +312,16 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 12 fill here ---
+We used Weights & Biases to run and log experiments. We used sweeps to optimize hyperparameters. All training was done using Vertex AI, and would be triggered using:
+
+`gcloud builds submit --config=cloudbuild_vertex.yaml .`
+
+Which in turn runs a:
+
+`wandb sweep config=configs/sweep.yaml`
+
+
+
 
 ### Question 13
 
@@ -308,7 +336,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 13 fill here ---
+We made use of config files and wandb. Hyperparameters which are optimized over are decided in the `sweep.yaml` file, with additional hyperparameters given in the environment `vertex_config_secret.yaml`, e.g., `num_train_epochs`, `max_length`, `batch_size`. These are logged to both log files and wandb logs.
 
 ### Question 14
 
@@ -325,7 +353,11 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 14 fill here ---
+[WandB sweep](figures/wandb_sweep.PNG)
+As seen in the first image we have used sweeps to select the best model using validation loss. This informs us about the best hyperparameters and how different constellations affect out of sample performance.
+
+[WandB trainign loss](figures/train_loss.PNG)
+As seen in the second image we are also tracking the training loss. This enables us to examine whether our model training is behaving as expected, with a smooth downward curve which is plateauing towards the end.
 
 ### Question 15
 
@@ -340,7 +372,13 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 15 fill here ---
+We used docker to build images for:
+
+- Data preprocessing and training (main)
+- API
+- Data drift
+
+We have primarily built and run these using Cloud build and Vertex AI, e.g., `gcloud builds submit --config=cloudbuild_vertex.yaml .` The main dockerfile is `main.dockerfiles` <https://github.com/johanna-einsiedler/SoDaOps/blob/main/dockerfiles/main.dockerfile>, which will run the data processing, training with upload to WandB and selection of best model with upload to Artifact registry.
 
 ### Question 16
 
@@ -355,7 +393,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 16 fill here ---
+Debugging was dependent on gropup member. We mostly performed debugging by running the code and following up on error messages, as many error were from the cloud building process. Some members also used the debugger, primarily when working on the model pipeline and assessing shapes etc.
 
 ## Working in the cloud
 
@@ -372,7 +410,14 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 17 fill here ---
+We used:
+- Cloud build: The backbone which runs the majority of our code.
+- Cloud Storage: Used to create buckets that can contain data, models, etc.
+- Vertex AI: Used to spin up VM's for training in combination with WANDB.
+- Compute Engine: To build scripts initially for debugging purposes mainly.
+- Artifact Registry: Used to build and store docker images in the cloud and retrieve if needed.
+- Cloud Run: Used to deploy API's accessible from the web.
+- Monitoring: To setup API alerts.
 
 ### Question 18
 
@@ -387,7 +432,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 18 fill here ---
+We used the Compute Engine to run docker images in the beginning for debugging purposes. However, we quickly changed to used Vertex AI and running models locally.
 
 ### Question 19
 
@@ -396,7 +441,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 19 fill here ---
+![Bucket](figures/bucket.PNG)
 
 ### Question 20
 
@@ -405,7 +450,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 20 fill here ---
+![Registry](figures/artifact_registry.PNG)
 
 ### Question 21
 
@@ -414,7 +459,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 21 fill here ---
+![Build History](figures/cloud_build.PNG)
 
 ### Question 22
 
@@ -429,7 +474,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 22 fill here ---
+We managed to train our model using Vertex AI. The reason we did this is because they run the docker image and then they shut down automatically.
 
 ## Deployment
 
@@ -446,7 +491,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 23 fill here ---
+We did manage to write an API for our model. We used FastAPI to do this and loaded the best model trained using Vertex AI which we saved to the Cloud Storage, which was easily accesible through Cloud Run. Then we took an input string and returned an output to the user. Additionally we added logging save inputs such that we can annotate and extend training data later.
 
 ### Question 24
 
@@ -462,7 +507,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 24 fill here ---
+We used Cloud Run to deploy our model API, current version is <https://ci-cd-api-b04df250-aac9-4514-8aa0-4ebc08622611-727127387938.europe-west1.run.app>. It can be accessed using `/docs` or using `curl -X "GET" "https://ci-cd-api-b04df250-aac9-4514-8aa0-4ebc08622611-727127387938.europe-west1.run.app/predict?review=<YOUR TEXT HERE>"`
 
 ### Question 25
 
@@ -477,7 +522,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 25 fill here ---
+We performed unit testing of our API using a hardcoded version. This asserts basic properties about the probabilities outputted. We would like to add load testing and ensuring that the API which was deployed most recently is always tested.
 
 ### Question 26
 
@@ -492,7 +537,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 26 fill here ---
+We implemented monitoring of our deploymed model using GCP triggers. These ensure that a group member receives a mail if there are an excess amount of logs to Cloud Run overall (thus capturing all our deployed models). This group member could then follow up and examine the monitoring tab, seeing what services are causing excessive load and act on this.
 
 ## Overall discussion of project
 
@@ -511,7 +556,12 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 27 fill here ---
+Marten used 109 dkk.
+Johanna used xxx dkk.
+Magnus used 45 dkk.
+The service costing the most was Artifact Registry (Magnus) and Compute Engine (Marten)
+
+We purposefully chose a very small dataset (train N = 500) and used only CPU, as had issues accessing GPUs due to ressource shortages during exercises.
 
 ### Question 28
 
@@ -527,7 +577,11 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 28 fill here ---
+We implemented a drift detection system that can run in the cloud. Currently it is only run on the validation set of our original data, but can hypothetically be used to detect drift in input to the api. The drift detection was implemented using evidently. 
+
+We implemented logging of input queries to the API, to enable human annotation and later extension of the training data. 
+
+We created two Cloud Build triggers on branches on a forked GitHub Repo (<https://github.com/Magnus-Nielsen/SoDaOps>): A CI trigger and a CI/CD trigger. These trigger Cloud Builds which either train a full model (CI) or train a full model and deploy to API (CI/CD) when there are pushes to these branches. 
 
 ### Question 29
 
@@ -544,7 +598,8 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 29 fill here ---
+![architecture](figures/architecture.PNG)
+
 
 ### Question 30
 
@@ -558,7 +613,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 30 fill here ---
+The biggest challenge in the project was to get docker images to work and to work in the cloud due to the long compile times making fixing errors a headache. Additionally, the Cloud Build syntax could cause some challenges when trying to chain multiple steps together.
 
 ### Question 31
 
@@ -576,4 +631,6 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 > *We have used ChatGPT to help debug our code. Additionally, we used GitHub Copilot to help write some of our code.*
 > Answer:
 
---- question 31 fill here ---
+Johanna was responsible for setting up Github, the API and testing.
+Marten was responsible for setting up the initial python scripts, the dvc and create the data drift evaluation. 
+Magnus was responsible for setting WandB tracking up, training on Vertex AI, migrating API to Cloud Run, creating Cloud Builds. 

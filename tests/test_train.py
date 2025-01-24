@@ -2,18 +2,18 @@ from unittest.mock import patch
 
 from datasets import Dataset, DatasetDict
 
-from tweet_sentiment_analysis.train import load_csv_data
+from tweet_sentiment_analysis.train import load_parquet_data
 
 
 @patch("tweet_sentiment_analysis.train.load_dataset")
-def test_load_csv_data(mock_load_dataset):
+def test_load_parquet_data(mock_load_dataset):
     # Create mock datasets with necessary keys
     mock_train_data = Dataset.from_dict({"clean_text": ["mock text"], "sentiment_encoded": [1]})
     mock_val_data = Dataset.from_dict({"clean_text": ["mock text"], "sentiment_encoded": [1]})
     mock_dataset_dict = DatasetDict({"train": mock_train_data, "val": mock_val_data})
     mock_load_dataset.return_value = mock_dataset_dict
 
-    dataset = load_csv_data("mock/path")
+    dataset = load_parquet_data("mock/path")
 
     # Assert that `load_dataset` was called with correct arguments
     mock_load_dataset.assert_called_once_with(
@@ -69,7 +69,7 @@ def test_load_csv_data(mock_load_dataset):
 #     mock_open.assert_called_once_with('.env', 'r')  # dotenv file opened
 #     mock_wandb_login.assert_called_once_with(key='mock_key')  # WandB login
 #     mock_wandb_init.assert_called_once_with(project='mock_project', entity='mock_entity')  # WandB init
-#     mock_load_dataset.assert_called_once_with('csv', data_files={'train': 'data/processed/train.csv', 'val': 'data/processed/val.csv'})  # dataset loading
+#     mock_load_dataset.assert_called_once_with('parquet', data_files={'train': 'data/processed/train.parquet', 'val': 'data/processed/val.parquet'})  # dataset loading
 #     mock_tokenizer_class.assert_called_once_with('cardiffnlp/twitter-roberta-base-sentiment-latest')  # tokenizer loading
 #     mock_model_class.assert_called_once_with('cardiffnlp/twitter-roberta-base-sentiment-latest')  # model loading
 #     mock_artifact.assert_called_once()  # Artifact created
