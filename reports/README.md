@@ -142,7 +142,8 @@ MLOps51
 >
 > Answer:
 
---- question 3 fill here ---
+We used the third-party framework Arrow in our project. We used functionality of writing parquet format files after preprocessing from the pyarrow package to keep data types consistent between datasets as we found csv in some cases converting Int to Float when preprocessing.
+
 
 ## Coding environment
 
@@ -162,7 +163,7 @@ MLOps51
 >
 > Answer:
 
---- question 4 fill here ---
+We used pip and conda for managing our dependencies. The list of dependencies was auto-generated using pip freeze > requirements.txt . To get a complete copy of our development environment, one would have to run the following commands "conda create --name my_environment python=3.10" and "pip install -r requirements.txt"
 
 ### Question 5
 
@@ -178,7 +179,7 @@ MLOps51
 >
 > Answer:
 
-We used the cookiecutter template provided by the course. Apart from adding additional files to the src repository we did not change the structure.
+We used the cookiecutter template provided by the course. Apart from adding additional files to the different folders (e.g. entrypoint.sh or drift_report.py) we did not change the structure.
 
 ### Question 6
 
@@ -263,7 +264,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 10 fill here ---
+We used DVC in our project by uploading the raw data to a public bucket. It did as such not help us in this specific project as we did not require updating the version, but in future cases it will be helpful as it allows to version the training/validation and test data used. 
 
 ### Question 11
 
@@ -346,7 +347,8 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 15 fill here ---
+We used docker for training using a combination of docker+vertex ai. Thus an image based of main.dockerfile will run the the training and save results to WANDB.
+We also used docker for the API which allows accessing the sentiment analysis via cloud run, as well as the data-drift report.
 
 ### Question 16
 
@@ -361,7 +363,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 16 fill here ---
+We mostly performed debugging by running the code and following up on error messages. We experimented with profiling during the exercises but did not use it for the project.
 
 ## Working in the cloud
 
@@ -378,7 +380,11 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 17 fill here ---
+We used:
+Google storage: Used to create buckets that can contain data, models, etc.
+Cloud Vertex AI: Used to spin up brief VM's for specific tasks. Used for training in combination with WANDB.
+Artifact Registry: Used to build and store docker images in the cloud and retrieve if needed.
+Cloud Run: Used to deploy API's accessible from the web.
 
 ### Question 18
 
@@ -393,7 +399,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 18 fill here ---
+We didn't really use it that much. For training we used Vertex AI. We mostly used Compute for the exercises during the course but not besides that.
 
 ### Question 19
 
@@ -402,7 +408,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 19 fill here ---
+![Bucket](figures/bucket.png)
 
 ### Question 20
 
@@ -411,7 +417,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 20 fill here ---
+![Registry](figures/registry.png)
 
 ### Question 21
 
@@ -420,7 +426,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
---- question 21 fill here ---
+![Build History](figures/build.png)
 
 ### Question 22
 
