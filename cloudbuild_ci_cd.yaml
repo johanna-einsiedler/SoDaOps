@@ -1,0 +1,141 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Build container image'
+  args: [
+    'build',
+    '.',
+    '-t',
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/less-sweep-info',
+    '-f',
+    'dockerfiles/main.dockerfile'
+  ]
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Push container image'
+  waitFor: ['Build container image']
+  args: [
+    'push',
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/less-sweep-info'
+  ]
+
+- name: "alpine"
+  id: "Replace values in the training config"
+  waitFor: ['Push container image']
+  entrypoint: "sh"
+  args:
+    - '-c'
+    - |
+      apk add --no-cache gettext
+      envsubst < configs/vertex_config_secret.yaml > configs/vertex_config_secret.yaml.tmp
+      mv configs/vertex_config_secret.yaml.tmp configs/vertex_config_secret.yaml
+  secretEnv: ['WANDB_API_KEY', 'WANDB_PROJECT', 'WANDB_ENTITY']
+
+- name: 'alpine'
+  id: "Show training config"
+  waitFor: ['Replace values in the training config']
+  entrypoint: "sh"
+  args:
+    - '-c'
+    - |
+      cat configs/vertex_config_secret.yaml
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Train on Vertex AI'
+  waitFor: ['Replace values in the training config']
+  args: [
+    'ai',
+    'custom-jobs',
+    'create',
+    '--region',
+    'europe-west1',
+    '--display-name',
+    'secret-insertion-${BUILD_ID}',
+    '--config',
+    '${_VERTEX_TRAIN_CONFIG}',
+  ]
+
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Wait for Vertex AI training to complete'
+  waitFor: ['Train on Vertex AI']
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "Waiting for Vertex AI training job to complete..."
+      echo "Job ID: $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1)"
+      if [[ -z "$(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1)" ]]; then
+        echo "Failed to find a job with display name 'secret-insertion-${BUILD_ID}'. Exiting."
+        exit 1
+      fi
+      while true; do
+        
+        echo "Current status: $(gcloud ai custom-jobs describe $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1) --region=europe-west1 --format="value(state)")"
+        if [[ "$(gcloud ai custom-jobs describe $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1) --region=europe-west1 --format="value(state)")" == "JOB_STATE_SUCCEEDED" ]]; then
+          echo "Training job succeeded!"
+          break
+        elif [[ "$(gcloud ai custom-jobs describe $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1) --region=europe-west1 --format="value(state)")" == "JOB_STATE_FAILED" || "$(gcloud ai custom-jobs describe $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1) --region=europe-west1 --format="value(state)")" == "JOB_STATE_CANCELLED" ]]; then
+          echo "Training job failed or was cancelled."
+          exit 1
+        fi
+        sleep 60
+      done
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Build API container image'
+  waitFor: ['Wait for Vertex AI training to complete']
+  args: [
+    'build',
+    '.',
+    '-t',
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/api-image',
+    '-f',
+    'dockerfiles/api.dockerfile'
+  ]
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Push API container image'
+  waitFor: ['Build API container image']
+  args: [
+    'push',
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/api-image'
+  ]
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Deploy to Cloud Run'
+  waitFor: ['Push API container image']
+  args: [
+    'run',
+    'deploy',
+    'ci-cd-api-${BUILD_ID}',
+    '--image',
+    'europe-west1-docker.pkg.dev/mlops-course-447808/docker-registry/api-image:latest',
+    '--allow-unauthenticated',
+    '--port',
+    '8080', 
+    '--service-account',
+    '727127387938-compute@developer.gserviceaccount.com',
+    '--timeout',
+    '600', 
+    '--memory',
+    '4Gi',
+    '--region',
+    'europe-west1',
+    '--project',
+    'mlops-course-447808'
+  ]
+
+substitutions:
+  _VERTEX_TRAIN_CONFIG: 'configs/vertex_config_secret.yaml'
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/$PROJECT_ID/secrets/WANDB_API_KEY/versions/latest
+    env: 'WANDB_API_KEY'
+  - versionName: projects/$PROJECT_ID/secrets/WANDB_PROJECT/versions/latest
+    env: 'WANDB_PROJECT'
+  - versionName: projects/$PROJECT_ID/secrets/WANDB_ENTITY/versions/latest
+    env: 'WANDB_ENTITY'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

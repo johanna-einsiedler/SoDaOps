@@ -17,3 +17,4 @@ downloaded_model/*
 set_env_vars.py
 src/tweet_sentiment_analysis/__pycache__/__init__.cpython-310.pyc
 set_env_vars.py
+reports/figures/*
