@@ -127,8 +127,8 @@ MLOps51
 >
 > Answer:
 - Johanna Einsiedler - s250338
-- Magnus Nielsen
-- Marten Appel
+- Magnus Nielsen - enrolment difficulties
+- Marten Appel - enrolment difficulties
 
 ### Question 3
 > **A requirement to the project is that you include a third-party package not covered in the course. What framework**
@@ -142,8 +142,8 @@ MLOps51
 >
 > Answer:
 
-We used the third-party framework Arrow in our project. We used functionality of writing parquet format files after preprocessing from the pyarrow package to keep data types consistent between datasets as we found csv in some cases converting Int to Float when preprocessing.
-
+We used the third-party framework HuggingFace in our project. We used functionality of downloading a pretrained transformer from HuggingFace Hub and finetuning it using their Trainer functionality.
+These finetuned models are then used as our final models.
 
 ## Coding environment
 
@@ -179,7 +179,10 @@ We used pip and conda for managing our dependencies. The list of dependencies wa
 >
 > Answer:
 
-We used the cookiecutter template provided by the course. Apart from adding additional files to the different folders (e.g. entrypoint.sh or drift_report.py) we did not change the structure.
+We used the cookiecutter template provided by the course. We added the following folders
+- .dvc
+- downloaded_model
+These are used to track data using dvc and to contain the best downloaded model, whereas the model folder is used to save models during training.
 
 ### Question 6
 
@@ -249,7 +252,7 @@ The overall coerage is 13\%, partially also because we did not implement test fo
 >
 > Answer:
 
-Yes, our workflow did include branches and pull requests. Initially, we all created personal branches to work on. In the end, however, we mostly worked on the main branch since we were anyways in close communication all the time. However, especially for larger coding projects were it is much harder to maintain an overview of who is working on what, branches in combination with pull requests and a list of required test that need to be passed before a merge is enabled, are definitely helpful to make sure it doesn't get all messy.
+Yes, our workflow did include branches but not pull requests. Initially, we all created personal branches to work on, which we mainly worked on and pushed to main. We originally implemented branch protection rules, but due to the rapid development pace at the beginning of a project, this was too cumbersome. However, especially for larger coding projects were it is much harder to maintain an overview of who is working on what, branches in combination with pull requests and a list of required test that need to be passed before a merge is enabled, are definitely helpful to make sure it doesn't get all messy. Due to GCP authorization, we created a forked GitHub repo where we implement CI and CI/CD pipelines with cloudbuild triggers on CI and CI/CD branches. Here we would create branch protection rules such as requiring review and passing tests before allowing merging.
 
 ### Question 10
 
@@ -264,7 +267,7 @@ Yes, our workflow did include branches and pull requests. Initially, we all crea
 >
 > Answer:
 
-We used DVC in our project by uploading the raw data to a public bucket. It did as such not help us in this specific project as we did not require updating the version, but in future cases it will be helpful as it allows to version the training/validation and test data used. 
+We used DVC in our project by uploading the raw data to a public bucket. It did as such not help us in this specific project as we did not require updating the version, but in future cases it will be helpful as it allows to version the training/validation and test data used. As a hypothetical scenario, we log requests to our API and would be able to download these logs and annotate them, adding them to the raw data files in DVC. We could then train a new model with this extended data.
 
 ### Question 11
 
@@ -281,7 +284,16 @@ We used DVC in our project by uploading the raw data to a public bucket. It did 
 >
 > Answer:
 
---- question 11 fill here ---
+We use GitHub actions to test:
+- Formatting
+- Unit testing
+- API testing
+- Coverage
+
+We only run tests on Linux as our Docker images also use Linux, using caching for pip to reduce test times. Triggered GitHub actions can be seen here <https://github.com/johanna-einsiedler/SoDaOps/actions>. 
+
+Additionally we created a forked repo (due to GCP requiring that triggers are associated with repos owned by the user) 
+
 
 ## Running code and tracking experiments
 
@@ -300,7 +312,16 @@ We used DVC in our project by uploading the raw data to a public bucket. It did 
 >
 > Answer:
 
---- question 12 fill here ---
+We used Weights & Biases to run and log experiments. We used sweeps to optimize hyperparameters. All training was done using Vertex AI, and would be triggered using:
+
+`gcloud builds submit --config=cloudbuild_vertex.yaml .`
+
+Which in turn runs a:
+
+`wandb sweep config=configs/sweep.yaml`
+
+
+
 
 ### Question 13
 
@@ -315,7 +336,7 @@ We used DVC in our project by uploading the raw data to a public bucket. It did 
 >
 > Answer:
 
---- question 13 fill here ---
+We made use of config files and wandb. Hyperparameters which are optimized over are decided in the `sweep.yaml` file, with additional hyperparameters given in the environment `vertex_config_secret.yaml`, e.g., `num_train_epochs`, `max_length`, `batch_size`. These are logged to both log files and wandb logs.
 
 ### Question 14
 
@@ -332,7 +353,11 @@ We used DVC in our project by uploading the raw data to a public bucket. It did 
 >
 > Answer:
 
---- question 14 fill here ---
+[WandB sweep](figures/wandb_sweep.PNG)
+As seen in the first image we have used sweeps to select the best model using validation loss. This informs us about the best hyperparameters and how different constellations affect out of sample performance.
+
+[WandB trainign loss](figures/train_loss.PNG)
+As seen in the second image we are also tracking the training loss. This enables us to examine whether our model training is behaving as expected, with a smooth downward curve which is plateauing towards the end.
 
 ### Question 15
 
@@ -347,8 +372,13 @@ We used DVC in our project by uploading the raw data to a public bucket. It did 
 >
 > Answer:
 
-We used docker for training using a combination of docker+vertex ai. Thus an image based of main.dockerfile will run the the training and save results to WANDB.
-We also used docker for the API which allows accessing the sentiment analysis via cloud run, as well as the data-drift report.
+We used docker to build images for:
+
+- Data preprocessing and training (main)
+- API
+- Data drift
+
+We have primarily built and run these using Cloud build and Vertex AI, e.g., `gcloud builds submit --config=cloudbuild_vertex.yaml .` The main dockerfile is `main.dockerfiles` <https://github.com/johanna-einsiedler/SoDaOps/blob/main/dockerfiles/main.dockerfile>, which will run the data processing, training with upload to WandB and selection of best model with upload to Artifact registry.
 
 ### Question 16
 
@@ -363,7 +393,7 @@ We also used docker for the API which allows accessing the sentiment analysis vi
 >
 > Answer:
 
-We mostly performed debugging by running the code and following up on error messages. We experimented with profiling during the exercises but did not use it for the project.
+Debugging was dependent on gropup member. We mostly performed debugging by running the code and following up on error messages, as many error were from the cloud building process. Some members also used the debugger, primarily when working on the model pipeline and assessing shapes etc.
 
 ## Working in the cloud
 
@@ -381,10 +411,13 @@ We mostly performed debugging by running the code and following up on error mess
 > Answer:
 
 We used:
-Google storage: Used to create buckets that can contain data, models, etc.
-Cloud Vertex AI: Used to spin up brief VM's for specific tasks. Used for training in combination with WANDB.
-Artifact Registry: Used to build and store docker images in the cloud and retrieve if needed.
-Cloud Run: Used to deploy API's accessible from the web.
+- Cloud build: The backbone which runs the majority of our code.
+- Cloud Storage: Used to create buckets that can contain data, models, etc.
+- Vertex AI: Used to spin up VM's for training in combination with WANDB.
+- Compute Engine: To build scripts initially for debugging purposes mainly.
+- Artifact Registry: Used to build and store docker images in the cloud and retrieve if needed.
+- Cloud Run: Used to deploy API's accessible from the web.
+- Monitoring: To setup API alerts.
 
 ### Question 18
 
@@ -399,7 +432,7 @@ Cloud Run: Used to deploy API's accessible from the web.
 >
 > Answer:
 
-We didn't really use it that much. For training we used Vertex AI. We mostly used Compute for the exercises during the course but not besides that.
+We used the Compute Engine to run docker images in the beginning for debugging purposes. However, we quickly changed to used Vertex AI and running models locally.
 
 ### Question 19
 
@@ -408,7 +441,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
-![Bucket](figures/bucket.png)
+![Bucket](figures/bucket.PNG)
 
 ### Question 20
 
@@ -417,7 +450,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
-![Registry](figures/registry.png)
+![Registry](figures/artifact_registry.png)
 
 ### Question 21
 
@@ -426,7 +459,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
-![Build History](figures/build.png)
+![Build History](figures/cloud_build.png)
 
 ### Question 22
 
@@ -441,7 +474,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
---- question 22 fill here ---
+We managed to train our model using Vertex AI. The reason we did this is because they run the docker image and then they shut down automatically.
 
 ## Deployment
 
@@ -458,7 +491,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
---- question 23 fill here ---
+We did manage to write an API for our model. We used FastAPI to do this and loaded the best model trained using Vertex AI which we saved to the Cloud Storage, which was easily accesible through Cloud Run. Then we took an input string and returned an output to the user. Additionally we added logging save inputs such that we can annotate and extend training data later.
 
 ### Question 24
 
@@ -474,7 +507,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
---- question 24 fill here ---
+We used Cloud Run to deploy our model API, current version is <https://ci-cd-api-b04df250-aac9-4514-8aa0-4ebc08622611-727127387938.europe-west1.run.app>. It can be accessed using `/docs` or using `curl -X "GET" "https://ci-cd-api-b04df250-aac9-4514-8aa0-4ebc08622611-727127387938.europe-west1.run.app/predict?review=<YOUR TEXT HERE>"`
 
 ### Question 25
 
@@ -489,7 +522,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
---- question 25 fill here ---
+We performed unit testing of our API using a hardcoded version. This asserts basic properties about the probabilities outputted. We would like to add load testing and ensuring that the API which was deployed most recently is always tested.
 
 ### Question 26
 
@@ -504,7 +537,7 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 >
 > Answer:
 
---- question 26 fill here ---
+We implemented monitoring of our deploymed model using GCP triggers. These ensure that a group member receives a mail if there are an excess amount of logs to Cloud Run overall (thus capturing all our deployed models). This group member could then follow up and examine the monitoring tab, seeing what services are causing excessive load and act on this.
 
 ## Overall discussion of project
 
@@ -525,8 +558,10 @@ We didn't really use it that much. For training we used Vertex AI. We mostly use
 
 Marten used 109 dkk.
 Johanna used xxx dkk.
-Magnus used xxx dkk.
-The service costing the most was xxx
+Magnus used 45 dkk.
+The service costing the most was Artifact Registry (Magnus) and Compute Engine (Marten)
+
+We purposefully chose a very small dataset (train N = 500) and used only CPU, as had issues accessing GPUs due to ressource shortages during exercises.
 
 ### Question 28
 
@@ -544,6 +579,10 @@ The service costing the most was xxx
 
 We implemented a drift detection system that can run in the cloud. Currently it is only run on the validation set of our original data, but can hypothetically be used to detect drift in input to the api. The drift detection was implemented using evidently. 
 
+We implemented logging of input queries to the API, to enable human annotation and later extension of the training data. 
+
+We created two Cloud Build triggers on branches on a forked GitHub Repo (<https://github.com/Magnus-Nielsen/SoDaOps>): A CI trigger and a CI/CD trigger. These trigger Cloud Builds which either train a full model (CI) or train a full model and deploy to API (CI/CD) when there are pushes to these branches. 
+
 ### Question 29
 
 > **Include a figure that describes the overall architecture of your system and what services that you make use of.**
@@ -559,7 +598,7 @@ We implemented a drift detection system that can run in the cloud. Currently it 
 >
 > Answer:
 
-[architecture](figures/overview.png)
+[architecture](figures/architecture.png)
 
 
 ### Question 30
@@ -574,7 +613,7 @@ We implemented a drift detection system that can run in the cloud. Currently it 
 >
 > Answer:
 
-The biggest challenge in the project was to get docker images to work and to work in the cloud due to the long compile times making fixing errors a headache.
+The biggest challenge in the project was to get docker images to work and to work in the cloud due to the long compile times making fixing errors a headache. Additionally, the Cloud Build syntax could cause some challenges when trying to chain multiple steps together.
 
 ### Question 31
 
@@ -594,4 +633,4 @@ The biggest challenge in the project was to get docker images to work and to wor
 
 Johanna was responsible for setting up Github, the API and testing.
 Marten was responsible for setting up the initial python scripts, the dvc and create the data drift evaluation. 
-Magnus was responsible for getting the entire setup to work with google cloud, covering work in regards to updating scripts, integrating github, gcp and wandb and retrieving the final model for the API. 
+Magnus was responsible for setting WandB tracking up, training on Vertex AI, migrating API to Cloud Run, creating Cloud Builds. 
