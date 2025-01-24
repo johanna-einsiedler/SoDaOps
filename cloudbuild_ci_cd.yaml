@@ -40,7 +40,7 @@ steps:
       cat configs/vertex_config_secret.yaml
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  id: 'Train on vertex AI'
+  id: 'Train on Vertex AI'
   waitFor: ['Replace values in the training config']
   args: [
     'ai',
@@ -49,14 +49,41 @@ steps:
     '--region',
     'europe-west1',
     '--display-name',
-    'secret-insertion',
+    'secret-insertion-${BUILD_ID}',
     '--config',
     '${_VERTEX_TRAIN_CONFIG}',
   ]
 
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Wait for Vertex AI training to complete'
+  waitFor: ['Train on Vertex AI']
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "Waiting for Vertex AI training job to complete..."
+      echo "Job ID: $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1)"
+      if [[ -z "$(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1)" ]]; then
+        echo "Failed to find a job with display name 'secret-insertion-${BUILD_ID}'. Exiting."
+        exit 1
+      fi
+      while true; do
+        
+        echo "Current status: $(gcloud ai custom-jobs describe $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1) --region=europe-west1 --format="value(state)")"
+        if [[ "$(gcloud ai custom-jobs describe $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1) --region=europe-west1 --format="value(state)")" == "JOB_STATE_SUCCEEDED" ]]; then
+          echo "Training job succeeded!"
+          break
+        elif [[ "$(gcloud ai custom-jobs describe $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1) --region=europe-west1 --format="value(state)")" == "JOB_STATE_FAILED" || "$(gcloud ai custom-jobs describe $(gcloud ai custom-jobs list --region=europe-west1 --filter="displayName:secret-insertion-${BUILD_ID}" --format="value(name)" | head -n 1) --region=europe-west1 --format="value(state)")" == "JOB_STATE_CANCELLED" ]]; then
+          echo "Training job failed or was cancelled."
+          exit 1
+        fi
+        sleep 60
+      done
+
 - name: 'gcr.io/cloud-builders/docker'
   id: 'Build API container image'
-  waitFor: ['Train on vertex AI']
+  waitFor: ['Wait for Vertex AI training to complete']
   args: [
     'build',
     '.',
@@ -80,7 +107,7 @@ steps:
   args: [
     'run',
     'deploy',
-    'ci-cd-api',
+    'ci-cd-api-${BUILD_ID}',
     '--image',
     'europe-west1-docker.pkg.dev/mlops-course-447808/docker-registry/api-image:latest',
     '--allow-unauthenticated',
