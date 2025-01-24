@@ -9,9 +9,10 @@ from evidently.report import Report
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from google.cloud import storage
-from data import load_data
-from model import SentimentPipeline
 from loguru import logger
+
+from src.tweet_sentiment_analysis.data import load_data
+from src.tweet_sentiment_analysis.model import SentimentPipeline
 
 BUCKET_NAME = "mlops_monitoring"
 logger.remove()
@@ -34,6 +35,7 @@ def lifespan(app: FastAPI):
     train, test, val = load_data()
     train["content"] = train["tweet_text"]
     pipe = SentimentPipeline()
+
     def analyze_sentiment(text):
         try:
             text = str(text)
@@ -41,13 +43,12 @@ def lifespan(app: FastAPI):
             return result["label"], result["score"]
         except Exception:
             return "ERROR", 0
+
     train["target"] = train["tweet_text"].apply(lambda x: analyze_sentiment(x)[0])
     train["target"] = train["target"].str.lower()
-        # Convert to categorical AFTER converting to lowercase AND adding the category
-    train["target"] = pd.Categorical(
-            train["target"], categories=["negative", "neutral", "positive"]
-        )
-    #train["target"] = train["sentiment_encoded"]  # in case we wish to look at ground truth drift
+    # Convert to categorical AFTER converting to lowercase AND adding the category
+    train["target"] = pd.Categorical(train["target"], categories=["negative", "neutral", "positive"])
+    # train["target"] = train["sentiment_encoded"]  # in case we wish to look at ground truth drift
     train = train[["content", "target"]]
     logger.debug(train.head())
     class_names = ["negative", "neutral", "positive"]
@@ -64,7 +65,7 @@ def load_latest_files(directory: Path, n: int) -> pd.DataFrame:
     """Load the N latest prediction files from the directory."""
     # Download the latest prediction files from the GCP bucket
     download_files(n=n)
-    
+
     logger.info("Download complete.")
 
     # Get all prediction files in the directory
@@ -83,6 +84,7 @@ def load_latest_files(directory: Path, n: int) -> pd.DataFrame:
 
     dataframe["content"] = dataframe["tweet_text"]
     pipe = SentimentPipeline()
+
     def analyze_sentiment(text):
         try:
             text = str(text)
@@ -90,13 +92,12 @@ def load_latest_files(directory: Path, n: int) -> pd.DataFrame:
             return result["label"], result["score"]
         except Exception:
             return "ERROR", 0
+
     dataframe["target"] = dataframe["tweet_text"].apply(lambda x: analyze_sentiment(x)[0])
     dataframe["target"] = dataframe["target"].str.lower()
-        # Convert to categorical AFTER converting to lowercase AND adding the category
-    dataframe["target"] = pd.Categorical(
-            dataframe["target"], categories=["negative", "neutral", "positive"]
-        )
-    #dataframe["target"] = dataframe["sentiment_encoded"] # in case we want to look at ground truth drift
+    # Convert to categorical AFTER converting to lowercase AND adding the category
+    dataframe["target"] = pd.Categorical(dataframe["target"], categories=["negative", "neutral", "positive"])
+    # dataframe["target"] = dataframe["sentiment_encoded"] # in case we want to look at ground truth drift
     dataframe = dataframe[["content", "target"]]
     logger.debug(dataframe.head())
     return dataframe

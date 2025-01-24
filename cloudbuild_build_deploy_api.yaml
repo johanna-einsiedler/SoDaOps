@@ -1,0 +1,46 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Build API container image'
+  args: [
+    'build',
+    '.',
+    '-t',
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/api-image',
+    '-f',
+    'dockerfiles/api.dockerfile'
+  ]
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Push API container image'
+  waitFor: ['Build API container image']
+  args: [
+    'push',
+    'europe-west1-docker.pkg.dev/$PROJECT_ID/docker-registry/api-image'
+  ]
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Deploy to Cloud Run'
+  waitFor: ['Push API container image']
+  args: [
+    'run',
+    'deploy',
+    'manual-deployment-${BUILD_ID}',
+    '--image',
+    'europe-west1-docker.pkg.dev/mlops-course-447808/docker-registry/api-image:latest',
+    '--allow-unauthenticated',
+    '--port',
+    '8080', 
+    '--service-account',
+    '727127387938-compute@developer.gserviceaccount.com',
+    '--timeout',
+    '600', 
+    '--memory',
+    '4Gi',
+    '--region',
+    'europe-west1',
+    '--project',
+    'mlops-course-447808'
+  ]
+
+options:
+  logging: CLOUD_LOGGING_ONLY

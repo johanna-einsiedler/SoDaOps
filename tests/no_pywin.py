@@ -17,5 +17,3 @@ def test_pywin_not_in_requirements(requirements_file):
     # Check each line in the file for the forbidden package
     for line in requirements_file:
         assert forbidden_package not in line.strip(), f"'{forbidden_package}' should not be in requirements.txt"
-
-
